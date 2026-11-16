@@ -31,3 +31,5 @@ pub mod lid_mapping;
 pub mod session_migration;
 
 pub mod legacy_session;
+
+pub mod socket;

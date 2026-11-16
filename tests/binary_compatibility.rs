@@ -182,6 +182,7 @@ fn malformed_frames_do_not_panic() {
                     max_bytes: 4096,
                     max_depth: 12,
                     max_nodes: 64,
+                    max_attributes: 128,
                 },
             );
         }
@@ -231,6 +232,64 @@ fn incomplete_zlib_streams_are_rejected() {
             decode(&compressed[..i]).is_err(),
             "compressed prefix {i}/{}",
             compressed.len()
+        );
+    }
+}
+
+#[test]
+fn attribute_budget_is_global_and_counts_duplicates_before_deduplication() {
+    let child = Node {
+        tag: "item".into(),
+        attrs: vec![("id".into(), "one".into()), ("id".into(), "two".into())],
+        content: None,
+    };
+    let tree = Node {
+        tag: "list".into(),
+        attrs: vec![("id".into(), "root".into())],
+        content: Some(Content::Nodes(vec![child.clone(), child])),
+    };
+    let wire = encode(&tree).unwrap();
+    let limits = Limits {
+        max_attributes: 4,
+        ..Default::default()
+    };
+    assert_eq!(
+        encode_with_limits(&tree, limits),
+        Err(rustleys_whatsapp::binary::Error("attribute limit"))
+    );
+    assert_eq!(
+        decode_with_limits(&wire, limits),
+        Err(rustleys_whatsapp::binary::Error("attribute limit"))
+    );
+    assert!(
+        decode_with_limits(
+            &wire,
+            Limits {
+                max_attributes: 5,
+                ..Default::default()
+            }
+        )
+        .is_ok()
+    );
+}
+#[test]
+fn large_attribute_tables_keep_first_key_order_and_last_duplicate_value() {
+    let mut attrs: Vec<_> = (0..5000)
+        .map(|n| (format!("field-{n}"), format!("value-{n}")))
+        .collect();
+    attrs.push(("field-2".into(), "updated".into()));
+    let source = Node {
+        tag: "item".into(),
+        attrs,
+        content: None,
+    };
+    let result = decode(&encode(&source).unwrap()).unwrap();
+    assert_eq!(result.attrs.len(), 5000);
+    assert_eq!(result.attrs[2], ("field-2".into(), "updated".into()));
+    for n in [0, 1, 3, 4999] {
+        assert_eq!(
+            result.attrs[n],
+            (format!("field-{n}"), format!("value-{n}"))
         );
     }
 }

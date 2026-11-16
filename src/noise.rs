@@ -351,6 +351,7 @@ pub struct NoiseSession {
     encoder: FrameEncoder,
     decoder: FrameDecoder,
     root: TrustRoot,
+    node_limits: binary::Limits,
 }
 impl std::fmt::Debug for NoiseSession {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
@@ -381,7 +382,26 @@ impl NoiseSession {
             encoder: FrameEncoder::new(&NOISE_WA_HEADER, routing)?,
             decoder: FrameDecoder::default(),
             root,
+            node_limits: binary::Limits::default(),
         })
+    }
+    #[cfg(test)]
+    pub(crate) fn with_test_root(
+        ephemeral: crypto::PrivateKey,
+        routing: Option<&[u8]>,
+        key: [u8; 32],
+    ) -> Result<Self> {
+        Self::with_root(
+            ephemeral,
+            routing,
+            TrustRoot {
+                key,
+                issuer_serial: 0,
+            },
+        )
+    }
+    pub(crate) fn set_node_limits(&mut self, limits: binary::Limits) {
+        self.node_limits = limits;
     }
     pub fn client_hello(&mut self) -> Result<Vec<u8>> {
         if !matches!(
@@ -506,7 +526,10 @@ impl NoiseSession {
             };
             Ok(Some(match &mut self.phase {
                 Phase::Handshake(_) => Frame::Handshake(frame),
-                Phase::Transport(t) => Frame::Node(binary::decode(&t.decrypt(&frame)?)?),
+                Phase::Transport(t) => Frame::Node(binary::decode_with_limits(
+                    &t.decrypt(&frame)?,
+                    self.node_limits,
+                )?),
                 Phase::Failed => return Err(Error::Failed),
             }))
         })();

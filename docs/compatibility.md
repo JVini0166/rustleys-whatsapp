@@ -21,7 +21,7 @@ These are differential tests of the exercised protocol utilities, not a test of 
 - JID numeric values are Rust unsigned protocol integers. JavaScript's arbitrary values, parseInt prefixes, floating-point/NaN/Infinity coercion and numeric `user` overload are not reproduced yet. JID helpers remain partial.
 - Custom token/tag coding options and caller-provided encoding buffers are not exposed yet. Binary codec remains partial.
 - JavaScript runtime non-string/null/undefined attributes, unusual array members and object integer-key enumeration require a compatibility adapter/specification; Rust's current API is strongly typed with explicit attribute order.
-- Binary generic utilities, WAM, USync, WebSocket, pairing, message processing, history/app-state, media, groups and the rest of the socket API remain pending. Protobuf and crypto progress is detailed below.
+- Binary generic utilities, WAM, USync, full WebSocket/socket API compatibility, pairing, message processing, history/app-state, media, groups and the rest of the socket API remain pending. Protobuf and crypto progress is detailed below.
 - No pairing, sending, receiving, reconnection or production WhatsApp session has been exercised. No operational client exists yet.
 
 ## Reproduction
@@ -106,3 +106,8 @@ Native mapping/cache/coalescing, reciprocal cleanup and transactional session mi
 ## Legacy session import checkpoint
 
 [Legacy session import](legacy-sessions.md) converts bounded libsignal-node v6 JSON, including pending prekeys, skipped seeds and closed sessions, into the native transactional repository. Active offline peers verify continued encryption in both directions and across process restarts. Decrypting archived messages preserves the open session rather than promoting an old ratchet. Existing sessions are never overwritten by import. Export, filesystem auto-migration, legacy metadata round-tripping and arbitrary historical variants remain pending; the Signal inventory entries remain partial.
+
+
+## Async transport checkpoint
+
+A [bounded WebSocket/Noise transport](socket-transport.md) now performs the encrypted handshake, node I/O, correlated queries, keepalive and shutdown on a single-owner task. Tests use loopback sockets and original-generated synthetic Noise vectors; production TLS/WhatsApp service interoperability and the login/pairing facade remain unverified. Event/byte budgets, query-ID rules and typed async/cancellation semantics are explicit behavior differences. Binary limits now also bound the total attribute count, with indexed large-table duplicate handling. The relevant socket inventory entries remain partial.

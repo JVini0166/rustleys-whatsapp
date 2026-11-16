@@ -20,6 +20,9 @@ strip = true
 prost-reflect = { version = "0.16", features = ["serde"] }
 
 [dependencies]
+tokio = { version = "1", features = ["rt", "net", "time", "sync", "macros", "io-util"] }
+tokio-tungstenite = { version = "0.30", default-features = false, features = ["connect", "rustls-tls-webpki-roots"] }
+futures-util = { version = "0.3", default-features = false, features = ["sink", "std"] }
 lru = "0.19"
 subtle = "2.6"
 rusqlite = { version = "0.43", features = ["bundled"] }

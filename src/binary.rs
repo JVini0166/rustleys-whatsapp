@@ -20,6 +20,7 @@ pub struct Limits {
     pub max_bytes: usize,
     pub max_depth: usize,
     pub max_nodes: usize,
+    pub max_attributes: usize,
 }
 impl Default for Limits {
     fn default() -> Self {
@@ -27,6 +28,7 @@ impl Default for Limits {
             max_bytes: 64 * 1024 * 1024,
             max_depth: 128,
             max_nodes: 65535,
+            max_attributes: 65535,
         }
     }
 }
@@ -44,6 +46,7 @@ struct Writer {
     out: Vec<u8>,
     limits: Limits,
     nodes: usize,
+    attributes: usize,
 }
 impl Writer {
     fn bytes(&mut self, bytes: &[u8]) -> Result<()> {
@@ -141,6 +144,10 @@ impl Writer {
             return Err(Error("node/depth limit"));
         }
         self.nodes += 1;
+        if n.attrs.len() > self.limits.max_attributes.saturating_sub(self.attributes) {
+            return Err(Error("attribute limit"));
+        }
+        self.attributes += n.attrs.len();
         self.list(
             n.attrs
                 .len()
@@ -176,6 +183,7 @@ pub fn encode_with_limits(node: &Node, limits: Limits) -> Result<Vec<u8>> {
         out: Vec::new(),
         limits,
         nodes: 0,
+        attributes: 0,
     };
     w.bytes(&[0])?;
     w.node(node, 0)?;
@@ -187,6 +195,7 @@ struct Reader<'a> {
     pos: usize,
     limits: Limits,
     nodes: usize,
+    attributes: usize,
 }
 impl Reader<'_> {
     fn take(&mut self, len: usize) -> Result<&[u8]> {
@@ -331,13 +340,28 @@ impl Reader<'_> {
         if size == 0 || tag.is_empty() {
             return Err(Error("invalid node"));
         }
+        let count = (size - 1) / 2;
+        if count > self.limits.max_attributes.saturating_sub(self.attributes) {
+            return Err(Error("attribute limit"));
+        }
+        self.attributes += count;
         let mut attrs = Vec::new();
-        for _ in 0..((size - 1) / 2) {
+        // Small stanzas avoid a hash allocation; large attribute tables avoid
+        // quadratic duplicate detection while keeping first-insertion order.
+        let mut index = (count > 16).then(|| std::collections::HashMap::with_capacity(count));
+        for _ in 0..count {
             let t = self.byte()?;
             let k = self.string(t, 0)?;
             let t = self.byte()?;
             let v = self.string(t, 0)?;
-            if let Some((_, value)) = attrs.iter_mut().find(|(key, _)| key == &k) {
+            if let Some(index) = &mut index {
+                if let Some(&position) = index.get(&k) {
+                    attrs[position] = (k, v);
+                } else {
+                    index.insert(k.clone(), attrs.len());
+                    attrs.push((k, v));
+                }
+            } else if let Some((_, value)) = attrs.iter_mut().find(|(key, _)| key == &k) {
                 *value = v;
             } else {
                 attrs.push((k, v));
@@ -384,6 +408,7 @@ pub fn decode_decompressed(bytes: &[u8], cursor: &mut usize, limits: Limits) -> 
         pos: *cursor,
         limits,
         nodes: 0,
+        attributes: 0,
     };
     let result = r.node(0);
     *cursor = r.pos;

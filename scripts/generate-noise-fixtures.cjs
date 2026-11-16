@@ -41,7 +41,7 @@ function frame(b){return Buffer.concat([Buffer.from([b.length>>16,(b.length>>8)&
    for(let offset=0;offset<wire.length;offset+=5)await handler.decodeFrame(wire.subarray(offset,offset+5),n=>read.push(norm(n)));
    assert.equal(read.length,1);incoming.push({frame:bytes(wire),node:read[0]});
   }
-  cases.push({synthetic:true,clientPrivate:bytes(client.private),clientStaticPrivate:bytes(clientStatic.private),serverStaticPublic:bytes(serverStatic.public),routing:routing?bytes(routing):null,rootPublic:bytes(root.public),certificate:bytes(cert),serverHello:bytes(serverHello),serverHelloFrame:bytes(frame(serverHello)),clientHelloFrame:bytes(clientHelloFrame),keyEncrypted:bytes(keyEncrypted),clientPayload:bytes(clientPayload),payloadEncrypted:bytes(payloadEncrypted),clientFinishFrame:bytes(clientFinishFrame),outgoing,incoming});
+  cases.push({synthetic:true,clientWriteKey:bytes(split.subarray(0,32)),clientReadKey:bytes(split.subarray(32)),clientPrivate:bytes(client.private),clientStaticPrivate:bytes(clientStatic.private),serverStaticPublic:bytes(serverStatic.public),routing:routing?bytes(routing):null,rootPublic:bytes(root.public),certificate:bytes(cert),serverHello:bytes(serverHello),serverHelloFrame:bytes(frame(serverHello)),clientHelloFrame:bytes(clientHelloFrame),keyEncrypted:bytes(keyEncrypted),clientPayload:bytes(clientPayload),payloadEncrypted:bytes(payloadEncrypted),clientFinishFrame:bytes(clientFinishFrame),outgoing,incoming});
   if(index===0){
    const variants=[];
    const change=overrides=>proto.CertChain.encode({intermediate:{details:intBytes,signature:intSignature},leaf:{details:leafBytes,signature:leafSignature},...overrides}).finish();

@@ -166,13 +166,13 @@
     {
       "path": "src/Socket/Client/types.ts",
       "bytes": 557,
-      "status": "not_ported",
+      "status": "partial",
       "exports": []
     },
     {
       "path": "src/Socket/Client/websocket.ts",
       "bytes": 1522,
-      "status": "not_ported",
+      "status": "partial",
       "exports": [
         "WebSocketClient"
       ]
@@ -255,7 +255,7 @@
     {
       "path": "src/Socket/socket.ts",
       "bytes": 33474,
-      "status": "not_ported",
+      "status": "partial",
       "exports": [
         "makeSocket"
       ]
