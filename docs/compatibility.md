@@ -93,3 +93,7 @@ The development-only protobuf.js oracle is now pinned to 7.6.6, within upstream'
 ## Signal pairwise checkpoint
 
 A native transactional repository now exercises X3DH, prekey/ordinary messages and Double Ratchet against libsignal-node. SQLite commits session, identity and one-time prekey state before returning output. See [signal-sessions.md](signal-sessions.md) for the 84-message cross-runtime exchange, address/corpus coverage, failed-commit evidence and explicit remaining group/LID/legacy-storage work. No live WhatsApp client is claimed.
+
+## Group sender-key checkpoint
+
+Transactional group distribution/encryption/decryption now has original-wire fixtures, typed sender-name hashing, bounded authenticated refresh and both-direction original-module comparisons. The verifier separately reproduces the pinned legacy JSON skipped-key failure, then uses an explicitly typed BufferJSON adapter for the unchanged JS cryptographic modules. See [group-sessions.md](group-sessions.md) for evidence, intentional policy differences and remaining network/legacy-API work.

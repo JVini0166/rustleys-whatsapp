@@ -23,6 +23,8 @@
     "verify:auth": "node scripts/verify-auth-cross-runtime.cjs",
     "fixtures:signal": "node scripts/generate-signal-fixtures.cjs",
     "fixtures:signal-addresses": "node scripts/generate-signal-address-fixtures.cjs",
-    "verify:signal": "node scripts/verify-signal-cross-runtime.cjs"
+    "verify:signal": "node scripts/verify-signal-cross-runtime.cjs",
+    "fixtures:groups": "node scripts/generate-group-fixtures.cjs",
+    "verify:groups": "node scripts/verify-group-cross-runtime.cjs"
   }
 }

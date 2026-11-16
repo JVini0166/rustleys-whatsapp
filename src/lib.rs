@@ -23,3 +23,5 @@ pub mod auth;
 pub mod auth_store;
 
 pub mod signal;
+
+pub mod group_signal;

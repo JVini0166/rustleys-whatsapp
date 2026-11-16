@@ -15,7 +15,7 @@ use std::{
 use wacore_libsignal::engine::{self, Engine, RustCrypto, codec, wire};
 use zeroize::Zeroizing;
 const MAX_BLOB: usize = 128 * 1024 * 1024;
-const MAX_MESSAGE: usize = 16 * 1024 * 1024;
+pub(crate) const MAX_MESSAGE: usize = 16 * 1024 * 1024;
 #[derive(Debug)]
 pub enum Error {
     Protocol(engine::Error),
@@ -26,6 +26,7 @@ pub enum Error {
         code: Option<i32>,
     },
     InvalidAddress,
+    InvalidGroup,
     InvalidKey,
     TooLarge,
     LocalIdentityMismatch,
@@ -179,7 +180,7 @@ impl Store for SqliteStore {
         Ok(output)
     }
 }
-struct OsRandom;
+pub(crate) struct OsRandom;
 impl engine::RandomSource for OsRandom {
     fn fill(&mut self, bytes: &mut [u8]) -> engine::Result<()> {
         getrandom::getrandom(bytes).map_err(|_| engine::Error::Crypto)
@@ -300,7 +301,7 @@ pub struct SessionInfo {
     pub registration_id: u32,
 }
 pub struct Repository<S: Store> {
-    store: S,
+    pub(crate) store: S,
     identity: engine::KeyPair,
     registration: u32,
     signed: engine::KeyPair,

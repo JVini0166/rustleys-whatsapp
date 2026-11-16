@@ -20,6 +20,7 @@ strip = true
 prost-reflect = { version = "0.16", features = ["serde"] }
 
 [dependencies]
+subtle = "2.6"
 rusqlite = { version = "0.43", features = ["bundled"] }
 tempfile = "3.27"
 libc = "0.2"

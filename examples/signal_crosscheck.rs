@@ -26,6 +26,46 @@ fn execute(
     let jid = request["jid"].as_str().unwrap_or("");
     Ok(
         match request["command"].as_str().ok_or("missing command")? {
+            "group_distribution" => {
+                let group = request["group"].as_str().ok_or("group required")?;
+                let author = request["author"].as_str().ok_or("author required")?;
+                json!(repo.sender_key_distribution(group, author)?.expose())
+            }
+            "group_process" => {
+                repo.process_sender_key_distribution(
+                    request["group"].as_str().ok_or("group required")?,
+                    request["author"].as_str().ok_or("author required")?,
+                    &bytes(&request["distribution"])?,
+                )?;
+                json!(true)
+            }
+            "group_encrypt" => {
+                let encrypted = repo.encrypt_group_message(
+                    request["group"].as_str().ok_or("group required")?,
+                    request["author"].as_str().ok_or("author required")?,
+                    &bytes(&request["plaintext"])?,
+                )?;
+                json!({"ciphertext":encrypted.ciphertext,"distribution":encrypted.sender_key_distribution.expose()})
+            }
+            "group_decrypt" => json!(
+                repo.decrypt_group_message(
+                    request["group"].as_str().ok_or("group required")?,
+                    request["author"].as_str().ok_or("author required")?,
+                    &bytes(&request["ciphertext"])?
+                )?
+                .expose()
+            ),
+            "group_has" => json!(repo.has_sender_key(
+                request["group"].as_str().ok_or("group required")?,
+                request["author"].as_str().ok_or("author required")?
+            )?),
+            "group_delete" => {
+                repo.delete_sender_key(
+                    request["group"].as_str().ok_or("group required")?,
+                    request["author"].as_str().ok_or("author required")?,
+                )?;
+                json!(true)
+            }
             "put_prekey" => {
                 let key: KeyPair = serde_json::from_value(request["key"].clone())?;
                 repo.put_pre_key(serde_json::from_value(request["id"].clone())?, &key)?;

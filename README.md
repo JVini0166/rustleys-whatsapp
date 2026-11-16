@@ -8,7 +8,9 @@ Port all Baileys functionality to Rust with protocol/API compatibility tracked a
 
 **Status: initial development. This repository does not connect to WhatsApp yet. No functional parity or production readiness is claimed.**
 
-Protocol utilities implemented so far: JID helpers; binary-node encoder/decoder with generated token dictionaries; symmetric/hash/key-derivation/X25519/XEdDSA primitives; offline-tested authenticated Noise handshake and transport; generated Rust types for the pinned WAProto schema; credential initialization and Baileys-compatible local auth files; transactional native Signal pairwise sessions. See [Signal interoperability](docs/signal-sessions.md) for verified messages and remaining repository work. See [authentication state](docs/auth-state.md) for storage guarantees and pending work. See [compatibility progress](docs/compatibility.md) for tested behavior and pending differences.
+Implemented protocol utilities include JID helpers, bounded binary-node codecs, generated WAProto types, cryptographic primitives and an offline-tested Noise handshake/transport.
+
+[Credential storage](docs/auth-state.md), [pairwise Signal sessions](docs/signal-sessions.md) and [group sender keys](docs/group-sessions.md) have local differential tests. Their documentation records remaining API/storage differences, including a reproduced bug in the original group JSON adapter. The [compatibility inventory](docs/compatibility.md) tracks the wider port.
 
 The initial inventory is in `docs/upstream-inventory.json`. Every file starts as `not_ported`; completing a module requires behavioral tests, including error cases and interoperability where applicable. Export extraction is an initial source inventory, not a complete public API specification (re-exports and dynamically returned socket methods require separate analysis).
 

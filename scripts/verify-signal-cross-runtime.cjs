@@ -1,26 +1,18 @@
 // Active offline peers: actual libsignal-node and the native Rust repository.
-const fsp=require('node:fs').promises,path=require('node:path'),os=require('node:os'),assert=require('node:assert/strict'),readline=require('node:readline'),{spawn,spawnSync}=require('node:child_process');
+const fsp=require('node:fs').promises,path=require('node:path'),os=require('node:os'),assert=require('node:assert/strict');
 const {setup,storage,bundle,signal}=require('./signal-reference.cjs');
+const {buildDriver,startDriver}=require('./rust-oracle-driver.cjs');
 (async()=>{
  const root=path.join(__dirname,'..'),r=await setup(process.argv[2]);
- const build=spawnSync('cargo',['build','--locked','--quiet','--message-format=json','--example','signal_crosscheck'],{cwd:root,env:{...process.env,CARGO_BUILD_JOBS:'1'},encoding:'utf8',maxBuffer:2*1024*1024});if(build.status!==0)throw Error(build.stderr||'Rust build failed');
- const artifact=build.stdout.trim().split('\n').filter(Boolean).map(line=>JSON.parse(line)).find(message=>message.reason==='compiler-artifact'&&message.target.name==='signal_crosscheck'&&message.executable);assert(artifact,'Cargo did not return the example executable');
+ const executable=buildDriver(root,'signal_crosscheck');
  const temp=await fsp.mkdtemp(path.join(os.tmpdir(),'rustleys-signal-interop-'));
  let calls=0,packets=0,current;
- async function start(db){
-  const process=spawn(artifact.executable,[db],{cwd:root,stdio:['pipe','pipe','pipe']});
-  let pending,stderr='';process.stderr.on('data',d=>{stderr+=d.toString();});const lines=readline.createInterface({input:process.stdout});
-  lines.on('line',line=>{if(!pending)return;const {resolve,reject,timer}=pending;pending=undefined;clearTimeout(timer);try{const result=JSON.parse(line);result.ok?resolve(result.value):reject(Error(result.error));}catch(e){reject(e);}});
-  process.on('error',error=>{if(pending){clearTimeout(pending.timer);pending.reject(error);pending=undefined;}});
-  process.on('exit',()=>{if(pending){clearTimeout(pending.timer);pending.reject(Error(`Rust exited: ${stderr}`));pending=undefined;}});
-  const request=data=>{assert(!pending,'serial request protocol');calls++;return new Promise((resolve,reject)=>{const timer=setTimeout(()=>{pending=undefined;reject(Error('Rust request timed out'));process.kill();},30000);pending={resolve,reject,timer};process.stdin.write(JSON.stringify(data)+'\n');});};
-  return {request,close:()=>new Promise(resolve=>{if(process.exitCode!==null||process.signalCode!==null)return resolve();process.once('exit',resolve);process.stdin.end();}),kill:()=>new Promise(resolve=>{if(process.exitCode!==null||process.signalCode!==null)return resolve();process.once('exit',resolve);process.kill();})};
- }
+ const start=db=>startDriver(executable,[db],root);
  const wireBundle=b=>({...b,identityKey:Array.from(b.identityKey),signedPreKey:{...b.signedPreKey,publicKey:Array.from(b.signedPreKey.publicKey),signature:Array.from(b.signedPreKey.signature)},...(b.preKey?{preKey:{...b.preKey,publicKey:Array.from(b.preKey.publicKey)}}:{})});
  try{
   for(const initiator of ['node','rust'])for(const oneTime of [false,true]){
    const db=path.join(temp,`${initiator}-${oneTime}.sqlite`),alice=r.credentials[0],bob=r.credentials[1],node=storage(alice),pre=r.crypto.Curve.generateKeyPair(),jid='synthetic-alice:1@s.whatsapp.net';
-   current=await start(db);let request=data=>current.request(data);await request({command:'configure',credentials:JSON.parse(r.credentialJson[1])});
+   current=await start(db);let request=data=>{calls++;return current.request(data);};await request({command:'configure',credentials:JSON.parse(r.credentialJson[1])});
    const nodeAddress=new signal.ProtocolAddress('synthetic-bob',2),cipher=new signal.SessionCipher(node,nodeAddress);
    if(initiator==='node'){
     if(oneTime)await request({command:'put_prekey',id:7,key:JSON.parse(JSON.stringify(pre,r.BufferJSON.replacer))});
