@@ -17,3 +17,7 @@ pub const PROTO_DESCRIPTOR: &[u8] =
     include_bytes!(concat!(env!("OUT_DIR"), "/proto-descriptor.bin"));
 
 pub mod noise;
+
+pub mod auth;
+
+pub mod auth_store;

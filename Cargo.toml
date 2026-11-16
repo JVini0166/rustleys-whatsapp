@@ -18,9 +18,13 @@ strip = true
 
 [dev-dependencies]
 prost-reflect = { version = "0.16", features = ["serde"] }
-serde_json = { version = "1.0", features = ["preserve_order"] }
 
 [dependencies]
+tempfile = "3.27"
+libc = "0.2"
+base64 = "0.22"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = { version = "1.0", features = ["preserve_order"] }
 bytes = "1.12"
 wacore-libsignal = { git = "https://github.com/oxidezap/whatsapp-rust.git", rev = "3f21778971e36f796b41b1180ef04da075968750" }
 aes = "0.8"

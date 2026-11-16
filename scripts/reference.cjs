@@ -16,6 +16,6 @@ async function loadReference(upstream,rootOverride){
  const protoSource=source('WAProto/index.js').replace('import $protobuf from "protobufjs/minimal.js";','const $protobuf = require("protobufjs/minimal.js");').replace('export const proto =','const proto = module.exports.proto =').replace('export { $root as default };','');
  const m={exports:{}};new Function('require','module','exports',protoSource)(require,m,m.exports);const proto=m.exports.proto;
  const noise=compile(source('src/Utils/noise-handler.ts'),n=>n==='../Defaults'?constants:n==='./crypto'?crypto:n==='../WABinary'?binary:n==='../../WAProto/index.js'?{proto}:require(n));
- return {commit:expected,crypto,binary,proto,constants,noise};
+ return {commit:expected,crypto,binary,proto,constants,noise,source,compile};
 }
 module.exports={loadReference};

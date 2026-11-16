@@ -263,7 +263,7 @@
     {
       "path": "src/Types/Auth.ts",
       "bytes": 3066,
-      "status": "not_ported",
+      "status": "partial",
       "exports": [
         "KeyPair",
         "SignedKeyPair",
@@ -542,7 +542,7 @@
     {
       "path": "src/Utils/auth-utils.ts",
       "bytes": 10101,
-      "status": "not_ported",
+      "status": "partial",
       "exports": [
         "makeCacheableSignalKeyStore",
         "addTransactionCapability",
@@ -661,7 +661,7 @@
     {
       "path": "src/Utils/generics.ts",
       "bytes": 13272,
-      "status": "not_ported",
+      "status": "partial",
       "exports": [
         "BufferJSON",
         "getKeyAuthor",
@@ -943,7 +943,7 @@
     {
       "path": "src/Utils/use-multi-file-auth-state.ts",
       "bytes": 3824,
-      "status": "not_ported",
+      "status": "partial",
       "exports": [
         "useMultiFileAuthState"
       ]
