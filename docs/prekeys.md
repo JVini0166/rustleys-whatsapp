@@ -22,7 +22,7 @@ The default policy permits four attempts, with 1/2/4-second backoff and a 30-sec
 
 The in-flight task has an independently enforced deadline and clears its slot on completion/failure. Cancellation of one caller does not cancel shared work for others. Expiry cancels subsequent async network/backoff work; a blocking key-generation transaction already running can finish afterward, but it cannot start a later network request through the expired operation. This fixes the original Promise.race behavior that could report timeout while its background retry logic continued. There is no claim that an expired network request was not delivered.
 
-The policy gate is per cloned uploader family, not a distributed account/socket lease. Independent managers still reserve disjoint IDs through the backend transaction. A host must coordinate connection ownership. The manager's public signed-key profile is a lifetime snapshot: coordinated signed-prekey rotation/history and owner replacement are not implemented in this checkpoint and must not run concurrently with uploads.
+The policy gate is per cloned uploader family, not a distributed account/socket lease. Independent managers still reserve disjoint IDs through the backend transaction. A host must coordinate connection ownership. The manager reads the authoritative active signed key inside each reservation transaction; see [durable signed-key history](signed-keys.md). A shared Manager serializes Uploader/Rotator publication; independent managers and manual prepare calls still require host ownership coordination.
 
 ## Authenticated success bootstrap
 
@@ -44,7 +44,7 @@ Native tests cover rollback at deferred SQLite COMMIT, holes/collisions/corrupti
 
 The checkpoint full suite passed **143 native tests**. Independent regressions passed 152 pairing comparisons, 92 ordinary pairwise messages and 780 messages after session import because the destination and Signal compatibility fixes cross those paths. Clippy passed with warnings denied.
 
-No live account/server was used. Signed-prekey rotation/history, prekey-low notification orchestration, complete multi-file key-store migration, automatic credential/events wiring, own PN/LID migration after login, unified-session telemetry and the full pairing/reconnect/post-login facade remain pending. JavaScript coercions, malformed response acceptance and unrestricted/unbounded counters are not reproduced. This is not full Baileys parity or an operational client.
+No live account/server was used. Automatic signed-prekey rotation scheduling/reconciliation, prekey-low notification orchestration, complete multi-file key-store migration, automatic credential/events wiring, own PN/LID migration after login, unified-session telemetry and the full pairing/reconnect/post-login facade remain pending. JavaScript coercions, malformed response acceptance and unrestricted/unbounded counters are not reproduced. This is not full Baileys parity or an operational client.
 
 ```sh
 npm run fixtures:prekeys -- /tmp/baileys-reference

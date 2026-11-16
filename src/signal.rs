@@ -42,6 +42,7 @@ pub enum Error {
     PreKeyCollision,
     PreKeyIdExhausted,
     MissingSignedPreKey,
+    SignedPreKeyConflict,
 }
 impl std::fmt::Display for Error {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
@@ -375,8 +376,6 @@ pub struct Repository<S: Store> {
     pub(crate) store: S,
     identity: engine::KeyPair,
     registration: u32,
-    signed: engine::KeyPair,
-    signed_id: u32,
 }
 impl<S: Store> std::fmt::Debug for Repository<S> {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
@@ -398,14 +397,12 @@ impl<S: Store> Repository<S> {
                 Some(_) => {}
                 None => tx.put("meta", "local-identity", &binding)?,
             }
-            Ok(())
+            crate::signed_keys::initialize(tx, creds)
         })?;
         Ok(Self {
             store,
             identity,
             registration,
-            signed: engine_key(&creds.signed_pre_key.key_pair)?,
-            signed_id: creds.signed_pre_key.key_id,
         })
     }
     pub fn put_pre_key(&self, id: u32, key: &KeyPair) -> Result<()> {
@@ -600,9 +597,20 @@ impl<S: Store> Repository<S> {
                                 && s.alice_base_key == Some(wrapper.base_key)
                         })
                     });
-                    if !existing && wrapper.signed_pre_key_id != self.signed_id {
-                        return Err(Error::MissingSignedPreKey);
-                    }
+                    let signed = if existing {
+                        // The engine reuses the existing handshake; no retired
+                        // private signed key is needed for imported sessions.
+                        engine_key(
+                            &crate::signed_keys::active(tx, &self.identity.public)?.key_pair,
+                        )?
+                    } else {
+                        crate::signed_keys::load(
+                            tx,
+                            &self.identity.public,
+                            wrapper.signed_pre_key_id,
+                        )?
+                        .key_pair
+                    };
                     let one_time = if existing {
                         None
                     } else {
@@ -622,7 +630,7 @@ impl<S: Store> Repository<S> {
                     let p = engine::ResponderParameters {
                         local_identity: self.identity.clone(),
                         local_registration: self.registration,
-                        local_signed_pre_key: self.signed.clone(),
+                        local_signed_pre_key: signed,
                         local_one_time_pre_key: one_time,
                         remote_identity: wrapper.identity,
                         remote_base_key: wrapper.base_key,

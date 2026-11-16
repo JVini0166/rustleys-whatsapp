@@ -37,3 +37,5 @@ pub mod socket;
 pub mod pairing;
 
 pub mod prekeys;
+
+pub mod signed_keys;

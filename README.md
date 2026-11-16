@@ -35,3 +35,5 @@ Requires Rust 1.95 or newer. The crate is initially non-publishable. Rust source
 ## License
 
 MIT. See LICENSE and NOTICE for upstream attribution. Not affiliated with WhatsApp/Meta.
+
+Durable signed-prekey rotation reservations, acknowledgement-gated activation and historical-key handshake lookup: [checkpoint and remaining integration](docs/signed-keys.md).

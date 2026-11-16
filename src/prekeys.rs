@@ -174,10 +174,10 @@ pub struct Prepared {
 /// The native metadata counters are authoritative after initialization. Stale
 /// lower JSON counters are tolerated; higher ones require explicit reconciliation.
 pub struct Manager<S: Store> {
-    store: S,
-    identity: [u8; 32],
-    registration: u16,
-    signed: Node,
+    pub(crate) store: S,
+    pub(crate) identity: [u8; 32],
+    pub(crate) registration: u16,
+    pub(crate) publication: Mutex<()>,
 }
 impl<S: Store> std::fmt::Debug for Manager<S> {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
@@ -206,7 +206,7 @@ impl<S: Store> Manager<S> {
             .map_err(|_| Error::InvalidKey)?;
         let mut binding = identity.to_vec();
         binding.extend(u32::from(creds.registration_id).to_be_bytes());
-        let signed = xmpp_signed_pre_key(&creds.signed_pre_key)?;
+        xmpp_signed_pre_key(&creds.signed_pre_key)?;
         store.transaction(|tx| {
             if let Some(existing) = tx.get("meta", "local-identity")? {
                 if existing.as_slice() != binding {
@@ -215,6 +215,7 @@ impl<S: Store> Manager<S> {
             } else {
                 tx.put("meta", "local-identity", &binding)?;
             }
+            crate::signed_keys::initialize(tx, creds)?;
             if let Some(existing) = tx.get("meta", CURSORS)? {
                 let saved = Counters::decode(&existing).map_err(storage)?;
                 if initial.next_pre_key_id > saved.next_pre_key_id
@@ -231,7 +232,7 @@ impl<S: Store> Manager<S> {
             store,
             identity,
             registration: creds.registration_id,
-            signed,
+            publication: Mutex::new(()),
         })
     }
     pub fn counters(&self) -> Result<Counters> {
@@ -369,7 +370,8 @@ impl<S: Store> Manager<S> {
                         data("type", vec![5]),
                         data("identity", self.identity.to_vec()),
                         child("list", Content::Nodes(list)),
-                        self.signed.clone(),
+                        xmpp_signed_pre_key(&crate::signed_keys::active(tx, &self.identity)?)
+                            .map_err(storage)?,
                     ])),
                 };
                 tx.put("meta", CURSORS, &plan.counters.encode())?;
@@ -671,6 +673,7 @@ async fn perform_upload<S: Store + Send + Sync + 'static, Q: Query>(
     context: Arc<Context<S, Q>>,
     count: u32,
 ) -> Result<UploadReport> {
+    let _publication = context.manager.publication.lock().await;
     for attempt in 1..=context.policy.max_attempts {
         let manager = context.manager.clone();
         let prepared = tokio::task::spawn_blocking(move || manager.prepare(count))

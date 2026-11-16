@@ -121,3 +121,15 @@ A [bounded WebSocket/Noise transport](socket-transport.md) now performs the encr
 ## Prekey and login bootstrap checkpoint
 
 [Durable prekey reservation/upload and partial success bootstrap](prekeys.md) now connect the native Signal backend to the asynchronous query transport. Original upload wire/counter checks and active Node handshakes cover fresh/reused pools, zero and maximum IDs and the initial 812-key batch. Whole-operation expiry stops future retries, and partial initialization failures remain explicit. The same checkpoint corrects server-target JIDs and adds authenticated legacy-zero compatibility. Signed-key rotation/history and the full socket/event lifecycle remain pending.
+
+
+## Signed-prekey rotation and history checkpoint
+
+[Durable signed-key history](signed-keys.md) now covers pre-publication key
+reservation, ACK-gated activation, stale-credential protection and lookup of
+retired/unconfirmed signed keys for fresh incoming handshakes. The asynchronous
+Rotator shares publication ownership with Uploader through the same Manager,
+including caller cancellation and bounded deadlines. Exact original rotation IQ
+wire/ACK behavior and independent Node→Rust history handshakes pass offline.
+Automatic scheduling/reconciliation and full client/event wiring remain pending;
+the relevant socket/repository inventory entries stay partial.

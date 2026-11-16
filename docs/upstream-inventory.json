@@ -147,7 +147,8 @@
       "status": "partial",
       "exports": [
         "makeLibSignalRepository"
-      ]
+      ],
+      "validation": "Durable signed-prekey history/rotation reservation and ACK-gated activation: docs/signed-keys.md; fresh old/active/unconfirmed-key handshakes covered. Shared-Manager asynchronous rotation/upload publication is serialized; automatic scheduling and complete account ownership remain pending."
     },
     {
       "path": "src/Signal/lid-mapping.ts",
@@ -258,7 +259,8 @@
       "status": "partial",
       "exports": [
         "makeSocket"
-      ]
+      ],
+      "validation": "Durable signed-prekey history/rotation reservation and ACK-gated activation: docs/signed-keys.md; fresh old/active/unconfirmed-key handshakes covered. Shared-Manager asynchronous rotation/upload publication is serialized; automatic scheduling and complete account ownership remain pending."
     },
     {
       "path": "src/Types/Auth.ts",
@@ -902,7 +904,8 @@
         "extractDeviceJids",
         "getNextPreKeys",
         "getNextPreKeysNode"
-      ]
+      ],
+      "validation": "Durable signed-prekey history/rotation reservation and ACK-gated activation: docs/signed-keys.md; fresh old/active/unconfirmed-key handshakes covered. Shared-Manager asynchronous rotation/upload publication is serialized; automatic scheduling and complete account ownership remain pending."
     },
     {
       "path": "src/Utils/stanza-ack.ts",
