@@ -144,7 +144,7 @@
     {
       "path": "src/Signal/libsignal.ts",
       "bytes": 18242,
-      "status": "not_ported",
+      "status": "partial",
       "exports": [
         "makeLibSignalRepository"
       ]

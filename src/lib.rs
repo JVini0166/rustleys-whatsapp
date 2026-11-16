@@ -21,3 +21,5 @@ pub mod noise;
 pub mod auth;
 
 pub mod auth_store;
+
+pub mod signal;

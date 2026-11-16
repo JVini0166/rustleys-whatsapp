@@ -6,3 +6,9 @@
 auth_info*/
 *.log
 node_modules/
+creds.json
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+*.sqlite-journal
+*.db

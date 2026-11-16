@@ -20,6 +20,9 @@
     "fixtures:noise": "node scripts/generate-noise-fixtures.cjs",
     "verify:signatures": "node scripts/verify-signature-cross-runtime.cjs",
     "fixtures:auth": "node scripts/generate-auth-fixtures.cjs",
-    "verify:auth": "node scripts/verify-auth-cross-runtime.cjs"
+    "verify:auth": "node scripts/verify-auth-cross-runtime.cjs",
+    "fixtures:signal": "node scripts/generate-signal-fixtures.cjs",
+    "fixtures:signal-addresses": "node scripts/generate-signal-address-fixtures.cjs",
+    "verify:signal": "node scripts/verify-signal-cross-runtime.cjs"
   }
 }

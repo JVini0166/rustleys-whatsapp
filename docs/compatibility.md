@@ -21,7 +21,7 @@ These are differential tests of the exercised protocol utilities, not a test of 
 - JID numeric values are Rust unsigned protocol integers. JavaScript's arbitrary values, parseInt prefixes, floating-point/NaN/Infinity coercion and numeric `user` overload are not reproduced yet. JID helpers remain partial.
 - Custom token/tag coding options and caller-provided encoding buffers are not exposed yet. Binary codec remains partial.
 - JavaScript runtime non-string/null/undefined attributes, unusual array members and object integer-key enumeration require a compatibility adapter/specification; Rust's current API is strongly typed with explicit attribute order.
-- Binary generic utilities, WAM, USync, Signal sessions, WebSocket, pairing, message processing, history/app-state, media, groups and the rest of the socket API remain pending. Protobuf and crypto progress is detailed below.
+- Binary generic utilities, WAM, USync, WebSocket, pairing, message processing, history/app-state, media, groups and the rest of the socket API remain pending. Protobuf and crypto progress is detailed below.
 - No pairing, sending, receiving, reconnection or production WhatsApp session has been exercised. No operational client exists yet.
 
 ## Reproduction
@@ -89,3 +89,7 @@ Validation for this checkpoint: 26 Rust tests passed, Clippy passed with warning
 Credential initialization, BufferJSON key import/export, authenticated-ID checks and multi-file persistence now have local differential tests and a JS → Rust → JS storage interoperability check. See [auth-state.md](auth-state.md) for exact guarantees, intentionally stricter failures, pending cache/transaction/category APIs and reproduction. No live account was used.
 
 The development-only protobuf.js oracle is now pinned to 7.6.6, within upstream's declared ^7.5.6 dependency range, after npm audit reported recursion/parser advisories in 7.5.6. The original generated Baileys sources stay pinned; retained wire fixtures and independent reverse checks detect changed behavior. This package is not part of the Rust runtime.
+
+## Signal pairwise checkpoint
+
+A native transactional repository now exercises X3DH, prekey/ordinary messages and Double Ratchet against libsignal-node. SQLite commits session, identity and one-time prekey state before returning output. See [signal-sessions.md](signal-sessions.md) for the 84-message cross-runtime exchange, address/corpus coverage, failed-commit evidence and explicit remaining group/LID/legacy-storage work. No live WhatsApp client is claimed.
