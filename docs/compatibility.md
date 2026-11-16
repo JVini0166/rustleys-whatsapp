@@ -97,3 +97,7 @@ A native transactional repository now exercises X3DH, prekey/ordinary messages a
 ## Group sender-key checkpoint
 
 Transactional group distribution/encryption/decryption now has original-wire fixtures, typed sender-name hashing, bounded authenticated refresh and both-direction original-module comparisons. The verifier separately reproduces the pinned legacy JSON skipped-key failure, then uses an explicitly typed BufferJSON adapter for the unchanged JS cryptographic modules. See [group-sessions.md](group-sessions.md) for evidence, intentional policy differences and remaining network/legacy-API work.
+
+## PN/LID checkpoint
+
+Native mapping/cache/coalescing, reciprocal cleanup and transactional session migration now have differential vectors and source-regression characterization. Crypto operations resolve committed aliases in their transaction. See [lid-mapping.md](lid-mapping.md) for corrected upstream behaviors, conflict preservation, async/legacy/archive limitations and reproduction. Live socket/USync integration is still pending.

@@ -25,3 +25,7 @@ pub mod auth_store;
 pub mod signal;
 
 pub mod group_signal;
+
+pub mod lid_mapping;
+
+pub mod session_migration;

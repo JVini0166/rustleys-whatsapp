@@ -7,6 +7,7 @@
     "@hapi/boom": "10.0.1",
     "async-mutex": "0.5.0",
     "libsignal": "6.0.0",
+    "lru-cache": "11.1.0",
     "protobufjs": "7.6.6",
     "typescript": "5.9.3",
     "whatsapp-rust-bridge": "0.5.4"
@@ -25,6 +26,8 @@
     "fixtures:signal-addresses": "node scripts/generate-signal-address-fixtures.cjs",
     "verify:signal": "node scripts/verify-signal-cross-runtime.cjs",
     "fixtures:groups": "node scripts/generate-group-fixtures.cjs",
-    "verify:groups": "node scripts/verify-group-cross-runtime.cjs"
+    "verify:groups": "node scripts/verify-group-cross-runtime.cjs",
+    "fixtures:lid": "node scripts/generate-lid-fixtures.cjs",
+    "verify:lid": "node scripts/verify-lid-cross-runtime.cjs"
   }
 }

@@ -1,10 +1,14 @@
 //! JSON-lines driver for offline synthetic libsignal-node interoperability only.
 use rustleys_whatsapp::{
     auth::{Credentials, KeyPair},
+    lid_mapping::{LidMappingStore, Mapping},
     signal::{MessageType, PreKeyBundle, PublicSignedPreKey, Repository, SqliteStore},
 };
 use serde_json::{Value, json};
-use std::io::{self, BufRead, Write};
+use std::{
+    io::{self, BufRead, Write},
+    sync::Arc,
+};
 use wacore_libsignal::engine::wire;
 fn bytes(v: &Value) -> Result<Vec<u8>, Box<dyn std::error::Error>> {
     Ok(serde_json::from_value(v.clone())?)
@@ -12,20 +16,54 @@ fn bytes(v: &Value) -> Result<Vec<u8>, Box<dyn std::error::Error>> {
 fn public(v: &Value) -> Result<[u8; 32], Box<dyn std::error::Error>> {
     Ok(wire::decode_public(&bytes(v)?)?)
 }
+struct DriverState {
+    repository: Repository<Arc<SqliteStore>>,
+    mappings: LidMappingStore<Arc<SqliteStore>>,
+}
 fn execute(
-    repo: &mut Option<Repository<SqliteStore>>,
+    state: &mut Option<DriverState>,
     path: &str,
     request: Value,
 ) -> Result<Value, Box<dyn std::error::Error>> {
     if request["command"] == "configure" {
         let creds = Credentials::from_json(&serde_json::to_vec(&request["credentials"])?)?;
-        *repo = Some(Repository::new(&creds, SqliteStore::open(path)?)?);
+        let store = Arc::new(SqliteStore::open(path)?);
+        *state = Some(DriverState {
+            repository: Repository::new(&creds, store.clone())?,
+            mappings: LidMappingStore::new(store),
+        });
         return Ok(json!(true));
     }
-    let repo = repo.as_ref().ok_or("configure first")?;
+    let state = state.as_ref().ok_or("configure first")?;
+    let repo = &state.repository;
     let jid = request["jid"].as_str().unwrap_or("");
     Ok(
         match request["command"].as_str().ok_or("missing command")? {
+            "mapping_store" => {
+                let pairs: Vec<Mapping> = serde_json::from_value(request["pairs"].clone())?;
+                json!(state.mappings.store_mappings(&pairs)?)
+            }
+            "mapping_forward" => {
+                let ids: Vec<String> = serde_json::from_value(request["ids"].clone())?;
+                json!(state.mappings.get_lids_for_pns(&ids)?)
+            }
+            "mapping_reverse" => {
+                let ids: Vec<String> = serde_json::from_value(request["ids"].clone())?;
+                json!(state.mappings.get_pns_for_lids(&ids)?)
+            }
+            "mapping_close" => {
+                state.mappings.close()?;
+                json!(true)
+            }
+            "set_devices" => {
+                let devices: Vec<u32> = serde_json::from_value(request["devices"].clone())?;
+                repo.set_device_list(jid, &devices)?;
+                json!(true)
+            }
+            "migrate" => {
+                json!(repo.migrate_session(jid, request["to"].as_str().ok_or("target required")?)?)
+            }
+            "validate" => json!(repo.validate_session(jid)?),
             "group_distribution" => {
                 let group = request["group"].as_str().ok_or("group required")?;
                 let author = request["author"].as_str().ok_or("author required")?;

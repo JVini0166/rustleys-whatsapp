@@ -10,7 +10,7 @@ Port all Baileys functionality to Rust with protocol/API compatibility tracked a
 
 Implemented protocol utilities include JID helpers, bounded binary-node codecs, generated WAProto types, cryptographic primitives and an offline-tested Noise handshake/transport.
 
-[Credential storage](docs/auth-state.md), [pairwise Signal sessions](docs/signal-sessions.md) and [group sender keys](docs/group-sessions.md) have local differential tests. Their documentation records remaining API/storage differences, including a reproduced bug in the original group JSON adapter. The [compatibility inventory](docs/compatibility.md) tracks the wider port.
+[Credential storage](docs/auth-state.md), [pairwise Signal sessions](docs/signal-sessions.md), [group sender keys](docs/group-sessions.md) and [PN/LID mapping and migration](docs/lid-mapping.md) have local differential tests. Their documentation records remaining API/storage differences, including a reproduced bug in the original group JSON adapter. The [compatibility inventory](docs/compatibility.md) tracks the wider port.
 
 The initial inventory is in `docs/upstream-inventory.json`. Every file starts as `not_ported`; completing a module requires behavioral tests, including error cases and interoperability where applicable. Export extraction is an initial source inventory, not a complete public API specification (re-exports and dynamically returned socket methods require separate analysis).
 

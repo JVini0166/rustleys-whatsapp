@@ -7,6 +7,7 @@ use crate::{
 };
 use rusqlite::{Connection, OpenFlags, OptionalExtension, TransactionBehavior, params};
 use std::{
+    collections::HashMap,
     fs::{self, OpenOptions},
     path::Path,
     sync::{Arc, Mutex},
@@ -27,6 +28,8 @@ pub enum Error {
     },
     InvalidAddress,
     InvalidGroup,
+    InvalidMapping,
+    MigrationConflict,
     InvalidKey,
     TooLarge,
     LocalIdentityMismatch,
@@ -62,6 +65,19 @@ fn database(operation: &'static str) -> impl FnOnce(rusqlite::Error) -> Error {
 /// serialize concurrent read-modify-write transactions across shared handles.
 pub trait Transaction {
     fn get(&self, category: &str, id: &str) -> Result<Option<Zeroizing<Vec<u8>>>>;
+    fn get_many(
+        &self,
+        category: &str,
+        ids: &[&str],
+    ) -> Result<HashMap<String, Zeroizing<Vec<u8>>>> {
+        let mut result = HashMap::new();
+        for id in ids {
+            if let Some(value) = self.get(category, id)? {
+                result.insert((*id).into(), value);
+            }
+        }
+        Ok(result)
+    }
     fn put(&mut self, category: &str, id: &str, value: &[u8]) -> Result<()>;
     fn remove(&mut self, category: &str, id: &str) -> Result<()>;
 }
@@ -139,6 +155,9 @@ impl Transaction for SqlTransaction<'_, '_> {
             )
             .optional()
             .map_err(database("read length"))?;
+        if length.is_none() {
+            return Ok(None);
+        }
         if length.is_some_and(|n| n < 0 || n as u64 > MAX_BLOB as u64) {
             return Err(Error::TooLarge);
         }
@@ -151,6 +170,45 @@ impl Transaction for SqlTransaction<'_, '_> {
             .optional()
             .map(|b| b.map(Zeroizing::new))
             .map_err(database("read"))
+    }
+    fn get_many(
+        &self,
+        category: &str,
+        ids: &[&str],
+    ) -> Result<HashMap<String, Zeroizing<Vec<u8>>>> {
+        let mut result = HashMap::new();
+        for chunk in ids.chunks(400) {
+            let placeholders = vec!["?"; chunk.len()].join(",");
+            let sql = format!(
+                "SELECT id,length(value),CASE WHEN length(value)<={MAX_BLOB} THEN value ELSE NULL END FROM rustleys_signal_keys WHERE category=? AND id IN ({placeholders})"
+            );
+            let mut statement = self
+                .0
+                .prepare_cached(&sql)
+                .map_err(database("batch prepare"))?;
+            let rows = statement
+                .query_map(
+                    rusqlite::params_from_iter(
+                        std::iter::once(category).chain(chunk.iter().copied()),
+                    ),
+                    |row| {
+                        Ok((
+                            row.get::<_, String>(0)?,
+                            row.get::<_, i64>(1)?,
+                            row.get::<_, Option<Vec<u8>>>(2)?,
+                        ))
+                    },
+                )
+                .map_err(database("batch read"))?;
+            for row in rows {
+                let (id, length, value) = row.map_err(database("batch row"))?;
+                if length < 0 || length as u64 > MAX_BLOB as u64 {
+                    return Err(Error::TooLarge);
+                }
+                result.insert(id, Zeroizing::new(value.ok_or(Error::TooLarge)?));
+            }
+        }
+        Ok(result)
     }
     fn put(&mut self, category: &str, id: &str, value: &[u8]) -> Result<()> {
         if value.len() > MAX_BLOB {
@@ -300,6 +358,12 @@ pub struct SessionInfo {
     pub base_key: [u8; 33],
     pub registration_id: u32,
 }
+#[derive(Debug, Clone, PartialEq, Eq, serde::Serialize)]
+pub struct SessionValidation {
+    pub exists: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub reason: Option<&'static str>,
+}
 pub struct Repository<S: Store> {
     pub(crate) store: S,
     identity: engine::KeyPair,
@@ -350,19 +414,38 @@ impl<S: Store> Repository<S> {
         self.store
             .transaction(|tx| Ok(tx.get("pre-key", &id.to_string())?.is_some()))
     }
-    fn load(tx: &mut dyn Transaction, address: &str) -> Result<engine::SessionRecord> {
-        tx.get("session", address)?
-            .map(|bytes| codec::decode_session_record(&RustCrypto, &bytes).map_err(Into::into))
-            .transpose()
-            .map(|v| v.unwrap_or_default())
+    pub(crate) fn check_record(&self, record: &engine::SessionRecord) -> Result<()> {
+        let check = |state: &engine::SessionState| {
+            state.local_identity == self.identity.public
+                && state.local_registration == self.registration
+        };
+        if record.current.as_ref().is_some_and(|state| !check(state)) {
+            return Err(Error::LocalIdentityMismatch);
+        }
+        for archived in &record.previous {
+            if !check(&archived.decode()?) {
+                return Err(Error::LocalIdentityMismatch);
+            }
+        }
+        Ok(())
+    }
+    fn load(&self, tx: &mut dyn Transaction, address: &str) -> Result<engine::SessionRecord> {
+        let record = tx
+            .get("session", address)?
+            .map(|bytes| codec::decode_session_record(&RustCrypto, &bytes).map_err(Error::from))
+            .transpose()?
+            .unwrap_or_default();
+        self.check_record(&record)?;
+        Ok(record)
     }
     fn save(tx: &mut dyn Transaction, address: &str, record: &engine::SessionRecord) -> Result<()> {
         let bytes = Zeroizing::new(codec::encode_session_record(record));
         tx.put("session", address, &bytes)
     }
     pub fn inject_session(&self, jid: &str, bundle: &PreKeyBundle) -> Result<()> {
-        let address = protocol_address(jid)?;
+        protocol_address(jid)?;
         self.store.transaction(|tx| {
+            let address = crate::lid_mapping::resolve_address(tx, jid)?;
             let mut rng = OsRandom;
             let mut engine = Engine::new(&RustCrypto, &mut rng);
             let base_key = engine.generate_key_pair()?;
@@ -377,7 +460,7 @@ impl<S: Store> Repository<S> {
                 remote_one_time_pre_key: bundle.one_time_pre_key,
                 base_key,
             })?;
-            let mut record = Self::load(tx, &address)?;
+            let mut record = self.load(tx, &address)?;
             record.install(state);
             Self::save(tx, &address, &record)?;
             tx.put("identity-key", &address, &bundle.identity)?;
@@ -388,9 +471,10 @@ impl<S: Store> Repository<S> {
         if plaintext.len() > MAX_MESSAGE - 1024 {
             return Err(Error::TooLarge);
         }
-        let address = protocol_address(jid)?;
+        protocol_address(jid)?;
         self.store.transaction(|tx| {
-            let mut record = Self::load(tx, &address)?;
+            let address = crate::lid_mapping::resolve_address(tx, jid)?;
+            let mut record = self.load(tx, &address)?;
             let state = record.current.as_ref().ok_or(engine::Error::MissingKey)?;
             let kind = if state.pending_pre_key.is_some() {
                 MessageType::PreKey
@@ -410,9 +494,10 @@ impl<S: Store> Repository<S> {
         if ciphertext.len() > MAX_MESSAGE {
             return Err(Error::TooLarge);
         }
-        let address = protocol_address(jid)?;
+        protocol_address(jid)?;
         self.store.transaction(|tx| {
-            let mut record = Self::load(tx, &address)?;
+            let address = crate::lid_mapping::resolve_address(tx, jid)?;
+            let mut record = self.load(tx, &address)?;
             let plaintext = match kind {
                 MessageType::Normal => {
                     Engine::new(&RustCrypto, &mut OsRandom).decrypt(&mut record, ciphertext)?
@@ -480,9 +565,10 @@ impl<S: Store> Repository<S> {
         })
     }
     pub fn session_info(&self, jid: &str) -> Result<Option<SessionInfo>> {
-        let address = protocol_address(jid)?;
+        protocol_address(jid)?;
         self.store.transaction(|tx| {
-            let record = Self::load(tx, &address)?;
+            let address = crate::lid_mapping::resolve_address(tx, jid)?;
+            let record = self.load(tx, &address)?;
             Ok(record.current.as_ref().and_then(|s| {
                 s.alice_base_key.map(|base| SessionInfo {
                     base_key: wire::tagged_key(&base),
@@ -491,13 +577,38 @@ impl<S: Store> Repository<S> {
             }))
         })
     }
-    pub fn delete_sessions(&self, jids: &[String]) -> Result<()> {
-        let addresses: Vec<_> = jids
-            .iter()
-            .map(|jid| protocol_address(jid))
-            .collect::<Result<_>>()?;
+    pub fn validate_session(&self, jid: &str) -> Result<SessionValidation> {
+        protocol_address(jid)?;
         self.store.transaction(|tx| {
-            for address in addresses {
+            let address = crate::lid_mapping::resolve_address(tx, jid)?;
+            let Some(bytes) = tx.get("session", &address)? else {
+                return Ok(SessionValidation {
+                    exists: false,
+                    reason: Some("no session"),
+                });
+            };
+            let record = codec::decode_session_record(&RustCrypto, &bytes)?;
+            self.check_record(&record)?;
+            Ok(if record.current.is_some() {
+                SessionValidation {
+                    exists: true,
+                    reason: None,
+                }
+            } else {
+                SessionValidation {
+                    exists: false,
+                    reason: Some("no open session"),
+                }
+            })
+        })
+    }
+    pub fn delete_sessions(&self, jids: &[String]) -> Result<()> {
+        for jid in jids {
+            protocol_address(jid)?;
+        }
+        self.store.transaction(|tx| {
+            for jid in jids {
+                let address = crate::lid_mapping::resolve_address(tx, jid)?;
                 tx.remove("session", &address)?;
             }
             Ok(())

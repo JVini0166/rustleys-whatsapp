@@ -24,6 +24,8 @@ const {buildDriver,startDriver}=require('./rust-oracle-driver.cjs');
    const rustToNode=async plaintext=>{const encrypted=await request({command:'encrypt',jid,plaintext:Array.from(plaintext)});const method=encrypted.type==='pkmsg'?'decryptPreKeyWhisperMessage':'decryptWhisperMessage';assert.deepEqual(await cipher[method](Buffer.from(encrypted.ciphertext)),plaintext);packets++;return encrypted;};
    if(initiator==='node')await nodeToRust(Buffer.from('node starts'));else await rustToNode(Buffer.from('rust starts'));
    for(let round=0;round<5;round++){await rustToNode(Buffer.from([0,255,round]));await nodeToRust(Buffer.from(`node reply ${round}`));}
+   // Re-address a live session without renegotiating or resetting its ratchet.
+   const beforeMigration=await request({command:'info',jid});await request({command:'set_devices',jid,devices:[1]});assert.deepEqual(await request({command:'migrate',jid,to:'synthetic-lid@lid'}),{migrated:1,skipped:0,total:1});assert.deepEqual(await request({command:'info',jid:'synthetic-lid:1@lid'}),beforeMigration);assert.equal((await request({command:'validate',jid})).exists,true);await nodeToRust(Buffer.from('after PN to LID migration'));await rustToNode(Buffer.from('same ratchet through LID'));
    // Receive in a different order from send order on both sides.
    const nodePackets=[];for(let n=0;n<4;n++){const encrypted=await cipher.encrypt(Buffer.from(`queued-node-${n}`));nodePackets.push({type:encrypted.type===3?'pkmsg':'msg',ciphertext:Array.from(Buffer.from(encrypted.body))});}
    for(const n of [3,0,2,1]){assert.deepEqual(Buffer.from(await request({command:'decrypt',jid,...nodePackets[n]})),Buffer.from(`queued-node-${n}`));packets++;}
@@ -36,6 +38,6 @@ const {buildDriver,startDriver}=require('./rust-oracle-driver.cjs');
    if(oneTime){if(initiator==='node')assert.equal(await request({command:'has_prekey',id:7}),false);else assert.equal(node.prekeys.has(7),false);}
    await current.close();current=undefined;
   }
-  console.log(`${packets} bidirectional messages accepted by independent Node/Rust peers across 4 sessions; ratchets, reordering, duplicates and process restarts verified (${calls} Rust operations)`);
+  console.log(`${packets} bidirectional messages accepted by independent Node/Rust peers across 4 sessions; ratchets, PN→LID migration, reordering, duplicates and process restarts verified (${calls} Rust operations)`);
  }finally{if(current)await current.kill();await fsp.rm(temp,{recursive:true,force:true});}
 })().catch(e=>{console.error(e.message);process.exitCode=1;});

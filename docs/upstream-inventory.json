@@ -152,7 +152,7 @@
     {
       "path": "src/Signal/lid-mapping.ts",
       "bytes": 10749,
-      "status": "not_ported",
+      "status": "partial",
       "exports": [
         "LIDMappingStore"
       ]
@@ -476,7 +476,7 @@
     {
       "path": "src/Types/Signal.ts",
       "bytes": 2304,
-      "status": "not_ported",
+      "status": "partial",
       "exports": [
         "SignalRepository",
         "SignalRepositoryWithLIDStore"
