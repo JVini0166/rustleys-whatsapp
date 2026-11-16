@@ -139,3 +139,47 @@ fn generated_keys_and_random_iv_ciphertexts_interoperate_internally() {
     assert_ne!(&first[..16], &second[..16]);
     assert_eq!(aes_decrypt(&first, &key).unwrap(), b"message");
 }
+
+#[test]
+fn original_signal_signatures_verify_and_corruptions_are_rejected() {
+    let f = fixtures();
+    let mut legacy_ignored_results = 0;
+    for row in f["agreements"].as_array().unwrap() {
+        let public = bytes(&row["publicKey"]);
+        let message = bytes(&row["message"]);
+        let signature = bytes(&row["signature"]);
+        assert!(row["nativeVerified"].as_bool().unwrap());
+        assert!(verify_signature(&public, &message, &signature));
+        assert!(verify_signature(&public[1..], &message, &signature));
+        let mut bad = signature.clone();
+        bad[0] ^= 128;
+        assert!(!row["nativeCorruptedVerified"].as_bool().unwrap());
+        assert!(!verify_signature(&public, &message, &bad));
+        assert!(!verify_signature(&public, b"wrong message", &signature));
+        assert!(!verify_signature(&public, &message, &signature[..63]));
+        if row["sdkCorruptedVerified"].as_bool().unwrap() {
+            legacy_ignored_results += 1;
+        }
+    }
+    // Keep evidence of the pinned SDK wrapper ignoring a false native result;
+    // certificate validation in Rust deliberately checks the actual signature.
+    assert_eq!(legacy_ignored_results, 16);
+}
+#[test]
+fn signed_prekeys_bind_the_versioned_public_key() {
+    let identity = PrivateKey::from_bytes([11; 32]);
+    let pair = signed_key_pair(&identity, 42).unwrap();
+    assert_eq!(pair.key_id, 42);
+    assert_eq!(pair.private_key.public_key(), pair.public_key);
+    assert!(verify_signature(
+        &identity.public_key(),
+        &generate_signal_pub_key(&pair.public_key),
+        &pair.signature
+    ));
+    assert!(!verify_signature(
+        &identity.public_key(),
+        &pair.public_key,
+        &pair.signature
+    ));
+    assert!(format!("{pair:?}").contains("[redacted]"));
+}

@@ -1,5 +1,5 @@
 //! Baileys-compatible primitives backed by RustCrypto and x25519-dalek.
-//! Curve signatures (XEdDSA, not ordinary Ed25519) are not implemented here yet.
+//! Signal XEdDSA uses a pinned wacore-libsignal Rust implementation.
 use aes::cipher::{
     BlockDecryptMut, BlockEncryptMut, KeyIvInit, StreamCipher, block_padding::Pkcs7,
 };
@@ -21,6 +21,7 @@ pub enum Error {
     DerivationLength,
     Randomness,
     InvalidPublicKey,
+    Signature,
     NonContributoryKey,
 }
 impl std::fmt::Display for Error {
@@ -180,4 +181,55 @@ impl PrivateKey {
         }
         Ok(secret.to_bytes())
     }
+}
+
+struct OsRandom;
+impl wacore_libsignal::engine::RandomSource for OsRandom {
+    fn fill(&mut self, bytes: &mut [u8]) -> wacore_libsignal::engine::Result<()> {
+        getrandom::getrandom(bytes).map_err(|_| wacore_libsignal::engine::Error::Crypto)
+    }
+}
+impl PrivateKey {
+    pub fn sign(&self, message: &[u8]) -> Result<[u8; 64]> {
+        use wacore_libsignal::engine::CryptoProvider;
+        wacore_libsignal::engine::RustCrypto
+            .sign(&self.0, message, &mut OsRandom)
+            .map_err(|_| Error::Signature)
+    }
+}
+/// Verify the signature result itself; an invalid signature is never success.
+pub fn verify_signature(public: &[u8], message: &[u8], signature: &[u8]) -> bool {
+    use wacore_libsignal::engine::CryptoProvider;
+    let raw = match public.len() {
+        32 => public,
+        33 if public[0] == 5 => &public[1..],
+        _ => return false,
+    };
+    let Ok(public) = <&[u8; 32]>::try_from(raw) else {
+        return false;
+    };
+    let Ok(signature) = <&[u8; 64]>::try_from(signature) else {
+        return false;
+    };
+    wacore_libsignal::engine::RustCrypto
+        .verify(public, message, signature)
+        .is_ok()
+}
+#[derive(Debug)]
+pub struct SignedKeyPair {
+    pub private_key: PrivateKey,
+    pub public_key: [u8; 32],
+    pub signature: [u8; 64],
+    pub key_id: u32,
+}
+pub fn signed_key_pair(identity: &PrivateKey, key_id: u32) -> Result<SignedKeyPair> {
+    let private_key = PrivateKey::generate()?;
+    let public_key = private_key.public_key();
+    let signature = identity.sign(&generate_signal_pub_key(&public_key))?;
+    Ok(SignedKeyPair {
+        private_key,
+        public_key,
+        signature,
+        key_id,
+    })
 }

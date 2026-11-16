@@ -11,3 +11,9 @@ field numbers and enum numeric values are preserved and verified in tests.
 RustCrypto, x25519-dalek, prost and other Rust dependencies retain their own
 licenses, recorded by their distributions. Node, libsignal and the WASM bridge
 are development-only reference oracles and are not the Rust runtime.
+
+Signal XEdDSA uses wacore-libsignal from oxidezap/whatsapp-rust, pinned at
+3f21778971e36f796b41b1180ef04da075968750 (MIT AND BSD-3-Clause).
+This dependency includes Signal-derived code under BSD-3-Clause; its authors,
+copyright notices and license files remain in the dependency distribution.
+Source: https://github.com/oxidezap/whatsapp-rust/tree/3f21778971e36f796b41b1180ef04da075968750/wacore/libsignal

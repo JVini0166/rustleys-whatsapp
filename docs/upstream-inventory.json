@@ -841,7 +841,7 @@
     {
       "path": "src/Utils/noise-handler.ts",
       "bytes": 7292,
-      "status": "not_ported",
+      "status": "partial",
       "exports": [
         "makeNoiseHandler"
       ]

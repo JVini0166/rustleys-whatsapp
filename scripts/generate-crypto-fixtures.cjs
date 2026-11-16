@@ -22,7 +22,8 @@ const ts=require('typescript');
  for(let seed=0;seed<16;seed++) {
   const privateKey=buf(32,seed),peerPrivate=buf(32,seed+67);privateKey[0]&=248;privateKey[31]=(privateKey[31]&127)|64;peerPrivate[0]&=248;peerPrivate[31]=(peerPrivate[31]&127)|64;
   const publicKey=curve.getPublicFromPrivateKey(privateKey),peerPublic=curve.getPublicFromPrivateKey(peerPrivate);
-  agreements.push({privateKey:arr(privateKey),publicKey:arr(publicKey),peerPublic:arr(peerPublic),shared:arr(c.Curve.sharedKey(privateKey,peerPublic))});
+  const message=Buffer.from(`synthetic signature ${seed}`),signature=c.Curve.sign(privateKey,message),corrupted=Buffer.from(signature);corrupted[0]^=128;
+  agreements.push({privateKey:arr(privateKey),publicKey:arr(publicKey),peerPublic:arr(peerPublic),shared:arr(c.Curve.sharedKey(privateKey,peerPublic)),message:arr(message),signature:arr(signature),nativeVerified:curve.verifySignature(publicKey,message,signature),nativeCorruptedVerified:curve.verifySignature(publicKey,message,corrupted),sdkCorruptedVerified:c.Curve.verify(publicKey,message,corrupted)});
  }
  const salt=buf(32,19),code='ABCD-1234';const pairing={salt:arr(salt),code,key:arr(await c.derivePairingCodeKey(code,salt))};
  fs.writeFileSync(path.join(__dirname,'../tests/fixtures/crypto-upstream.json'),JSON.stringify({upstream_commit:expected,bridge_version:'0.5.4',libsignal_version:'6.0.0',synthetic_data:true,cases,derivations,agreements,pairing})+'\n');

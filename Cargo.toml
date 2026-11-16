@@ -2,7 +2,7 @@
 name = "rustleys-whatsapp"
 version = "0.0.1"
 edition = "2024"
-rust-version = "1.85"
+rust-version = "1.95"
 license = "MIT"
 description = "Independent Rust port of Baileys (initial development; not functional yet)"
 repository = "https://github.com/JVini0166/rustleys-whatsapp"
@@ -21,6 +21,8 @@ prost-reflect = { version = "0.16", features = ["serde"] }
 serde_json = { version = "1.0", features = ["preserve_order"] }
 
 [dependencies]
+bytes = "1.12"
+wacore-libsignal = { git = "https://github.com/oxidezap/whatsapp-rust.git", rev = "3f21778971e36f796b41b1180ef04da075968750" }
 aes = "0.8"
 aes-gcm = "0.10"
 cbc = { version = "0.1", features = ["alloc", "block-padding"] }
