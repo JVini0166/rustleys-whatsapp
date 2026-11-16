@@ -1,0 +1,5 @@
+Rustleys WhatsApp is an independent Rust port of WhiskeySockets/Baileys.
+Upstream: https://github.com/WhiskeySockets/Baileys
+Pinned baseline: bb0a87e0326ca8f882fe716c7ee42da362f73fc0
+Original MIT license and copyright are retained in LICENSE.
+No affiliation with WhatsApp/Meta or endorsement by WhiskeySockets is implied.

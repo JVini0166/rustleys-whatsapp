@@ -1,0 +1,1419 @@
+{
+  "repository": "https://github.com/WhiskeySockets/Baileys",
+  "commit": "bb0a87e0326ca8f882fe716c7ee42da362f73fc0",
+  "file_count": 135,
+  "files": [
+    {
+      "path": "src/Defaults/index.ts",
+      "bytes": 5098,
+      "status": "not_ported",
+      "exports": [
+        "UNAUTHORIZED_CODES",
+        "DEFAULT_ORIGIN",
+        "CALL_VIDEO_PREFIX",
+        "CALL_AUDIO_PREFIX",
+        "DEF_CALLBACK_PREFIX",
+        "DEF_TAG_PREFIX",
+        "PHONE_CONNECTION_CB",
+        "WA_ADV_ACCOUNT_SIG_PREFIX",
+        "WA_ADV_DEVICE_SIG_PREFIX",
+        "WA_ADV_HOSTED_ACCOUNT_SIG_PREFIX",
+        "WA_ADV_HOSTED_DEVICE_SIG_PREFIX",
+        "WA_DEFAULT_EPHEMERAL",
+        "STATUS_EXPIRY_SECONDS",
+        "PLACEHOLDER_MAX_AGE_SECONDS",
+        "NOISE_MODE",
+        "DICT_VERSION",
+        "KEY_BUNDLE_TYPE",
+        "NOISE_WA_HEADER",
+        "URL_REGEX",
+        "WA_CERT_DETAILS",
+        "PROCESSABLE_HISTORY_TYPES",
+        "DEFAULT_CACHE_TTLS",
+        "DEFAULT_CONNECTION_CONFIG",
+        "MEDIA_PATH_MAP",
+        "MEDIA_HKDF_KEY_MAPPING",
+        "MediaType",
+        "MEDIA_KEYS",
+        "HISTORY_SYNC_PAUSED_TIMEOUT_MS",
+        "MIN_PREKEY_COUNT",
+        "INITIAL_PREKEY_COUNT",
+        "UPLOAD_TIMEOUT",
+        "TimeMs"
+      ]
+    },
+    {
+      "path": "src/Signal/Group/ciphertext-message.ts",
+      "bytes": 321,
+      "status": "not_ported",
+      "exports": [
+        "CiphertextMessage"
+      ]
+    },
+    {
+      "path": "src/Signal/Group/group-session-builder.ts",
+      "bytes": 1943,
+      "status": "not_ported",
+      "exports": [
+        "GroupSessionBuilder"
+      ]
+    },
+    {
+      "path": "src/Signal/Group/group_cipher.ts",
+      "bytes": 3965,
+      "status": "not_ported",
+      "exports": [
+        "SenderKeyStore",
+        "GroupCipher"
+      ]
+    },
+    {
+      "path": "src/Signal/Group/index.ts",
+      "bytes": 606,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/Signal/Group/keyhelper.ts",
+      "bytes": 600,
+      "status": "not_ported",
+      "exports": [
+        "generateSenderKey",
+        "generateSenderKeyId",
+        "SigningKeyPair",
+        "generateSenderSigningKey"
+      ]
+    },
+    {
+      "path": "src/Signal/Group/sender-chain-key.ts",
+      "bytes": 1013,
+      "status": "not_ported",
+      "exports": [
+        "SenderChainKey"
+      ]
+    },
+    {
+      "path": "src/Signal/Group/sender-key-distribution-message.ts",
+      "bytes": 2452,
+      "status": "not_ported",
+      "exports": [
+        "SenderKeyDistributionMessage"
+      ]
+    },
+    {
+      "path": "src/Signal/Group/sender-key-message.ts",
+      "bytes": 2949,
+      "status": "not_ported",
+      "exports": [
+        "SenderKeyMessage"
+      ]
+    },
+    {
+      "path": "src/Signal/Group/sender-key-name.ts",
+      "bytes": 1327,
+      "status": "not_ported",
+      "exports": [
+        "SenderKeyName"
+      ]
+    },
+    {
+      "path": "src/Signal/Group/sender-key-record.ts",
+      "bytes": 1963,
+      "status": "not_ported",
+      "exports": [
+        "SenderKeyStateStructure",
+        "SenderKeyRecord"
+      ]
+    },
+    {
+      "path": "src/Signal/Group/sender-key-state.ts",
+      "bytes": 3756,
+      "status": "not_ported",
+      "exports": [
+        "SenderKeyState"
+      ]
+    },
+    {
+      "path": "src/Signal/Group/sender-message-key.ts",
+      "bytes": 898,
+      "status": "not_ported",
+      "exports": [
+        "SenderMessageKey"
+      ]
+    },
+    {
+      "path": "src/Signal/libsignal.ts",
+      "bytes": 18242,
+      "status": "not_ported",
+      "exports": [
+        "makeLibSignalRepository"
+      ]
+    },
+    {
+      "path": "src/Signal/lid-mapping.ts",
+      "bytes": 10749,
+      "status": "not_ported",
+      "exports": [
+        "LIDMappingStore"
+      ]
+    },
+    {
+      "path": "src/Socket/Client/index.ts",
+      "bytes": 52,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/Socket/Client/types.ts",
+      "bytes": 557,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/Socket/Client/websocket.ts",
+      "bytes": 1522,
+      "status": "not_ported",
+      "exports": [
+        "WebSocketClient"
+      ]
+    },
+    {
+      "path": "src/Socket/business.ts",
+      "bytes": 8490,
+      "status": "not_ported",
+      "exports": [
+        "makeBusinessSocket"
+      ]
+    },
+    {
+      "path": "src/Socket/chats.ts",
+      "bytes": 40929,
+      "status": "not_ported",
+      "exports": [
+        "buildProfilePictureQueryContent",
+        "makeChatsSocket"
+      ]
+    },
+    {
+      "path": "src/Socket/communities.ts",
+      "bytes": 14698,
+      "status": "not_ported",
+      "exports": [
+        "makeCommunitiesSocket",
+        "extractCommunityMetadata"
+      ]
+    },
+    {
+      "path": "src/Socket/groups.ts",
+      "bytes": 12573,
+      "status": "not_ported",
+      "exports": [
+        "makeGroupsSocket",
+        "extractGroupMetadata",
+        "GroupsSocket"
+      ]
+    },
+    {
+      "path": "src/Socket/index.ts",
+      "bytes": 398,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/Socket/messages-recv.ts",
+      "bytes": 69218,
+      "status": "not_ported",
+      "exports": [
+        "makeMessagesRecvSocket"
+      ]
+    },
+    {
+      "path": "src/Socket/messages-send.ts",
+      "bytes": 42059,
+      "status": "not_ported",
+      "exports": [
+        "makeMessagesSocket"
+      ]
+    },
+    {
+      "path": "src/Socket/mex.ts",
+      "bytes": 1757,
+      "status": "not_ported",
+      "exports": [
+        "executeWMexQuery"
+      ]
+    },
+    {
+      "path": "src/Socket/newsletter.ts",
+      "bytes": 6768,
+      "status": "not_ported",
+      "exports": [
+        "makeNewsletterSocket",
+        "NewsletterSocket"
+      ]
+    },
+    {
+      "path": "src/Socket/socket.ts",
+      "bytes": 33474,
+      "status": "not_ported",
+      "exports": [
+        "makeSocket"
+      ]
+    },
+    {
+      "path": "src/Types/Auth.ts",
+      "bytes": 3066,
+      "status": "not_ported",
+      "exports": [
+        "KeyPair",
+        "SignedKeyPair",
+        "ProtocolAddress",
+        "SignalIdentity",
+        "LIDMapping",
+        "LTHashState",
+        "SignalCreds",
+        "AccountSettings",
+        "AuthenticationCreds",
+        "SignalDataTypeMap",
+        "SignalDataSet",
+        "SignalKeyStore",
+        "SignalKeyStoreWithTransaction",
+        "TransactionCapabilityOptions",
+        "SignalAuthState",
+        "AuthenticationState"
+      ]
+    },
+    {
+      "path": "src/Types/Bussines.ts",
+      "bytes": 604,
+      "status": "not_ported",
+      "exports": [
+        "DayOfWeekBussines",
+        "HoursDay",
+        "UpdateBussinesProfileProps",
+        "QuickReplyAction"
+      ]
+    },
+    {
+      "path": "src/Types/Call.ts",
+      "bytes": 380,
+      "status": "not_ported",
+      "exports": [
+        "WACallUpdateType",
+        "WACallEvent"
+      ]
+    },
+    {
+      "path": "src/Types/Chat.ts",
+      "bytes": 4109,
+      "status": "not_ported",
+      "exports": [
+        "WAPrivacyValue",
+        "WAPrivacyOnlineValue",
+        "WAPrivacyGroupAddValue",
+        "WAReadReceiptsValue",
+        "WAPrivacyCallValue",
+        "WAPrivacyMessagesValue",
+        "WAPresence",
+        "ALL_WA_PATCH_NAMES",
+        "WAPatchName",
+        "PresenceData",
+        "BotListInfo",
+        "ChatMutation",
+        "WAPatchCreate",
+        "Chat",
+        "ChatUpdate",
+        "LastMessageList",
+        "ChatModification",
+        "InitialReceivedChatsState",
+        "InitialAppStateSyncOptions"
+      ]
+    },
+    {
+      "path": "src/Types/Contact.ts",
+      "bytes": 793,
+      "status": "not_ported",
+      "exports": [
+        "Contact"
+      ]
+    },
+    {
+      "path": "src/Types/Events.ts",
+      "bytes": 6913,
+      "status": "not_ported",
+      "exports": [
+        "BaileysEventMap",
+        "BufferedEventData",
+        "BaileysEvent",
+        "BaileysEventEmitter"
+      ]
+    },
+    {
+      "path": "src/Types/GroupMetadata.ts",
+      "bytes": 2206,
+      "status": "not_ported",
+      "exports": [
+        "GroupParticipant",
+        "ParticipantAction",
+        "RequestJoinAction",
+        "RequestJoinMethod",
+        "GroupMetadata",
+        "WAGroupCreateResponse",
+        "GroupModificationResponse"
+      ]
+    },
+    {
+      "path": "src/Types/Label.ts",
+      "bytes": 815,
+      "status": "not_ported",
+      "exports": [
+        "Label",
+        "LabelActionBody",
+        "LabelColor"
+      ]
+    },
+    {
+      "path": "src/Types/LabelAssociation.ts",
+      "bytes": 832,
+      "status": "not_ported",
+      "exports": [
+        "LabelAssociationType",
+        "LabelAssociationTypes",
+        "ChatLabelAssociation",
+        "MessageLabelAssociation",
+        "LabelAssociation",
+        "ChatLabelAssociationActionBody",
+        "MessageLabelAssociationActionBody"
+      ]
+    },
+    {
+      "path": "src/Types/Message.ts",
+      "bytes": 10455,
+      "status": "not_ported",
+      "exports": [
+        "WAMessage",
+        "WAMessageContent",
+        "WAContactMessage",
+        "WAContactsArrayMessage",
+        "WAMessageKey",
+        "WATextMessage",
+        "WAContextInfo",
+        "WALocationMessage",
+        "WAGenericMediaMessage",
+        "WAMessageStubType",
+        "WAMessageStatus",
+        "WAMediaPayloadURL",
+        "WAMediaPayloadStream",
+        "WAMediaUpload",
+        "MessageType",
+        "WAMessageAddressingMode",
+        "MessageWithContextInfo",
+        "DownloadableMessage",
+        "MessageReceiptType",
+        "MediaConnInfo",
+        "WAUrlInfo",
+        "PollMessageOptions",
+        "EventMessageOptions",
+        "AlbumMessageOptions",
+        "AnyMediaMessageContent",
+        "ButtonReplyInfo",
+        "GroupInviteInfo",
+        "WASendableProduct",
+        "AnyRegularMessageContent",
+        "AnyMessageContent",
+        "GroupMetadataParticipants",
+        "MessageRelayOptions",
+        "MiscMessageGenerationOptions",
+        "MessageGenerationOptionsFromContent",
+        "WAMediaUploadFunction",
+        "MediaGenerationOptions",
+        "MessageContentGenerationOptions",
+        "MessageGenerationOptions",
+        "MessageUpsertType",
+        "MessageUserReceipt",
+        "WAMessageUpdate",
+        "WAMessageCursor",
+        "MessageUserReceiptUpdate",
+        "MediaDecryptionKeyInfo",
+        "MinimalMessage"
+      ]
+    },
+    {
+      "path": "src/Types/Mex.ts",
+      "bytes": 3181,
+      "status": "not_ported",
+      "exports": [
+        "XWAPaths",
+        "QueryIds",
+        "NewsletterUpdate",
+        "NewsletterCreateResponse",
+        "NewsletterCreateResponse",
+        "NewsletterViewRole",
+        "NewsletterMetadata"
+      ]
+    },
+    {
+      "path": "src/Types/Product.ts",
+      "bytes": 1579,
+      "status": "not_ported",
+      "exports": [
+        "CatalogResult",
+        "ProductCreateResult",
+        "CatalogStatus",
+        "CatalogCollection",
+        "ProductAvailability",
+        "ProductBase",
+        "ProductCreate",
+        "ProductUpdate",
+        "Product",
+        "OrderPrice",
+        "OrderProduct",
+        "OrderDetails",
+        "CatalogCursor",
+        "GetCatalogOptions"
+      ]
+    },
+    {
+      "path": "src/Types/Signal.ts",
+      "bytes": 2304,
+      "status": "not_ported",
+      "exports": [
+        "SignalRepository",
+        "SignalRepositoryWithLIDStore"
+      ]
+    },
+    {
+      "path": "src/Types/Socket.ts",
+      "bytes": 5730,
+      "status": "not_ported",
+      "exports": [
+        "WAVersion",
+        "WABrowserDescription",
+        "CacheStore",
+        "PossiblyExtendedCacheStore",
+        "PatchedMessageWithRecipientJID",
+        "SocketConfig"
+      ]
+    },
+    {
+      "path": "src/Types/State.ts",
+      "bytes": 3819,
+      "status": "not_ported",
+      "exports": [
+        "SyncState",
+        "WAConnectionState",
+        "ConnectionState",
+        "ReachoutTimelockState",
+        "ReachoutTimelockEnforcementType",
+        "NewChatMessageCappingStatusType",
+        "NewChatMessageCappingMVStatusType",
+        "NewChatMessageCappingOTEStatusType",
+        "NewChatMessageCapInfo"
+      ]
+    },
+    {
+      "path": "src/Types/USync.ts",
+      "bytes": 646,
+      "status": "not_ported",
+      "exports": [
+        "USyncQueryProtocol"
+      ]
+    },
+    {
+      "path": "src/Types/globals.d.ts",
+      "bytes": 104,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/Types/index.ts",
+      "bytes": 1629,
+      "status": "not_ported",
+      "exports": [
+        "UserFacingSocketConfig",
+        "BrowsersMap",
+        "DisconnectReason",
+        "WAInitResponse",
+        "WABusinessHoursConfig",
+        "WABusinessProfile",
+        "CurveKeyPair"
+      ]
+    },
+    {
+      "path": "src/Utils/auth-utils.ts",
+      "bytes": 10101,
+      "status": "not_ported",
+      "exports": [
+        "makeCacheableSignalKeyStore",
+        "addTransactionCapability",
+        "assertMeId",
+        "initAuthCreds"
+      ]
+    },
+    {
+      "path": "src/Utils/browser-utils.ts",
+      "bytes": 1009,
+      "status": "not_ported",
+      "exports": [
+        "Browsers",
+        "getPlatformId"
+      ]
+    },
+    {
+      "path": "src/Utils/business.ts",
+      "bytes": 7489,
+      "status": "not_ported",
+      "exports": [
+        "parseCatalogNode",
+        "parseCollectionsNode",
+        "parseOrderDetailsNode",
+        "toProductNode",
+        "parseProductNode",
+        "uploadingNecessaryImagesOfProduct",
+        "uploadingNecessaryImages"
+      ]
+    },
+    {
+      "path": "src/Utils/chat-utils.ts",
+      "bytes": 31714,
+      "status": "not_ported",
+      "exports": [
+        "ChatMutationMap",
+        "makeLtHashGenerator",
+        "newLTHashState",
+        "ensureLTHashStateVersion",
+        "MAX_SYNC_ATTEMPTS",
+        "isMissingKeyError",
+        "isAppStateSyncIrrecoverable",
+        "encodeSyncdPatch",
+        "decodeSyncdMutations",
+        "decodeSyncdPatch",
+        "extractSyncdPatches",
+        "downloadExternalBlob",
+        "downloadExternalPatch",
+        "decodeSyncdSnapshot",
+        "decodePatches",
+        "chatModificationToAppPatch",
+        "processSyncAction"
+      ]
+    },
+    {
+      "path": "src/Utils/companion-reg-client-utils.ts",
+      "bytes": 1325,
+      "status": "not_ported",
+      "exports": [
+        "CompanionWebClientType",
+        "getCompanionWebClientType",
+        "getCompanionPlatformId",
+        "buildPairingQRData"
+      ]
+    },
+    {
+      "path": "src/Utils/crypto.ts",
+      "bytes": 5179,
+      "status": "not_ported",
+      "exports": [
+        "generateSignalPubKey",
+        "Curve",
+        "signedKeyPair",
+        "aesEncryptGCM",
+        "aesDecryptGCM",
+        "aesEncryptCTR",
+        "aesDecryptCTR",
+        "aesDecrypt",
+        "aesDecryptWithIV",
+        "aesEncrypt",
+        "aesEncrypWithIV",
+        "hmacSign",
+        "sha256",
+        "derivePairingCodeKey"
+      ]
+    },
+    {
+      "path": "src/Utils/decode-wa-message.ts",
+      "bytes": 11564,
+      "status": "not_ported",
+      "exports": [
+        "getDecryptionJid",
+        "NO_MESSAGE_FOUND_ERROR_TEXT",
+        "MISSING_KEYS_ERROR_TEXT",
+        "ACCOUNT_RESTRICTED_TEXT",
+        "DECRYPTION_RETRY_CONFIG",
+        "NACK_REASONS",
+        "SERVER_ERROR_CODES",
+        "extractAddressingContext",
+        "decodeMessageNode",
+        "decryptMessageNode"
+      ]
+    },
+    {
+      "path": "src/Utils/event-buffer.ts",
+      "bytes": 21668,
+      "status": "not_ported",
+      "exports": [
+        "makeEventBuffer"
+      ]
+    },
+    {
+      "path": "src/Utils/generics.ts",
+      "bytes": 13272,
+      "status": "not_ported",
+      "exports": [
+        "BufferJSON",
+        "getKeyAuthor",
+        "isStringNullOrEmpty",
+        "writeRandomPadMax16",
+        "unpadRandomMax16",
+        "generateParticipantHashV2",
+        "encodeWAMessage",
+        "generateRegistrationId",
+        "encodeBigEndian",
+        "toNumber",
+        "unixTimestampSeconds",
+        "DebouncedTimeout",
+        "debouncedTimeout",
+        "delay",
+        "delayCancellable",
+        "promiseTimeout",
+        "generateMessageIDV2",
+        "generateMessageID",
+        "bindWaitForEvent",
+        "bindWaitForConnectionUpdate",
+        "fetchLatestBaileysVersion",
+        "fetchLatestWaWebVersion",
+        "generateMdTagPrefix",
+        "getStatusFromReceiptType",
+        "getErrorCodeFromStreamError",
+        "getCallStatusFromNode",
+        "getCodeFromWSError",
+        "isWABusinessPlatform",
+        "trimUndefined",
+        "bytesToCrockford",
+        "encodeNewsletterMessage"
+      ]
+    },
+    {
+      "path": "src/Utils/history.ts",
+      "bytes": 5329,
+      "status": "not_ported",
+      "exports": [
+        "downloadHistory",
+        "processHistoryMessage",
+        "downloadAndProcessHistorySyncNotification",
+        "getHistoryMsg"
+      ]
+    },
+    {
+      "path": "src/Utils/identity-change-handler.ts",
+      "bytes": 3239,
+      "status": "not_ported",
+      "exports": [
+        "IdentityChangeResult",
+        "IdentityChangeContext",
+        "handleIdentityChange"
+      ]
+    },
+    {
+      "path": "src/Utils/index.ts",
+      "bytes": 681,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/Utils/link-preview.ts",
+      "bytes": 3197,
+      "status": "not_ported",
+      "exports": [
+        "URLGenerationOptions",
+        "getUrlInfo"
+      ]
+    },
+    {
+      "path": "src/Utils/logger.ts",
+      "bytes": 390,
+      "status": "not_ported",
+      "exports": [
+        "ILogger"
+      ]
+    },
+    {
+      "path": "src/Utils/lt-hash.ts",
+      "bytes": 378,
+      "status": "not_ported",
+      "exports": [
+        "LT_HASH_ANTI_TAMPERING"
+      ]
+    },
+    {
+      "path": "src/Utils/make-mutex.ts",
+      "bytes": 927,
+      "status": "not_ported",
+      "exports": [
+        "makeMutex",
+        "Mutex",
+        "makeKeyedMutex",
+        "KeyedMutex"
+      ]
+    },
+    {
+      "path": "src/Utils/message-retry-manager.ts",
+      "bytes": 9404,
+      "status": "not_ported",
+      "exports": [
+        "RecentMessageKey",
+        "RecentMessage",
+        "SessionRecreateHistory",
+        "RetryCounter",
+        "PendingPhoneRequest",
+        "RetryStatistics",
+        "RetryReason",
+        "MessageRetryManager"
+      ]
+    },
+    {
+      "path": "src/Utils/messages-media.ts",
+      "bytes": 29115,
+      "status": "not_ported",
+      "exports": [
+        "hkdfInfoKey",
+        "getRawMediaUploadData",
+        "getMediaKeys",
+        "extractImageThumb",
+        "encodeBase64EncodedStringForUpload",
+        "generateProfilePicture",
+        "mediaMessageSHA256B64",
+        "getAudioDuration",
+        "getAudioWaveform",
+        "toReadable",
+        "toBuffer",
+        "getStream",
+        "generateThumbnail",
+        "getHttpStream",
+        "encryptedStream",
+        "DEF_MEDIA_HOST",
+        "MediaDownloadOptions",
+        "getUrlFromDirectPath",
+        "downloadContentFromMessage",
+        "downloadEncryptedContent",
+        "extensionForMediaMessage",
+        "UploadParams",
+        "uploadWithNodeHttp",
+        "getWAUploadToServer",
+        "encryptMediaRetryRequest",
+        "decodeMediaRetryNode",
+        "decryptMediaRetryData",
+        "getStatusCodeForMediaRetry"
+      ]
+    },
+    {
+      "path": "src/Utils/messages.ts",
+      "bytes": 34222,
+      "status": "not_ported",
+      "exports": [
+        "extractUrlFromText",
+        "generateLinkPreviewIfRequired",
+        "prepareWAMessageMedia",
+        "prepareDisappearingMessageSettingContent",
+        "generateForwardMessageContent",
+        "hasNonNullishProperty",
+        "generateWAMessageContent",
+        "generateWAMessageFromContent",
+        "generateWAMessage",
+        "getContentType",
+        "normalizeMessageContent",
+        "extractMessageContent",
+        "getDevice",
+        "updateMessageWithReceipt",
+        "updateMessageWithReaction",
+        "updateMessageWithPollUpdate",
+        "updateMessageWithEventResponse",
+        "getAggregateVotesInPollMessage",
+        "getAggregateResponsesInEventMessage",
+        "aggregateMessageKeysNotFromMe",
+        "downloadMediaMessage",
+        "assertMediaContent"
+      ]
+    },
+    {
+      "path": "src/Utils/noise-handler.ts",
+      "bytes": 7292,
+      "status": "not_ported",
+      "exports": [
+        "makeNoiseHandler"
+      ]
+    },
+    {
+      "path": "src/Utils/offline-node-processor.ts",
+      "bytes": 1845,
+      "status": "not_ported",
+      "exports": [
+        "MessageType",
+        "OfflineNodeProcessorDeps",
+        "makeOfflineNodeProcessor"
+      ]
+    },
+    {
+      "path": "src/Utils/pre-key-manager.ts",
+      "bytes": 3544,
+      "status": "not_ported",
+      "exports": [
+        "PreKeyManager"
+      ]
+    },
+    {
+      "path": "src/Utils/process-message.ts",
+      "bytes": 26891,
+      "status": "not_ported",
+      "exports": [
+        "cleanMessage",
+        "isRealMessage",
+        "shouldIncrementChatUnread",
+        "getChatId",
+        "decryptPollVote",
+        "decryptEventResponse"
+      ]
+    },
+    {
+      "path": "src/Utils/reporting-utils.ts",
+      "bytes": 7850,
+      "status": "not_ported",
+      "exports": [
+        "ReportingField",
+        "shouldIncludeReportingToken",
+        "getMessageReportingToken"
+      ]
+    },
+    {
+      "path": "src/Utils/signal.ts",
+      "bytes": 8278,
+      "status": "not_ported",
+      "exports": [
+        "createSignalIdentity",
+        "getPreKeys",
+        "generateOrGetPreKeys",
+        "xmppSignedPreKey",
+        "xmppPreKey",
+        "extractE2ESessionFromRetryReceipt",
+        "parseAndInjectE2ESessions",
+        "extractDeviceJids",
+        "getNextPreKeys",
+        "getNextPreKeysNode"
+      ]
+    },
+    {
+      "path": "src/Utils/stanza-ack.ts",
+      "bytes": 1047,
+      "status": "not_ported",
+      "exports": [
+        "buildAckStanza"
+      ]
+    },
+    {
+      "path": "src/Utils/sync-action-utils.ts",
+      "bytes": 1953,
+      "status": "not_ported",
+      "exports": [
+        "ContactsUpsertResult",
+        "LidMappingUpdateResult",
+        "SyncActionResult",
+        "processContactAction",
+        "emitSyncActionResults"
+      ]
+    },
+    {
+      "path": "src/Utils/tc-token-utils.ts",
+      "bytes": 7369,
+      "status": "not_ported",
+      "exports": [
+        "TC_TOKEN_INDEX_KEY",
+        "readTcTokenIndex",
+        "buildMergedTcTokenIndexWrite",
+        "isTcTokenExpired",
+        "shouldSendNewTcToken",
+        "resolveTcTokenJid",
+        "resolveIssuanceJid",
+        "buildTcTokenFromJid",
+        "storeTcTokensFromIqResult"
+      ]
+    },
+    {
+      "path": "src/Utils/use-multi-file-auth-state.ts",
+      "bytes": 3824,
+      "status": "not_ported",
+      "exports": [
+        "useMultiFileAuthState"
+      ]
+    },
+    {
+      "path": "src/Utils/validate-connection.ts",
+      "bytes": 8011,
+      "status": "not_ported",
+      "exports": [
+        "generateLoginNode",
+        "generateRegistrationNode",
+        "configureSuccessfulPairing",
+        "encodeSignedDeviceIdentity"
+      ]
+    },
+    {
+      "path": "src/WABinary/constants.ts",
+      "bytes": 18784,
+      "status": "not_ported",
+      "exports": [
+        "TAGS",
+        "DOUBLE_BYTE_TOKENS",
+        "SINGLE_BYTE_TOKENS",
+        "TOKEN_MAP"
+      ]
+    },
+    {
+      "path": "src/WABinary/decode.ts",
+      "bytes": 7225,
+      "status": "not_ported",
+      "exports": [
+        "decompressingIfRequired",
+        "decodeDecompressedBinaryNode",
+        "decodeBinaryNode"
+      ]
+    },
+    {
+      "path": "src/WABinary/encode.ts",
+      "bytes": 6210,
+      "status": "not_ported",
+      "exports": [
+        "encodeBinaryNode"
+      ]
+    },
+    {
+      "path": "src/WABinary/generic-utils.ts",
+      "bytes": 3675,
+      "status": "not_ported",
+      "exports": [
+        "getBinaryNodeChildren",
+        "getBinaryNodeChild",
+        "getAllBinaryNodeChildren",
+        "getBinaryNodeChildBuffer",
+        "getBinaryNodeChildString",
+        "getBinaryNodeChildUInt",
+        "assertNodeErrorFree",
+        "reduceBinaryNodeToDictionary",
+        "getBinaryNodeMessages",
+        "binaryNodeToString"
+      ]
+    },
+    {
+      "path": "src/WABinary/index.ts",
+      "bytes": 133,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/WABinary/jid-utils.ts",
+      "bytes": 3898,
+      "status": "not_ported",
+      "exports": [
+        "S_WHATSAPP_NET",
+        "OFFICIAL_BIZ_JID",
+        "SERVER_JID",
+        "PSA_WID",
+        "STORIES_JID",
+        "META_AI_JID",
+        "JidServer",
+        "WAJIDDomains",
+        "JidWithDevice",
+        "FullJid",
+        "getServerFromDomainType",
+        "jidEncode",
+        "jidDecode",
+        "areJidsSameUser",
+        "isJidMetaAI",
+        "isPnUser",
+        "isLidUser",
+        "isJidBroadcast",
+        "isJidGroup",
+        "isJidStatusBroadcast",
+        "isJidNewsletter",
+        "isHostedPnUser",
+        "isHostedLidUser",
+        "isJidBot",
+        "jidNormalizedUser",
+        "transferDevice"
+      ]
+    },
+    {
+      "path": "src/WABinary/types.ts",
+      "bytes": 602,
+      "status": "not_ported",
+      "exports": [
+        "BinaryNode",
+        "BinaryNodeAttributes",
+        "BinaryNodeData",
+        "BinaryNodeCodingOptions"
+      ]
+    },
+    {
+      "path": "src/WAM/BinaryInfo.ts",
+      "bytes": 255,
+      "status": "not_ported",
+      "exports": [
+        "BinaryInfo"
+      ]
+    },
+    {
+      "path": "src/WAM/constants.ts",
+      "bytes": 549898,
+      "status": "not_ported",
+      "exports": [
+        "WEB_EVENTS",
+        "WEB_GLOBALS",
+        "FLAG_BYTE",
+        "Event",
+        "Global",
+        "EventInputType",
+        "Value"
+      ]
+    },
+    {
+      "path": "src/WAM/encode.ts",
+      "bytes": 5049,
+      "status": "not_ported",
+      "exports": [
+        "encodeWAM"
+      ]
+    },
+    {
+      "path": "src/WAM/index.ts",
+      "bytes": 82,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/WAUSync/Protocols/USyncContactProtocol.ts",
+      "bytes": 1020,
+      "status": "not_ported",
+      "exports": [
+        "USyncContactProtocol"
+      ]
+    },
+    {
+      "path": "src/WAUSync/Protocols/USyncDeviceProtocol.ts",
+      "bytes": 1969,
+      "status": "not_ported",
+      "exports": [
+        "KeyIndexData",
+        "DeviceListData",
+        "ParsedDeviceInfo",
+        "USyncDeviceProtocol"
+      ]
+    },
+    {
+      "path": "src/WAUSync/Protocols/USyncDisappearingModeProtocol.ts",
+      "bytes": 736,
+      "status": "not_ported",
+      "exports": [
+        "DisappearingModeData",
+        "USyncDisappearingModeProtocol"
+      ]
+    },
+    {
+      "path": "src/WAUSync/Protocols/USyncStatusProtocol.ts",
+      "bytes": 910,
+      "status": "not_ported",
+      "exports": [
+        "StatusData",
+        "USyncStatusProtocol"
+      ]
+    },
+    {
+      "path": "src/WAUSync/Protocols/USyncUsernameProtocol.ts",
+      "bytes": 622,
+      "status": "not_ported",
+      "exports": [
+        "USyncUsernameProtocol"
+      ]
+    },
+    {
+      "path": "src/WAUSync/Protocols/UsyncBotProfileProtocol.ts",
+      "bytes": 2174,
+      "status": "not_ported",
+      "exports": [
+        "BotProfileCommand",
+        "BotProfileInfo",
+        "USyncBotProfileProtocol"
+      ]
+    },
+    {
+      "path": "src/WAUSync/Protocols/UsyncLIDProtocol.ts",
+      "bytes": 602,
+      "status": "not_ported",
+      "exports": [
+        "USyncLIDProtocol"
+      ]
+    },
+    {
+      "path": "src/WAUSync/Protocols/index.ts",
+      "bytes": 203,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/WAUSync/USyncQuery.ts",
+      "bytes": 3257,
+      "status": "not_ported",
+      "exports": [
+        "USyncQueryResultList",
+        "USyncQueryResult",
+        "USyncQuery"
+      ]
+    },
+    {
+      "path": "src/WAUSync/USyncUser.ts",
+      "bytes": 643,
+      "status": "not_ported",
+      "exports": [
+        "USyncUser"
+      ]
+    },
+    {
+      "path": "src/WAUSync/index.ts",
+      "bytes": 91,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/__tests__/Signal/Group/sender-key-state-regression.test.ts",
+      "bytes": 963,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/__tests__/Signal/lid-mapping.test.ts",
+      "bytes": 1788,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/__tests__/Socket/chats.test.ts",
+      "bytes": 745,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/__tests__/Socket/groups.test.ts",
+      "bytes": 2553,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/__tests__/Socket/identity-change-handling.test.ts",
+      "bytes": 8819,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/__tests__/TestUtils/session.ts",
+      "bytes": 1294,
+      "status": "not_ported",
+      "exports": [
+        "makeSession",
+        "mockWebSocket"
+      ]
+    },
+    {
+      "path": "src/__tests__/Utils/app-state-sync-resilience.test.ts",
+      "bytes": 3803,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/__tests__/Utils/app-state-version.test.ts",
+      "bytes": 1946,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/__tests__/Utils/auth-utils.test.ts",
+      "bytes": 1169,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/__tests__/Utils/chat-utils-resilience.test.ts",
+      "bytes": 6143,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/__tests__/Utils/decode-wa-message.test.ts",
+      "bytes": 3002,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/__tests__/Utils/event-buffer.test.ts",
+      "bytes": 4184,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/__tests__/Utils/generics.test.ts",
+      "bytes": 2259,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/__tests__/Utils/history.test.ts",
+      "bytes": 12257,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/__tests__/Utils/lt-hash-generator.test.ts",
+      "bytes": 3771,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/__tests__/Utils/messages-media-download.test.ts",
+      "bytes": 1532,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/__tests__/Utils/messages-media.test.ts",
+      "bytes": 14400,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/__tests__/Utils/noise-handler.test.ts",
+      "bytes": 10482,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/__tests__/Utils/offline-node-processor.test.ts",
+      "bytes": 10483,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/__tests__/Utils/process-message.test.ts",
+      "bytes": 5156,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/__tests__/Utils/process-sync-action.test.ts",
+      "bytes": 12405,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/__tests__/Utils/reporting-utils.test.ts",
+      "bytes": 5636,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/__tests__/Utils/signal.test.ts",
+      "bytes": 2083,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/__tests__/Utils/stanza-ack.test.ts",
+      "bytes": 10001,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/__tests__/Utils/sync-action-utils.test.ts",
+      "bytes": 5918,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/__tests__/Utils/tc-token.test.ts",
+      "bytes": 35981,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/__tests__/bigint-validation.test.ts",
+      "bytes": 7004,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/__tests__/binary/connection-deadlock.test.ts",
+      "bytes": 1896,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/__tests__/binary/reconnection-sync-skip.test.ts",
+      "bytes": 3097,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/__tests__/e2e/fetch-wa-web-version.test-e2e.ts",
+      "bytes": 1936,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/__tests__/e2e/groups.test-e2e.ts",
+      "bytes": 4349,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/__tests__/e2e/helpers/mock-phone.ts",
+      "bytes": 1116,
+      "status": "not_ported",
+      "exports": [
+        "postQrToMockPhone"
+      ]
+    },
+    {
+      "path": "src/__tests__/e2e/helpers/test-client.ts",
+      "bytes": 9081,
+      "status": "not_ported",
+      "exports": [
+        "Socket",
+        "WAMessageInfo",
+        "MessagePredicate",
+        "TestClientOptions",
+        "TestClient"
+      ]
+    },
+    {
+      "path": "src/__tests__/e2e/messaging.test-e2e.ts",
+      "bytes": 2114,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/__tests__/e2e/send-receive-message.test-e2e.ts",
+      "bytes": 9453,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/__tests__/proto-tojson-long.test.ts",
+      "bytes": 3023,
+      "status": "not_ported",
+      "exports": []
+    },
+    {
+      "path": "src/index.ts",
+      "bytes": 373,
+      "status": "not_ported",
+      "exports": [
+        "WASocket"
+      ]
+    }
+  ]
+}

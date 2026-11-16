@@ -1,0 +1,17 @@
+[package]
+name = "rustleys-whatsapp"
+version = "0.0.1"
+edition = "2024"
+rust-version = "1.85"
+license = "MIT"
+description = "Independent Rust port of Baileys (initial development; not functional yet)"
+repository = "https://github.com/JVini0166/rustleys-whatsapp"
+publish = false
+
+[lib]
+path = "src/lib.rs"
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+strip = true
