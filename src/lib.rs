@@ -35,3 +35,5 @@ pub mod legacy_session;
 pub mod socket;
 
 pub mod pairing;
+
+pub mod prekeys;

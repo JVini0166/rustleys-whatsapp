@@ -74,7 +74,7 @@ fn execute(request: Value) -> Result<Value, Box<dyn std::error::Error>> {
             store.save_credentials(&creds)?;
             let reply = update.persist_and_reply(&store, &mut creds)?;
             Ok(
-                json!({"reply":json_node(&reply),"credentials":serde_json::from_slice::<Value>(&creds.to_json()?)?}),
+                json!({"reply":json_node(&reply),"wire":rustleys_whatsapp::binary::encode(&reply)?,"credentials":serde_json::from_slice::<Value>(&creds.to_json()?)?}),
             )
         }
         _ => Err("unknown command".into()),

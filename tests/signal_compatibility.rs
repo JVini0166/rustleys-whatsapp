@@ -545,3 +545,117 @@ fn protocol_addresses_match_original_baileys_repository_helper() {
         }
     }
 }
+
+#[test]
+fn legacy_omitted_zero_prekey_id_is_authenticated_then_consumed_without_downgrading_absence() {
+    use wacore_libsignal::engine::wire;
+    let directory = tempfile::tempdir().unwrap();
+    let alice_creds = Credentials::generate().unwrap();
+    let bob_creds = Credentials::generate().unwrap();
+    let alice = Repository::new(
+        &alice_creds,
+        SqliteStore::open(directory.path().join("zero-a.sqlite")).unwrap(),
+    )
+    .unwrap();
+    let bob_store = Arc::new(SqliteStore::open(directory.path().join("zero-b.sqlite")).unwrap());
+    let bob = Repository::new(&bob_creds, bob_store.clone()).unwrap();
+    let key = KeyPair::generate().unwrap();
+    bob.put_pre_key(0, &key).unwrap();
+    alice
+        .inject_session(
+            "bob:1@s.whatsapp.net",
+            &PreKeyBundle::from_credentials(&bob_creds, Some((0, &key))).unwrap(),
+        )
+        .unwrap();
+    let packet = alice
+        .encrypt("bob:1@s.whatsapp.net", b"legacy zero")
+        .unwrap();
+    let mut outer = wire::PreKeySignalMessageView::decode(&packet.bytes)
+        .unwrap()
+        .to_owned();
+    outer.pre_key_id = None;
+    let omitted = outer.encode();
+    let mut damaged = omitted.clone();
+    let inner = wire::PreKeySignalMessageView::decode(&damaged)
+        .unwrap()
+        .message;
+    let start = inner.as_ptr() as usize - damaged.as_ptr() as usize;
+    let last = start + inner.len() - 1;
+    damaged[last] ^= 1;
+    assert!(
+        bob.decrypt("alice:1@s.whatsapp.net", MessageType::PreKey, &damaged)
+            .is_err()
+    );
+    assert!(bob.has_pre_key(0).unwrap());
+    assert!(
+        bob.session_info("alice:1@s.whatsapp.net")
+            .unwrap()
+            .is_none()
+    );
+    assert_eq!(
+        bob.decrypt("alice:1@s.whatsapp.net", MessageType::PreKey, &omitted)
+            .unwrap()
+            .expose(),
+        b"legacy zero"
+    );
+    assert!(!bob.has_pre_key(0).unwrap());
+    assert!(
+        bob.decrypt("alice:1@s.whatsapp.net", MessageType::PreKey, &omitted)
+            .is_err()
+    );
+    let fail_path = directory.path().join("zero-fail.sqlite");
+    let failed = Repository::new(&bob_creds, SqliteStore::open(&fail_path).unwrap()).unwrap();
+    failed.put_pre_key(0, &key).unwrap();
+    let guard = rusqlite::Connection::open(&fail_path).unwrap();
+    guard.execute_batch("CREATE TABLE guard_parent(id INTEGER PRIMARY KEY);CREATE TABLE commit_guard(id INTEGER REFERENCES guard_parent(id) DEFERRABLE INITIALLY DEFERRED);CREATE TRIGGER zero_commit_fail AFTER DELETE ON rustleys_signal_keys WHEN OLD.category='pre-key' AND OLD.id='0' BEGIN INSERT INTO commit_guard VALUES(1); END;").unwrap();
+    assert!(matches!(
+        failed.decrypt("alice:1@s.whatsapp.net", MessageType::PreKey, &omitted),
+        Err(signal::Error::Database {
+            operation: "commit",
+            ..
+        })
+    ));
+    assert!(failed.has_pre_key(0).unwrap());
+    assert!(
+        failed
+            .session_info("alice:1@s.whatsapp.net")
+            .unwrap()
+            .is_none()
+    );
+    guard
+        .execute_batch("DROP TRIGGER zero_commit_fail")
+        .unwrap();
+    assert_eq!(
+        failed
+            .decrypt("alice:1@s.whatsapp.net", MessageType::PreKey, &omitted)
+            .unwrap()
+            .expose(),
+        b"legacy zero"
+    );
+    assert!(!failed.has_pre_key(0).unwrap());
+    // A genuine absent-prekey handshake must succeed as 3DH even when key zero
+    // exists locally. It must never consume that unrelated private key.
+    let other_creds = Credentials::generate().unwrap();
+    let other = Repository::new(
+        &other_creds,
+        SqliteStore::open(directory.path().join("no-otk.sqlite")).unwrap(),
+    )
+    .unwrap();
+    bob.put_pre_key(0, &key).unwrap();
+    other
+        .inject_session(
+            "bob:1@s.whatsapp.net",
+            &PreKeyBundle::from_credentials(&bob_creds, None).unwrap(),
+        )
+        .unwrap();
+    let plain = other
+        .encrypt("bob:1@s.whatsapp.net", b"actually absent")
+        .unwrap();
+    assert_eq!(
+        bob.decrypt("other:1@s.whatsapp.net", plain.kind, &plain.bytes)
+            .unwrap()
+            .expose(),
+        b"actually absent"
+    );
+    assert!(bob.has_pre_key(0).unwrap());
+}

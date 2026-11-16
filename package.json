@@ -32,6 +32,8 @@
     "fixtures:legacy-sessions": "node scripts/generate-legacy-session-fixtures.cjs",
     "verify:legacy-sessions": "node scripts/verify-legacy-session-cross-runtime.cjs",
     "fixtures:pairing": "node scripts/generate-pairing-fixtures.cjs",
-    "verify:pairing": "node scripts/verify-pairing-cross-runtime.cjs"
+    "verify:pairing": "node scripts/verify-pairing-cross-runtime.cjs",
+    "fixtures:prekeys": "node scripts/generate-prekeys-fixtures.cjs",
+    "verify:prekeys": "node scripts/verify-prekeys-cross-runtime.cjs"
   }
 }

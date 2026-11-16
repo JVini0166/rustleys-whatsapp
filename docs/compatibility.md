@@ -115,4 +115,9 @@ A [bounded WebSocket/Noise transport](socket-transport.md) now performs the encr
 
 ## Registration and pairing checkpoint
 
-[Registration and authenticated pairing primitives](pairing.md) now construct login/registration payloads, QR URLs and clock-driven reference rotation, verify pair-success HMAC/account signatures, sign the reply and persist credentials before releasing its acknowledgement. Original-generated payload/QR cases and independent device-signature checks cover the exercised variants. The original bad-signature acceptance is reproduced and deliberately rejected in Rust. End-to-end live pairing, link-code pairing and post-login initialization remain pending; the related inventory entries stay partial.
+[Registration and authenticated pairing primitives](pairing.md) now construct login/registration payloads, QR URLs and clock-driven reference rotation, verify pair-success HMAC/account signatures, sign the reply and persist credentials before releasing its acknowledgement. Original-generated payload/QR cases and independent device-signature checks cover the exercised variants. The original bad-signature acceptance is reproduced and deliberately rejected in Rust. End-to-end live pairing, link-code pairing and complete post-login initialization remain pending; the related inventory entries stay partial.
+
+
+## Prekey and login bootstrap checkpoint
+
+[Durable prekey reservation/upload and partial success bootstrap](prekeys.md) now connect the native Signal backend to the asynchronous query transport. Original upload wire/counter checks and active Node handshakes cover fresh/reused pools, zero and maximum IDs and the initial 812-key batch. Whole-operation expiry stops future retries, and partial initialization failures remain explicit. The same checkpoint corrects server-target JIDs and adds authenticated legacy-zero compatibility. Signed-key rotation/history and the full socket/event lifecycle remain pending.

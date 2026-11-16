@@ -174,7 +174,7 @@ impl From<binary::Error> for Error {
         Self::Binary(error)
     }
 }
-type Result<T> = std::result::Result<T, Error>;
+pub type Result<T> = std::result::Result<T, Error>;
 fn ws_error(error: tungstenite::Error) -> Error {
     match error {
         tungstenite::Error::Http(response) => Error::Http(response.status().as_u16()),
@@ -766,7 +766,7 @@ async fn run<S: AsyncRead + AsyncWrite + Unpin>(
                 _=tokio::time::sleep_until(wake)=>{
                     let now=Instant::now();if now>=idle{return Err(Error::Timeout(TimeoutPhase::Idle));}
                     if now>=next_ping {
-                        let node=Node{tag:"iq".into(),attrs:vec![("id".into(),ids.next()?),("to".into(),"s.whatsapp.net".into()),("type".into(),"get".into()),("xmlns".into(),"w:p".into())],content:Some(Content::Nodes(vec![Node{tag:"ping".into(),attrs:vec![],content:None}]))};
+                        let node=Node{tag:"iq".into(),attrs:vec![("id".into(),ids.next()?),("to".into(),crate::jid::S_WHATSAPP_NET.into()),("type".into(),"get".into()),("xmlns".into(),"w:p".into())],content:Some(Content::Nodes(vec![Node{tag:"ping".into(),attrs:vec![],content:None}]))};
                         let bytes=binary::encode(&node)?;write(&mut socket,noise.encode_frame(&bytes)?,now+config.write_timeout).await?;
                         next_ping=Instant::now()+config.keep_alive_interval;
                     }

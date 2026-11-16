@@ -48,3 +48,6 @@ Checkpoint: 51 native Rust tests passed, Clippy passed with warnings denied, and
 
 
 A bounded [legacy JSON importer](legacy-sessions.md) now covers established and pending pairwise records, skipped keys and archives. Reading an archive updates that archive without changing the open session. This is tested against original Node peers, including continued traffic after import; full legacy storage import/export remains incomplete.
+
+
+[Native prekey reservation/upload](prekeys.md) now supplies transactional one-time keys to this repository. A narrowly scoped authenticated adapter handles the original Node encoder omitting ID zero; malformed/replayed packets and failed commits still release no plaintext or private-key state. Signed-key history remains pending.

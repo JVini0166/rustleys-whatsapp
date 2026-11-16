@@ -16,6 +16,7 @@ const {reference,nodeFromJson}=require('./pairing-reference.cjs');const {buildDr
   // Check the raw boolean result. The original Curve.verify wrapper ignores it.
   assert.equal(curve.verifySignature(r.crypto.generateSignalPubKey(r.credentials[0].signedIdentityKey.public),message,native.deviceSignature),true);
   const corrupted=Buffer.from(native.deviceSignature);corrupted[0]^=1;assert.equal(curve.verifySignature(r.crypto.generateSignalPubKey(r.credentials[0].signedIdentityKey.public),message,corrupted),false);
+  assert.deepEqual(reply.attrs,row.reply.attrs);const expected=r.configureSuccessfulPairing(nodeFromJson(row.stanza),r.credentials[0]).reply;expected.content[0].content[0].content=r.encodeSignedDeviceIdentity(native,false);assert.deepEqual(Buffer.from(output.wire),r.binary.encodeBinaryNode(expected));
   const signed=r.proto.ADVSignedDeviceIdentity.decode(reply.content[0].content[0].content);assert.equal(Object.hasOwn(signed,'accountSignatureKey'),false);assert.deepEqual(signed.deviceSignature,native.deviceSignature);assert.equal(reply.content[0].content[0].attrs['key-index'],'7');assert.equal(reply.attrs.id,row.stanza.attrs.id);comparisons++;
  }
  for(const row of fixture.negative){await assert.rejects(driver.request({command:'pair',credentials,stanza:row.stanza}),new RegExp(row.expected));comparisons++;}

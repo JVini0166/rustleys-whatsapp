@@ -500,7 +500,7 @@ pub fn configure_successful_pairing(stanza: &Node, creds: &Credentials) -> Resul
     let reply = Node {
         tag: "iq".into(),
         attrs: vec![
-            ("to".into(), "s.whatsapp.net".into()),
+            ("to".into(), crate::jid::S_WHATSAPP_NET.into()),
             ("type".into(), "result".into()),
             ("id".into(), msg_id.into()),
         ],
@@ -595,7 +595,7 @@ impl QrRotation {
         let reply = Node {
             tag: "iq".into(),
             attrs: vec![
-                ("to".into(), "s.whatsapp.net".into()),
+                ("to".into(), crate::jid::S_WHATSAPP_NET.into()),
                 ("type".into(), "result".into()),
                 ("id".into(), id.into()),
             ],

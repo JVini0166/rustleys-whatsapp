@@ -36,10 +36,13 @@ Original-generated fixtures cover 20 registration/QR configurations, 100 login p
 
 Input bounds include three-byte signed-prekey IDs, bounded config strings, a 1 MiB device-identity message, up to 4,096 stored signal identities and up to 256 QR references/1 MiB of reference text. Malformed UTF-8/reference separators, duplicate required stanza children/attributes and unknown encryption enum values fail explicitly. Numeric login values above JavaScript's safe integer range, arbitrary JS coercions and unsupported user-JID domains are rejected rather than silently rounded. These stricter behaviors are documented differences, not complete malformed-input compatibility.
 
-No live account or WhatsApp server was used. Automatic connection-update/credential event orchestration, QR rendering, phone-number/link-code pairing, stream success/restart/failure handling, prekey upload and post-login initialization remain pending. These primitives and the transport do not yet constitute an operational WhatsApp client or full Baileys parity.
+No live account or WhatsApp server was used. Automatic connection-update/credential event orchestration, QR rendering, phone-number/link-code pairing, stream success/restart/failure handling, complete post-login initialization remain pending. A [durable prekey/upload bootstrap](prekeys.md) is now available. These primitives and the transport do not yet constitute an operational WhatsApp client or full Baileys parity.
 
 ```sh
 npm run fixtures:pairing -- /tmp/baileys-reference
 nice -n 15 env CARGO_BUILD_JOBS=1 cargo test --locked --test pairing_compatibility
 nice -n 15 npm run verify:pairing -- /tmp/baileys-reference
 ```
+
+
+A later complete-wire regression corrected acknowledgement destinations to `jid::S_WHATSAPP_NET` (`@s.whatsapp.net`). The independent verifier now checks full response packet bytes as well as signature validity; see [the prekey checkpoint](prekeys.md).

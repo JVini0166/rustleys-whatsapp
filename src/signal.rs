@@ -37,6 +37,10 @@ pub enum Error {
     TooLarge,
     LocalIdentityMismatch,
     MissingPreKey,
+    InvalidPreKeyState,
+    PreKeyCounterConflict,
+    PreKeyCollision,
+    PreKeyIdExhausted,
     MissingSignedPreKey,
 }
 impl std::fmt::Display for Error {
@@ -628,16 +632,45 @@ impl<S: Store> Repository<S> {
                         .current
                         .as_ref()
                         .map(|s| (s.remote_identity, s.alice_base_key, s.version));
-                    let plain =
-                        Bytes::new(Engine::new(&RustCrypto, &mut OsRandom).decrypt_pre_key(
-                            &mut record,
-                            ciphertext,
-                            &p,
-                        )?);
+                    // libsignal-node omits preKeyId=0 by testing JS truthiness.
+                    // First honor true absence (ordinary 3DH). Only after an
+                    // authentication failure try the single legacy-zero case,
+                    // restoring the candidate snapshot and validating its MAC.
+                    let legacy_zero =
+                        !existing && wrapper.pre_key_id.is_none() && ciphertext[0] == 0x33;
+                    let baseline = legacy_zero.then(|| record.clone());
+                    let mut consumed = wrapper.pre_key_id;
+                    let decrypted = Engine::new(&RustCrypto, &mut OsRandom).decrypt_pre_key(
+                        &mut record,
+                        ciphertext,
+                        &p,
+                    );
+                    let plaintext = match decrypted {
+                        Err(engine::Error::Authentication) if legacy_zero => {
+                            let Some(encoded) = tx.get("pre-key", "0")? else {
+                                return Err(engine::Error::Authentication.into());
+                            };
+                            let zero = codec::decode_pre_key(&encoded)?;
+                            if zero.id != 0 {
+                                return Err(Error::InvalidKey);
+                            }
+                            let mut parameters = p;
+                            parameters.local_one_time_pre_key = Some(zero.key_pair);
+                            let mut corrected = wrapper.to_owned();
+                            corrected.pre_key_id = Some(0);
+                            record = baseline.ok_or(Error::InvalidKey)?;
+                            let plaintext = Engine::new(&RustCrypto, &mut OsRandom)
+                                .decrypt_pre_key(&mut record, &corrected.encode(), &parameters)?;
+                            consumed = Some(0);
+                            plaintext
+                        }
+                        result => result?,
+                    };
+                    let plain = Bytes::new(plaintext);
                     if existing {
                         Self::restore_open_session(&mut record, before)?;
                     }
-                    if !existing && let Some(id) = wrapper.pre_key_id {
+                    if !existing && let Some(id) = consumed {
                         tx.remove("pre-key", &id.to_string())?;
                     }
                     tx.put("identity-key", &address, &wrapper.identity)?;

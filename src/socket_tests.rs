@@ -521,6 +521,10 @@ async fn keepalive_sends_protocol_ping_and_idle_peer_is_closed() {
     let (connection, _events, mut server) = pair(config, false).await;
     let ping = server.recv().await.unwrap();
     assert_eq!(ping.tag, "iq");
+    assert!(
+        ping.attrs
+            .contains(&("to".into(), crate::jid::S_WHATSAPP_NET.into()))
+    );
     assert!(ping.attrs.contains(&("xmlns".into(), "w:p".into())));
     assert!(matches!(ping.content,Some(Content::Nodes(nodes))if nodes[0].tag=="ping"));
     assert_eq!(
@@ -879,4 +883,85 @@ async fn concurrent_close_calls_are_idempotent_and_new_connections_have_fresh_st
     assert!(Error::OutcomeUnknown.delivery_uncertain());
     assert!(Error::Timeout(TimeoutPhase::Response).delivery_uncertain());
     assert!(!Error::Timeout(TimeoutPhase::Queue).delivery_uncertain());
+}
+
+#[tokio::test]
+async fn prekey_bootstrap_runs_over_authenticated_transport_with_durable_private_keys() {
+    use crate::{
+        auth::Credentials,
+        prekeys::{Manager, UploadPolicy, Uploader},
+        signal::SqliteStore,
+    };
+    let (connection, mut events, mut server) = pair(test_config(), false).await;
+    let creds = Credentials::generate().unwrap();
+    let directory = tempfile::tempdir().unwrap();
+    let store = Arc::new(SqliteStore::open(directory.path().join("prekeys.sqlite")).unwrap());
+    let manager = Arc::new(Manager::new(&creds, store).unwrap());
+    let uploader =
+        Uploader::new(manager.clone(), connection.clone(), UploadPolicy::default()).unwrap();
+    server
+        .send(&Node {
+            tag: "success".into(),
+            attrs: vec![("lid".into(), "synthetic-owner:1@lid".into())],
+            content: None,
+        })
+        .await;
+    let success = events.recv().await.unwrap().into_node();
+    let initialization = tokio::spawn(async move { uploader.initialize(&success).await });
+    for stage in 0..4 {
+        let request = server.recv().await.unwrap();
+        assert!(
+            request
+                .attrs
+                .contains(&("to".into(), crate::jid::S_WHATSAPP_NET.into()))
+        );
+        let id = node_id(&request).unwrap().unwrap().to_owned();
+        let mut reply = result(&id);
+        let Some(Content::Nodes(parts)) = request.content else {
+            panic!()
+        };
+        match stage {
+            0 => {
+                assert_eq!(parts[0].tag, "count");
+                reply.content = Some(Content::Nodes(vec![Node {
+                    tag: "count".into(),
+                    attrs: vec![("value".into(), "0".into())],
+                    content: None,
+                }]));
+            }
+            1 => {
+                assert_eq!(parts[0].tag, "registration");
+                let Some(Content::Nodes(keys)) = &parts[3].content else {
+                    panic!()
+                };
+                assert_eq!(keys.len(), 812);
+                assert!(
+                    manager
+                        .get_pre_keys(1, 813)
+                        .unwrap()
+                        .values()
+                        .all(Option::is_some)
+                );
+                assert_eq!(manager.counters().unwrap().next_pre_key_id, 813);
+            }
+            2 => assert_eq!(parts[0].tag, "active"),
+            _ => {
+                assert_eq!(parts[0].tag, "digest");
+                reply.content = Some(Content::Nodes(vec![Node {
+                    tag: "digest".into(),
+                    attrs: vec![],
+                    content: None,
+                }]));
+            }
+        }
+        server.send(&reply).await;
+    }
+    let report = initialization.await.unwrap().unwrap();
+    assert_eq!(report.prekeys.unwrap().unwrap().count, 812);
+    assert!(report.active.is_ok());
+    assert!(report.digest.unwrap().is_ok());
+    for _ in 0..4 {
+        events.recv().await.unwrap();
+    }
+    server.finish(connection).await;
 }

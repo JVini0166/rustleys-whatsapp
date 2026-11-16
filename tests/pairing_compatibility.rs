@@ -91,6 +91,7 @@ fn verified_pairing_is_persisted_before_ack_and_reply_signature_is_valid() {
         assert!(!format!("{update:?}").contains(&creds.adv_secret_key));
         assert_eq!(update.credentials().me.as_ref().unwrap(), &row["me"]);
         let reply = update.persist_and_reply(&store, &mut creds).unwrap();
+        assert_eq!(reply.attrs, node(&row["reply"]).attrs);
         assert_eq!(
             store
                 .load_credentials()
@@ -331,6 +332,10 @@ fn qr_rotation_obeys_first_and_subsequent_deadlines_without_skipping_refs() {
         pairing::QrRotation::from_stanza(&qr_stanza(), &creds, &config.browser, None).unwrap();
     assert!(ack.attrs.contains(&("id".into(), "qr-challenge".into())));
     assert!(ack.attrs.contains(&("type".into(), "result".into())));
+    assert!(
+        ack.attrs
+            .contains(&("to".into(), rustleys_whatsapp::jid::S_WHATSAPP_NET.into()))
+    );
     let now = Instant::now();
     let QrPoll::Ready { qr, expires_at } = rotation.poll(now).unwrap() else {
         panic!()
