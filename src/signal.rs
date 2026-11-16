@@ -15,6 +15,7 @@ use std::{
 };
 use wacore_libsignal::engine::{self, Engine, RustCrypto, codec, wire};
 use zeroize::Zeroizing;
+type SessionMarker = ([u8; 32], Option<[u8; 32]>, u32);
 const MAX_BLOB: usize = 128 * 1024 * 1024;
 pub(crate) const MAX_MESSAGE: usize = 16 * 1024 * 1024;
 #[derive(Debug)]
@@ -29,6 +30,8 @@ pub enum Error {
     InvalidAddress,
     InvalidGroup,
     InvalidMapping,
+    InvalidLegacySession,
+    SessionImportConflict,
     MigrationConflict,
     InvalidKey,
     TooLarge,
@@ -442,6 +445,35 @@ impl<S: Store> Repository<S> {
         let bytes = Zeroizing::new(codec::encode_session_record(record));
         tx.put("session", address, &bytes)
     }
+    /// Import a legacy libsignal-node JSON record into an empty address only.
+    /// The caller must authenticate its provenance and match the original local
+    /// credentials. Re-import never replaces an established ratchet.
+    pub fn import_legacy_session(
+        &self,
+        jid: &str,
+        input: &[u8],
+    ) -> Result<crate::legacy_session::ImportReport> {
+        protocol_address(jid)?;
+        let (record, report) =
+            crate::legacy_session::decode(input, self.identity.public, self.registration)?;
+        self.check_record(&record)?;
+        self.store.transaction(|tx| {
+            let address = crate::lid_mapping::resolve_address(tx, jid)?;
+            if tx.get("session", &address)?.is_some() {
+                return Err(Error::SessionImportConflict);
+            }
+            if let Some(state) = &record.current {
+                if let Some(identity) = tx.get("identity-key", &address)?
+                    && identity.as_slice() != state.remote_identity
+                {
+                    return Err(Error::SessionImportConflict);
+                }
+                tx.put("identity-key", &address, &state.remote_identity)?;
+            }
+            Self::save(tx, &address, &record)?;
+            Ok(report)
+        })
+    }
     pub fn inject_session(&self, jid: &str, bundle: &PreKeyBundle) -> Result<()> {
         protocol_address(jid)?;
         self.store.transaction(|tx| {
@@ -490,6 +522,43 @@ impl<S: Store> Repository<S> {
             Ok(Ciphertext { kind, bytes })
         })
     }
+    // libsignal-node consumes archived messages without reopening that session.
+    // The native engine promotes a successful archive, so restore the open
+    // session after authenticating while retaining the archive's updated keys.
+    fn restore_open_session(
+        record: &mut engine::SessionRecord,
+        previous: Option<SessionMarker>,
+    ) -> Result<()> {
+        let identity = |state: &engine::SessionState| {
+            (state.remote_identity, state.alice_base_key, state.version)
+        };
+        if record.current.as_ref().map(identity) == previous {
+            return Ok(());
+        }
+        match previous {
+            Some(previous) => {
+                let mut found = None;
+                for (index, archived) in record.previous.iter().enumerate() {
+                    let state = archived.decode()?;
+                    if identity(&state) == previous {
+                        found = Some((index, state));
+                        break;
+                    }
+                }
+                let (index, state) = found.ok_or(Error::InvalidLegacySession)?;
+                record.previous.remove(index);
+                record.install(state);
+            }
+            None => {
+                // install() creates the encoded archive through the engine's
+                // public API; there is no public ArchivedSession constructor.
+                let consumed = record.current.clone().ok_or(Error::InvalidLegacySession)?;
+                record.install(consumed);
+                record.current = None;
+            }
+        }
+        Ok(())
+    }
     pub fn decrypt(&self, jid: &str, kind: MessageType, ciphertext: &[u8]) -> Result<Bytes> {
         if ciphertext.len() > MAX_MESSAGE {
             return Err(Error::TooLarge);
@@ -500,7 +569,15 @@ impl<S: Store> Repository<S> {
             let mut record = self.load(tx, &address)?;
             let plaintext = match kind {
                 MessageType::Normal => {
-                    Engine::new(&RustCrypto, &mut OsRandom).decrypt(&mut record, ciphertext)?
+                    let before = record
+                        .current
+                        .as_ref()
+                        .map(|s| (s.remote_identity, s.alice_base_key, s.version));
+                    let plain = Bytes::new(
+                        Engine::new(&RustCrypto, &mut OsRandom).decrypt(&mut record, ciphertext)?,
+                    );
+                    Self::restore_open_session(&mut record, before)?;
+                    plain
                 }
                 MessageType::PreKey => {
                     let wrapper = wire::PreKeySignalMessageView::decode(ciphertext)?;
@@ -547,11 +624,19 @@ impl<S: Store> Repository<S> {
                         remote_base_key: wrapper.base_key,
                         remote_registration: wrapper.registration,
                     };
-                    let plain = Engine::new(&RustCrypto, &mut OsRandom).decrypt_pre_key(
-                        &mut record,
-                        ciphertext,
-                        &p,
-                    )?;
+                    let before = record
+                        .current
+                        .as_ref()
+                        .map(|s| (s.remote_identity, s.alice_base_key, s.version));
+                    let plain =
+                        Bytes::new(Engine::new(&RustCrypto, &mut OsRandom).decrypt_pre_key(
+                            &mut record,
+                            ciphertext,
+                            &p,
+                        )?);
+                    if existing {
+                        Self::restore_open_session(&mut record, before)?;
+                    }
                     if !existing && let Some(id) = wrapper.pre_key_id {
                         tx.remove("pre-key", &id.to_string())?;
                     }
@@ -559,7 +644,6 @@ impl<S: Store> Repository<S> {
                     plain
                 }
             };
-            let plaintext = Bytes::new(plaintext);
             Self::save(tx, &address, &record)?;
             Ok(plaintext)
         })

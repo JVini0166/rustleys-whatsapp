@@ -101,3 +101,8 @@ Transactional group distribution/encryption/decryption now has original-wire fix
 ## PN/LID checkpoint
 
 Native mapping/cache/coalescing, reciprocal cleanup and transactional session migration now have differential vectors and source-regression characterization. Crypto operations resolve committed aliases in their transaction. See [lid-mapping.md](lid-mapping.md) for corrected upstream behaviors, conflict preservation, async/legacy/archive limitations and reproduction. Live socket/USync integration is still pending.
+
+
+## Legacy session import checkpoint
+
+[Legacy session import](legacy-sessions.md) converts bounded libsignal-node v6 JSON, including pending prekeys, skipped seeds and closed sessions, into the native transactional repository. Active offline peers verify continued encryption in both directions and across process restarts. Decrypting archived messages preserves the open session rather than promoting an old ratchet. Existing sessions are never overwritten by import. Export, filesystem auto-migration, legacy metadata round-tripping and arbitrary historical variants remain pending; the Signal inventory entries remain partial.

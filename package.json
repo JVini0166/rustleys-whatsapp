@@ -28,6 +28,8 @@
     "fixtures:groups": "node scripts/generate-group-fixtures.cjs",
     "verify:groups": "node scripts/verify-group-cross-runtime.cjs",
     "fixtures:lid": "node scripts/generate-lid-fixtures.cjs",
-    "verify:lid": "node scripts/verify-lid-cross-runtime.cjs"
+    "verify:lid": "node scripts/verify-lid-cross-runtime.cjs",
+    "fixtures:legacy-sessions": "node scripts/generate-legacy-session-fixtures.cjs",
+    "verify:legacy-sessions": "node scripts/verify-legacy-session-cross-runtime.cjs"
   }
 }

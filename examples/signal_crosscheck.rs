@@ -63,6 +63,9 @@ fn execute(
             "migrate" => {
                 json!(repo.migrate_session(jid, request["to"].as_str().ok_or("target required")?)?)
             }
+            "legacy_import" => {
+                json!(repo.import_legacy_session(jid, &serde_json::to_vec(&request["record"])?)?)
+            }
             "validate" => json!(repo.validate_session(jid)?),
             "group_distribution" => {
                 let group = request["group"].as_str().ok_or("group required")?;

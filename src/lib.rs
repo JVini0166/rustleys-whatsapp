@@ -29,3 +29,5 @@ pub mod group_signal;
 pub mod lid_mapping;
 
 pub mod session_migration;
+
+pub mod legacy_session;

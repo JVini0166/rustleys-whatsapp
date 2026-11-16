@@ -31,7 +31,7 @@ Calls perform blocking database/crypto work and must run off a future async netw
 
 ## Remaining compatibility work
 
-Group sender keys now have their own [partial checkpoint](group-sessions.md). PN↔LID mapping and native session migration now have a [partial checkpoint](lid-mapping.md). Imported/exported libsignal-node v1 session records, generic auth-store transaction/cache wrappers, trust-policy configuration, lookup of older signed prekeys for previously unknown sessions and the rest of the repository/socket API remain pending. The native session repository is not yet connected to the multi-file JSON key adapter; a compatibility conversion is still required. Strict malformed-input and identity-update ordering differences are intentional and must remain explicit.
+Group sender keys now have their own [partial checkpoint](group-sessions.md). PN↔LID mapping and native session migration now have a [partial checkpoint](lid-mapping.md). Full libsignal-node v1 record round-tripping, generic auth-store transaction/cache wrappers, trust-policy configuration, lookup of older signed prekeys for previously unknown sessions and the rest of the repository/socket API remain pending. The native session repository is not yet automatically connected to the multi-file JSON key adapter; bounded explicit import is available as described below. Strict malformed-input and identity-update ordering differences are intentional and must remain explicit.
 
 Rust unsigned JID numbers do not reproduce legacy JS NaN/fractional/prefix coercions. The 720-address check covers valid numeric domains/devices plus ordinary invalid names/hosted combinations; it does not prove those known coercion differences absent. Native retention limits and stored metadata are inherited from the pinned engine; complete legacy retention/order/timestamp behavior and every upstream fixture are not claimed as equivalent.
 
@@ -45,3 +45,6 @@ npm run verify:signal -- /tmp/baileys-reference
 ```
 
 Checkpoint: 51 native Rust tests passed, Clippy passed with warnings denied, and the separate 84-message Node/Rust exchange passed. All builds and checks ran locally with CARGO_BUILD_JOBS=1 and low priority. This checkpoint changes only the independent rustleys-whatsapp repository.
+
+
+A bounded [legacy JSON importer](legacy-sessions.md) now covers established and pending pairwise records, skipped keys and archives. Reading an archive updates that archive without changing the open session. This is tested against original Node peers, including continued traffic after import; full legacy storage import/export remains incomplete.

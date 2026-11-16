@@ -46,7 +46,7 @@ Original forward/reverse vectors cover device projection, explicit device zero, 
 
 Session tests cover multiple devices, hosted namespaces, interruption/rollback, preserving a newer destination counter, repeated migration, missing device lists, empty and archived destinations, malformed rows and cross-account state rejection. The active Node/Rust peer test now moves the session PN→LID mid-conversation, continues both directions, then restarts the Rust process and continues from persisted aliases and ratchets.
 
-No live WhatsApp number or server was used. Resolver authentication and network USync remain host responsibilities until the socket layer is implemented. Legacy libsignal-node JSON import/export, archived-history merging, async callback/storage APIs, all original coercions/cache timing edge cases and membership/group-key migration remain incomplete. Mapping files stay partial in the inventory. This does not establish full Baileys parity or an operational client.
+No live WhatsApp number or server was used. Resolver authentication and network USync remain host responsibilities until the socket layer is implemented. Full legacy libsignal-node JSON import/export (see the new [bounded importer](legacy-sessions.md)), archived-history merging, async callback/storage APIs, all original coercions/cache timing edge cases and membership/group-key migration remain incomplete. Mapping files stay partial in the inventory. This does not establish full Baileys parity or an operational client.
 
 ```sh
 npm run fixtures:lid -- /tmp/baileys-reference
