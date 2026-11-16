@@ -54,3 +54,7 @@ CARGO_BUILD_JOBS=1 cargo test --locked --test lid_compatibility --test session_m
 npm run verify:lid -- /tmp/baileys-reference
 npm run verify:signal -- /tmp/baileys-reference
 ```
+
+[Native USync queries](usync.md) now supply an async PN→LID lookup helper. The
+host must still coordinate async network lookup with the blocking validated mapping
+store/session migration; the synchronous Resolver is not automatically bridged.

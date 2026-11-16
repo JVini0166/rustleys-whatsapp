@@ -21,7 +21,7 @@ These are differential tests of the exercised protocol utilities, not a test of 
 - JID numeric values are Rust unsigned protocol integers. JavaScript's arbitrary values, parseInt prefixes, floating-point/NaN/Infinity coercion and numeric `user` overload are not reproduced yet. JID helpers remain partial.
 - Custom token/tag coding options and caller-provided encoding buffers are not exposed yet. Binary codec remains partial.
 - JavaScript runtime non-string/null/undefined attributes, unusual array members and object integer-key enumeration require a compatibility adapter/specification; Rust's current API is strongly typed with explicit attribute order.
-- Binary generic utilities, WAM, USync, full WebSocket/socket API compatibility, pairing, message processing, history/app-state, media, groups and the rest of the socket API remain pending. Protobuf and crypto progress is detailed below.
+- Binary generic utilities, WAM, full USync device/session integration, full WebSocket/socket API compatibility, pairing, message processing, history/app-state, media, groups and the rest of the socket API remain pending. Protobuf and crypto progress is detailed below.
 - No pairing, sending, receiving, reconnection or production WhatsApp session has been exercised. No operational client exists yet.
 
 ## Reproduction
@@ -133,3 +133,16 @@ including caller cancellation and bounded deadlines. Exact original rotation IQ
 wire/ACK behavior and independent Node→Rust history handshakes pass offline.
 Automatic scheduling/reconciliation and full client/event wiring remain pending;
 the relevant socket/repository inventory entries stay partial.
+
+
+## USync checkpoint
+
+[USync queries](usync.md) now implement seven builtin protocols, extensible
+parsers, query/user construction, aggregate results and asynchronous equivalents
+of executeUSyncQuery/onWhatsApp/pnFromLIDUSync. Exact ordered wire builders and
+271 protocol parser cases are compared to the pinned original, alongside 21
+socket/helper flows. Native dates use epoch milliseconds; inherited JavaScript
+object members are never invoked implicitly. The original bot nesting problem
+and unsupported raw runtime coercions are documented rather than hidden. Full
+device cache/message orchestration, LID lookup integration and live schemas remain
+pending; the affected inventory entries remain partial.

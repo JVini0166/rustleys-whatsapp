@@ -260,7 +260,7 @@
       "exports": [
         "makeSocket"
       ],
-      "validation": "Durable signed-prekey history/rotation reservation and ACK-gated activation: docs/signed-keys.md; fresh old/active/unconfirmed-key handshakes covered. Shared-Manager asynchronous rotation/upload publication is serialized; automatic scheduling and complete account ownership remain pending."
+      "validation": "Durable signed-prekey history/rotation reservation and ACK-gated activation: docs/signed-keys.md; fresh old/active/unconfirmed-key handshakes covered. Shared-Manager asynchronous rotation/upload publication is serialized; automatic scheduling and complete account ownership remain pending. Native executeUSyncQuery/onWhatsApp/pnFromLIDUSync equivalents and differential helper flows: docs/usync.md; lifecycle/device cache and message orchestration remain pending."
     },
     {
       "path": "src/Types/Auth.ts",
@@ -516,10 +516,11 @@
     {
       "path": "src/Types/USync.ts",
       "bytes": 646,
-      "status": "not_ported",
+      "status": "partial",
       "exports": [
         "USyncQueryProtocol"
-      ]
+      ],
+      "validation": "Native USync protocols/query/users and async socket helpers, pinned source wire/parser comparisons: docs/usync.md. Explicit Date/JSON/native bounds, inherited-property safety differences and bot nesting limitation; full JS runtime API and live server schema remain unverified."
     },
     {
       "path": "src/Types/globals.d.ts",
@@ -1121,95 +1122,106 @@
     {
       "path": "src/WAUSync/Protocols/USyncContactProtocol.ts",
       "bytes": 1020,
-      "status": "not_ported",
+      "status": "partial",
       "exports": [
         "USyncContactProtocol"
-      ]
+      ],
+      "validation": "Native USync protocols/query/users and async socket helpers, pinned source wire/parser comparisons: docs/usync.md. Explicit Date/JSON/native bounds, inherited-property safety differences and bot nesting limitation; full JS runtime API and live server schema remain unverified."
     },
     {
       "path": "src/WAUSync/Protocols/USyncDeviceProtocol.ts",
       "bytes": 1969,
-      "status": "not_ported",
+      "status": "partial",
       "exports": [
         "KeyIndexData",
         "DeviceListData",
         "ParsedDeviceInfo",
         "USyncDeviceProtocol"
-      ]
+      ],
+      "validation": "Native USync protocols/query/users and async socket helpers, pinned source wire/parser comparisons: docs/usync.md. Explicit Date/JSON/native bounds, inherited-property safety differences and bot nesting limitation; full JS runtime API and live server schema remain unverified."
     },
     {
       "path": "src/WAUSync/Protocols/USyncDisappearingModeProtocol.ts",
       "bytes": 736,
-      "status": "not_ported",
+      "status": "partial",
       "exports": [
         "DisappearingModeData",
         "USyncDisappearingModeProtocol"
-      ]
+      ],
+      "validation": "Native USync protocols/query/users and async socket helpers, pinned source wire/parser comparisons: docs/usync.md. Explicit Date/JSON/native bounds, inherited-property safety differences and bot nesting limitation; full JS runtime API and live server schema remain unverified."
     },
     {
       "path": "src/WAUSync/Protocols/USyncStatusProtocol.ts",
       "bytes": 910,
-      "status": "not_ported",
+      "status": "partial",
       "exports": [
         "StatusData",
         "USyncStatusProtocol"
-      ]
+      ],
+      "validation": "Native USync protocols/query/users and async socket helpers, pinned source wire/parser comparisons: docs/usync.md. Explicit Date/JSON/native bounds, inherited-property safety differences and bot nesting limitation; full JS runtime API and live server schema remain unverified."
     },
     {
       "path": "src/WAUSync/Protocols/USyncUsernameProtocol.ts",
       "bytes": 622,
-      "status": "not_ported",
+      "status": "partial",
       "exports": [
         "USyncUsernameProtocol"
-      ]
+      ],
+      "validation": "Native USync protocols/query/users and async socket helpers, pinned source wire/parser comparisons: docs/usync.md. Explicit Date/JSON/native bounds, inherited-property safety differences and bot nesting limitation; full JS runtime API and live server schema remain unverified."
     },
     {
       "path": "src/WAUSync/Protocols/UsyncBotProfileProtocol.ts",
       "bytes": 2174,
-      "status": "not_ported",
+      "status": "partial",
       "exports": [
         "BotProfileCommand",
         "BotProfileInfo",
         "USyncBotProfileProtocol"
-      ]
+      ],
+      "validation": "Native USync protocols/query/users and async socket helpers, pinned source wire/parser comparisons: docs/usync.md. Explicit Date/JSON/native bounds, inherited-property safety differences and bot nesting limitation; full JS runtime API and live server schema remain unverified."
     },
     {
       "path": "src/WAUSync/Protocols/UsyncLIDProtocol.ts",
       "bytes": 602,
-      "status": "not_ported",
+      "status": "partial",
       "exports": [
         "USyncLIDProtocol"
-      ]
+      ],
+      "validation": "Native USync protocols/query/users and async socket helpers, pinned source wire/parser comparisons: docs/usync.md. Explicit Date/JSON/native bounds, inherited-property safety differences and bot nesting limitation; full JS runtime API and live server schema remain unverified."
     },
     {
       "path": "src/WAUSync/Protocols/index.ts",
       "bytes": 203,
-      "status": "not_ported",
-      "exports": []
+      "status": "partial",
+      "exports": [],
+      "validation": "Native USync protocols/query/users and async socket helpers, pinned source wire/parser comparisons: docs/usync.md. Explicit Date/JSON/native bounds, inherited-property safety differences and bot nesting limitation; full JS runtime API and live server schema remain unverified."
     },
     {
       "path": "src/WAUSync/USyncQuery.ts",
       "bytes": 3257,
-      "status": "not_ported",
+      "status": "partial",
       "exports": [
         "USyncQueryResultList",
         "USyncQueryResult",
         "USyncQuery"
-      ]
+      ],
+      "validation": "Native USync protocols/query/users and async socket helpers, pinned source wire/parser comparisons: docs/usync.md. Explicit Date/JSON/native bounds, inherited-property safety differences and bot nesting limitation; full JS runtime API and live server schema remain unverified."
     },
     {
       "path": "src/WAUSync/USyncUser.ts",
       "bytes": 643,
-      "status": "not_ported",
+      "status": "partial",
       "exports": [
         "USyncUser"
-      ]
+      ],
+      "validation": "Native USync protocols/query/users and async socket helpers, pinned source wire/parser comparisons: docs/usync.md. Explicit Date/JSON/native bounds, inherited-property safety differences and bot nesting limitation; full JS runtime API and live server schema remain unverified."
     },
     {
       "path": "src/WAUSync/index.ts",
       "bytes": 91,
-      "status": "not_ported",
-      "exports": []
+      "status": "partial",
+      "exports": [],
+      "validation": "Native USync protocols/query/users and async socket helpers, pinned source wire/parser comparisons: docs/usync.md. Explicit Date/JSON/native bounds, inherited-property safety differences and bot nesting limitation; full JS runtime API and live server schema remain unverified."
     },
     {
       "path": "src/__tests__/Signal/Group/sender-key-state-regression.test.ts",

@@ -35,6 +35,8 @@
     "verify:pairing": "node scripts/verify-pairing-cross-runtime.cjs",
     "fixtures:prekeys": "node scripts/generate-prekeys-fixtures.cjs",
     "verify:prekeys": "node scripts/verify-prekeys-cross-runtime.cjs",
-    "verify:signed-keys": "node scripts/verify-signed-keys-cross-runtime.cjs"
+    "verify:signed-keys": "node scripts/verify-signed-keys-cross-runtime.cjs",
+    "fixtures:usync": "node scripts/generate-usync-fixtures.cjs",
+    "verify:usync": "node scripts/verify-usync-cross-runtime.cjs"
   }
 }

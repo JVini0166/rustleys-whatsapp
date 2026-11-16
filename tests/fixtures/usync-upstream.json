@@ -1,0 +1,9093 @@
+{
+  "upstream_commit": "bb0a87e0326ca8f882fe716c7ee42da362f73fc0",
+  "builds": [
+    {
+      "config": {
+        "protocols": [
+          "contact"
+        ],
+        "users": [
+          {
+            "id": "123@s.whatsapp.net"
+          },
+          {
+            "phone": "+5511999999999"
+          },
+          {
+            "id": "ignored@s.whatsapp.net",
+            "phone": "+123",
+            "username": "ignored"
+          },
+          {
+            "id": "123@s.whatsapp.net",
+            "lid": "999@lid",
+            "username": "alice",
+            "usernameKey": "1234",
+            "type": "ignored"
+          },
+          {
+            "type": "business"
+          },
+          {
+            "username": "",
+            "phone": "",
+            "id": "456@s.whatsapp.net",
+            "lid": ""
+          },
+          {
+            "personaId": "test-persona",
+            "id": "1@bot"
+          },
+          {},
+          {
+            "id": "",
+            "phone": "",
+            "username": "bob",
+            "usernameKey": "",
+            "lid": "999@lid"
+          }
+        ],
+        "mode": "query",
+        "context": "interactive"
+      },
+      "sid": "synthetic-usync.17",
+      "node": {
+        "tag": "iq",
+        "attrs": {
+          "to": "@s.whatsapp.net",
+          "type": "get",
+          "xmlns": "usync"
+        },
+        "content": [
+          {
+            "tag": "usync",
+            "attrs": {
+              "context": "interactive",
+              "mode": "query",
+              "sid": "synthetic-usync.17",
+              "last": "true",
+              "index": "0"
+            },
+            "content": [
+              {
+                "tag": "query",
+                "attrs": {},
+                "content": [
+                  {
+                    "tag": "contact",
+                    "attrs": {},
+                    "content": null
+                  }
+                ]
+              },
+              {
+                "tag": "list",
+                "attrs": {},
+                "content": [
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "123@s.whatsapp.net"
+                    },
+                    "content": [
+                      {
+                        "tag": "contact",
+                        "attrs": {},
+                        "content": null
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": [
+                      {
+                        "tag": "contact",
+                        "attrs": {},
+                        "content": "+5511999999999"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": [
+                      {
+                        "tag": "contact",
+                        "attrs": {},
+                        "content": "+123"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "123@s.whatsapp.net"
+                    },
+                    "content": [
+                      {
+                        "tag": "contact",
+                        "attrs": {
+                          "username": "alice",
+                          "pin": "1234",
+                          "lid": "999@lid"
+                        },
+                        "content": null
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": [
+                      {
+                        "tag": "contact",
+                        "attrs": {
+                          "type": "business"
+                        },
+                        "content": null
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "456@s.whatsapp.net"
+                    },
+                    "content": [
+                      {
+                        "tag": "contact",
+                        "attrs": {},
+                        "content": null
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "1@bot"
+                    },
+                    "content": [
+                      {
+                        "tag": "contact",
+                        "attrs": {},
+                        "content": null
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": [
+                      {
+                        "tag": "contact",
+                        "attrs": {},
+                        "content": null
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": ""
+                    },
+                    "content": [
+                      {
+                        "tag": "contact",
+                        "attrs": {
+                          "username": "bob",
+                          "lid": "999@lid"
+                        },
+                        "content": null
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "wire": [
+        0,
+        248,
+        8,
+        25,
+        17,
+        250,
+        0,
+        3,
+        4,
+        41,
+        22,
+        121,
+        248,
+        1,
+        248,
+        12,
+        121,
+        125,
+        229,
+        106,
+        109,
+        252,
+        3,
+        115,
+        105,
+        100,
+        252,
+        18,
+        115,
+        121,
+        110,
+        116,
+        104,
+        101,
+        116,
+        105,
+        99,
+        45,
+        117,
+        115,
+        121,
+        110,
+        99,
+        46,
+        49,
+        55,
+        97,
+        155,
+        143,
+        45,
+        248,
+        2,
+        248,
+        2,
+        109,
+        248,
+        1,
+        248,
+        1,
+        37,
+        248,
+        2,
+        113,
+        248,
+        9,
+        248,
+        4,
+        14,
+        12,
+        250,
+        255,
+        130,
+        18,
+        63,
+        3,
+        248,
+        1,
+        248,
+        1,
+        37,
+        248,
+        2,
+        14,
+        248,
+        1,
+        248,
+        2,
+        37,
+        252,
+        14,
+        43,
+        53,
+        53,
+        49,
+        49,
+        57,
+        57,
+        57,
+        57,
+        57,
+        57,
+        57,
+        57,
+        57,
+        248,
+        2,
+        14,
+        248,
+        1,
+        248,
+        2,
+        37,
+        252,
+        4,
+        43,
+        49,
+        50,
+        51,
+        248,
+        4,
+        14,
+        12,
+        250,
+        255,
+        130,
+        18,
+        63,
+        3,
+        248,
+        1,
+        248,
+        7,
+        37,
+        252,
+        8,
+        117,
+        115,
+        101,
+        114,
+        110,
+        97,
+        109,
+        101,
+        252,
+        5,
+        97,
+        108,
+        105,
+        99,
+        101,
+        252,
+        3,
+        112,
+        105,
+        110,
+        255,
+        2,
+        18,
+        52,
+        118,
+        250,
+        255,
+        130,
+        153,
+        159,
+        118,
+        248,
+        2,
+        14,
+        248,
+        1,
+        248,
+        3,
+        37,
+        4,
+        68,
+        248,
+        4,
+        14,
+        12,
+        250,
+        255,
+        130,
+        69,
+        111,
+        3,
+        248,
+        1,
+        248,
+        1,
+        37,
+        248,
+        4,
+        14,
+        12,
+        250,
+        85,
+        252,
+        3,
+        98,
+        111,
+        116,
+        248,
+        1,
+        248,
+        1,
+        37,
+        248,
+        2,
+        14,
+        248,
+        1,
+        248,
+        1,
+        37,
+        248,
+        4,
+        14,
+        12,
+        252,
+        0,
+        248,
+        1,
+        248,
+        5,
+        37,
+        252,
+        8,
+        117,
+        115,
+        101,
+        114,
+        110,
+        97,
+        109,
+        101,
+        252,
+        3,
+        98,
+        111,
+        98,
+        118,
+        250,
+        255,
+        130,
+        153,
+        159,
+        118
+      ]
+    },
+    {
+      "config": {
+        "protocols": [
+          "devices"
+        ],
+        "users": [
+          {
+            "id": "123@s.whatsapp.net"
+          },
+          {
+            "phone": "+5511999999999"
+          },
+          {
+            "id": "ignored@s.whatsapp.net",
+            "phone": "+123",
+            "username": "ignored"
+          },
+          {
+            "id": "123@s.whatsapp.net",
+            "lid": "999@lid",
+            "username": "alice",
+            "usernameKey": "1234",
+            "type": "ignored"
+          },
+          {
+            "type": "business"
+          },
+          {
+            "username": "",
+            "phone": "",
+            "id": "456@s.whatsapp.net",
+            "lid": ""
+          },
+          {
+            "personaId": "test-persona",
+            "id": "1@bot"
+          },
+          {},
+          {
+            "id": "",
+            "phone": "",
+            "username": "bob",
+            "usernameKey": "",
+            "lid": "999@lid"
+          }
+        ],
+        "mode": "query",
+        "context": "interactive"
+      },
+      "sid": "synthetic-usync.17",
+      "node": {
+        "tag": "iq",
+        "attrs": {
+          "to": "@s.whatsapp.net",
+          "type": "get",
+          "xmlns": "usync"
+        },
+        "content": [
+          {
+            "tag": "usync",
+            "attrs": {
+              "context": "interactive",
+              "mode": "query",
+              "sid": "synthetic-usync.17",
+              "last": "true",
+              "index": "0"
+            },
+            "content": [
+              {
+                "tag": "query",
+                "attrs": {},
+                "content": [
+                  {
+                    "tag": "devices",
+                    "attrs": {
+                      "version": "2"
+                    },
+                    "content": null
+                  }
+                ]
+              },
+              {
+                "tag": "list",
+                "attrs": {},
+                "content": [
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "123@s.whatsapp.net"
+                    },
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "123@s.whatsapp.net"
+                    },
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "456@s.whatsapp.net"
+                    },
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "1@bot"
+                    },
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": ""
+                    },
+                    "content": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "wire": [
+        0,
+        248,
+        8,
+        25,
+        17,
+        250,
+        0,
+        3,
+        4,
+        41,
+        22,
+        121,
+        248,
+        1,
+        248,
+        12,
+        121,
+        125,
+        229,
+        106,
+        109,
+        252,
+        3,
+        115,
+        105,
+        100,
+        252,
+        18,
+        115,
+        121,
+        110,
+        116,
+        104,
+        101,
+        116,
+        105,
+        99,
+        45,
+        117,
+        115,
+        121,
+        110,
+        99,
+        46,
+        49,
+        55,
+        97,
+        155,
+        143,
+        45,
+        248,
+        2,
+        248,
+        2,
+        109,
+        248,
+        1,
+        248,
+        3,
+        15,
+        84,
+        69,
+        248,
+        2,
+        113,
+        248,
+        9,
+        248,
+        4,
+        14,
+        12,
+        250,
+        255,
+        130,
+        18,
+        63,
+        3,
+        0,
+        248,
+        2,
+        14,
+        0,
+        248,
+        2,
+        14,
+        0,
+        248,
+        4,
+        14,
+        12,
+        250,
+        255,
+        130,
+        18,
+        63,
+        3,
+        0,
+        248,
+        2,
+        14,
+        0,
+        248,
+        4,
+        14,
+        12,
+        250,
+        255,
+        130,
+        69,
+        111,
+        3,
+        0,
+        248,
+        4,
+        14,
+        12,
+        250,
+        85,
+        252,
+        3,
+        98,
+        111,
+        116,
+        0,
+        248,
+        2,
+        14,
+        0,
+        248,
+        4,
+        14,
+        12,
+        252,
+        0,
+        0
+      ]
+    },
+    {
+      "config": {
+        "protocols": [
+          "status"
+        ],
+        "users": [
+          {
+            "id": "123@s.whatsapp.net"
+          },
+          {
+            "phone": "+5511999999999"
+          },
+          {
+            "id": "ignored@s.whatsapp.net",
+            "phone": "+123",
+            "username": "ignored"
+          },
+          {
+            "id": "123@s.whatsapp.net",
+            "lid": "999@lid",
+            "username": "alice",
+            "usernameKey": "1234",
+            "type": "ignored"
+          },
+          {
+            "type": "business"
+          },
+          {
+            "username": "",
+            "phone": "",
+            "id": "456@s.whatsapp.net",
+            "lid": ""
+          },
+          {
+            "personaId": "test-persona",
+            "id": "1@bot"
+          },
+          {},
+          {
+            "id": "",
+            "phone": "",
+            "username": "bob",
+            "usernameKey": "",
+            "lid": "999@lid"
+          }
+        ],
+        "mode": "query",
+        "context": "interactive"
+      },
+      "sid": "synthetic-usync.17",
+      "node": {
+        "tag": "iq",
+        "attrs": {
+          "to": "@s.whatsapp.net",
+          "type": "get",
+          "xmlns": "usync"
+        },
+        "content": [
+          {
+            "tag": "usync",
+            "attrs": {
+              "context": "interactive",
+              "mode": "query",
+              "sid": "synthetic-usync.17",
+              "last": "true",
+              "index": "0"
+            },
+            "content": [
+              {
+                "tag": "query",
+                "attrs": {},
+                "content": [
+                  {
+                    "tag": "status",
+                    "attrs": {},
+                    "content": null
+                  }
+                ]
+              },
+              {
+                "tag": "list",
+                "attrs": {},
+                "content": [
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "123@s.whatsapp.net"
+                    },
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "123@s.whatsapp.net"
+                    },
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "456@s.whatsapp.net"
+                    },
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "1@bot"
+                    },
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": ""
+                    },
+                    "content": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "wire": [
+        0,
+        248,
+        8,
+        25,
+        17,
+        250,
+        0,
+        3,
+        4,
+        41,
+        22,
+        121,
+        248,
+        1,
+        248,
+        12,
+        121,
+        125,
+        229,
+        106,
+        109,
+        252,
+        3,
+        115,
+        105,
+        100,
+        252,
+        18,
+        115,
+        121,
+        110,
+        116,
+        104,
+        101,
+        116,
+        105,
+        99,
+        45,
+        117,
+        115,
+        121,
+        110,
+        99,
+        46,
+        49,
+        55,
+        97,
+        155,
+        143,
+        45,
+        248,
+        2,
+        248,
+        2,
+        109,
+        248,
+        1,
+        248,
+        1,
+        11,
+        248,
+        2,
+        113,
+        248,
+        9,
+        248,
+        4,
+        14,
+        12,
+        250,
+        255,
+        130,
+        18,
+        63,
+        3,
+        0,
+        248,
+        2,
+        14,
+        0,
+        248,
+        2,
+        14,
+        0,
+        248,
+        4,
+        14,
+        12,
+        250,
+        255,
+        130,
+        18,
+        63,
+        3,
+        0,
+        248,
+        2,
+        14,
+        0,
+        248,
+        4,
+        14,
+        12,
+        250,
+        255,
+        130,
+        69,
+        111,
+        3,
+        0,
+        248,
+        4,
+        14,
+        12,
+        250,
+        85,
+        252,
+        3,
+        98,
+        111,
+        116,
+        0,
+        248,
+        2,
+        14,
+        0,
+        248,
+        4,
+        14,
+        12,
+        252,
+        0,
+        0
+      ]
+    },
+    {
+      "config": {
+        "protocols": [
+          "disappearing_mode"
+        ],
+        "users": [
+          {
+            "id": "123@s.whatsapp.net"
+          },
+          {
+            "phone": "+5511999999999"
+          },
+          {
+            "id": "ignored@s.whatsapp.net",
+            "phone": "+123",
+            "username": "ignored"
+          },
+          {
+            "id": "123@s.whatsapp.net",
+            "lid": "999@lid",
+            "username": "alice",
+            "usernameKey": "1234",
+            "type": "ignored"
+          },
+          {
+            "type": "business"
+          },
+          {
+            "username": "",
+            "phone": "",
+            "id": "456@s.whatsapp.net",
+            "lid": ""
+          },
+          {
+            "personaId": "test-persona",
+            "id": "1@bot"
+          },
+          {},
+          {
+            "id": "",
+            "phone": "",
+            "username": "bob",
+            "usernameKey": "",
+            "lid": "999@lid"
+          }
+        ],
+        "mode": "query",
+        "context": "interactive"
+      },
+      "sid": "synthetic-usync.17",
+      "node": {
+        "tag": "iq",
+        "attrs": {
+          "to": "@s.whatsapp.net",
+          "type": "get",
+          "xmlns": "usync"
+        },
+        "content": [
+          {
+            "tag": "usync",
+            "attrs": {
+              "context": "interactive",
+              "mode": "query",
+              "sid": "synthetic-usync.17",
+              "last": "true",
+              "index": "0"
+            },
+            "content": [
+              {
+                "tag": "query",
+                "attrs": {},
+                "content": [
+                  {
+                    "tag": "disappearing_mode",
+                    "attrs": {},
+                    "content": null
+                  }
+                ]
+              },
+              {
+                "tag": "list",
+                "attrs": {},
+                "content": [
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "123@s.whatsapp.net"
+                    },
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "123@s.whatsapp.net"
+                    },
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "456@s.whatsapp.net"
+                    },
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "1@bot"
+                    },
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": ""
+                    },
+                    "content": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "wire": [
+        0,
+        248,
+        8,
+        25,
+        17,
+        250,
+        0,
+        3,
+        4,
+        41,
+        22,
+        121,
+        248,
+        1,
+        248,
+        12,
+        121,
+        125,
+        229,
+        106,
+        109,
+        252,
+        3,
+        115,
+        105,
+        100,
+        252,
+        18,
+        115,
+        121,
+        110,
+        116,
+        104,
+        101,
+        116,
+        105,
+        99,
+        45,
+        117,
+        115,
+        121,
+        110,
+        99,
+        46,
+        49,
+        55,
+        97,
+        155,
+        143,
+        45,
+        248,
+        2,
+        248,
+        2,
+        109,
+        248,
+        1,
+        248,
+        1,
+        10,
+        248,
+        2,
+        113,
+        248,
+        9,
+        248,
+        4,
+        14,
+        12,
+        250,
+        255,
+        130,
+        18,
+        63,
+        3,
+        0,
+        248,
+        2,
+        14,
+        0,
+        248,
+        2,
+        14,
+        0,
+        248,
+        4,
+        14,
+        12,
+        250,
+        255,
+        130,
+        18,
+        63,
+        3,
+        0,
+        248,
+        2,
+        14,
+        0,
+        248,
+        4,
+        14,
+        12,
+        250,
+        255,
+        130,
+        69,
+        111,
+        3,
+        0,
+        248,
+        4,
+        14,
+        12,
+        250,
+        85,
+        252,
+        3,
+        98,
+        111,
+        116,
+        0,
+        248,
+        2,
+        14,
+        0,
+        248,
+        4,
+        14,
+        12,
+        252,
+        0,
+        0
+      ]
+    },
+    {
+      "config": {
+        "protocols": [
+          "bot"
+        ],
+        "users": [
+          {
+            "id": "123@s.whatsapp.net"
+          },
+          {
+            "phone": "+5511999999999"
+          },
+          {
+            "id": "ignored@s.whatsapp.net",
+            "phone": "+123",
+            "username": "ignored"
+          },
+          {
+            "id": "123@s.whatsapp.net",
+            "lid": "999@lid",
+            "username": "alice",
+            "usernameKey": "1234",
+            "type": "ignored"
+          },
+          {
+            "type": "business"
+          },
+          {
+            "username": "",
+            "phone": "",
+            "id": "456@s.whatsapp.net",
+            "lid": ""
+          },
+          {
+            "personaId": "test-persona",
+            "id": "1@bot"
+          },
+          {},
+          {
+            "id": "",
+            "phone": "",
+            "username": "bob",
+            "usernameKey": "",
+            "lid": "999@lid"
+          }
+        ],
+        "mode": "query",
+        "context": "interactive"
+      },
+      "sid": "synthetic-usync.17",
+      "node": {
+        "tag": "iq",
+        "attrs": {
+          "to": "@s.whatsapp.net",
+          "type": "get",
+          "xmlns": "usync"
+        },
+        "content": [
+          {
+            "tag": "usync",
+            "attrs": {
+              "context": "interactive",
+              "mode": "query",
+              "sid": "synthetic-usync.17",
+              "last": "true",
+              "index": "0"
+            },
+            "content": [
+              {
+                "tag": "query",
+                "attrs": {},
+                "content": [
+                  {
+                    "tag": "bot",
+                    "attrs": {},
+                    "content": [
+                      {
+                        "tag": "profile",
+                        "attrs": {
+                          "v": "1"
+                        },
+                        "content": null
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "list",
+                "attrs": {},
+                "content": [
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "123@s.whatsapp.net"
+                    },
+                    "content": [
+                      {
+                        "tag": "bot",
+                        "attrs": {},
+                        "content": [
+                          {
+                            "tag": "profile",
+                            "attrs": {},
+                            "content": null
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": [
+                      {
+                        "tag": "bot",
+                        "attrs": {},
+                        "content": [
+                          {
+                            "tag": "profile",
+                            "attrs": {},
+                            "content": null
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": [
+                      {
+                        "tag": "bot",
+                        "attrs": {},
+                        "content": [
+                          {
+                            "tag": "profile",
+                            "attrs": {},
+                            "content": null
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "123@s.whatsapp.net"
+                    },
+                    "content": [
+                      {
+                        "tag": "bot",
+                        "attrs": {},
+                        "content": [
+                          {
+                            "tag": "profile",
+                            "attrs": {},
+                            "content": null
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": [
+                      {
+                        "tag": "bot",
+                        "attrs": {},
+                        "content": [
+                          {
+                            "tag": "profile",
+                            "attrs": {},
+                            "content": null
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "456@s.whatsapp.net"
+                    },
+                    "content": [
+                      {
+                        "tag": "bot",
+                        "attrs": {},
+                        "content": [
+                          {
+                            "tag": "profile",
+                            "attrs": {},
+                            "content": null
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "1@bot"
+                    },
+                    "content": [
+                      {
+                        "tag": "bot",
+                        "attrs": {},
+                        "content": [
+                          {
+                            "tag": "profile",
+                            "attrs": {
+                              "persona_id": "test-persona"
+                            },
+                            "content": null
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": [
+                      {
+                        "tag": "bot",
+                        "attrs": {},
+                        "content": [
+                          {
+                            "tag": "profile",
+                            "attrs": {},
+                            "content": null
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": ""
+                    },
+                    "content": [
+                      {
+                        "tag": "bot",
+                        "attrs": {},
+                        "content": [
+                          {
+                            "tag": "profile",
+                            "attrs": {},
+                            "content": null
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "wire": [
+        0,
+        248,
+        8,
+        25,
+        17,
+        250,
+        0,
+        3,
+        4,
+        41,
+        22,
+        121,
+        248,
+        1,
+        248,
+        12,
+        121,
+        125,
+        229,
+        106,
+        109,
+        252,
+        3,
+        115,
+        105,
+        100,
+        252,
+        18,
+        115,
+        121,
+        110,
+        116,
+        104,
+        101,
+        116,
+        105,
+        99,
+        45,
+        117,
+        115,
+        121,
+        110,
+        99,
+        46,
+        49,
+        55,
+        97,
+        155,
+        143,
+        45,
+        248,
+        2,
+        248,
+        2,
+        109,
+        248,
+        1,
+        248,
+        2,
+        252,
+        3,
+        98,
+        111,
+        116,
+        248,
+        1,
+        248,
+        3,
+        101,
+        81,
+        85,
+        248,
+        2,
+        113,
+        248,
+        9,
+        248,
+        4,
+        14,
+        12,
+        250,
+        255,
+        130,
+        18,
+        63,
+        3,
+        248,
+        1,
+        248,
+        2,
+        252,
+        3,
+        98,
+        111,
+        116,
+        248,
+        1,
+        248,
+        1,
+        101,
+        248,
+        2,
+        14,
+        248,
+        1,
+        248,
+        2,
+        252,
+        3,
+        98,
+        111,
+        116,
+        248,
+        1,
+        248,
+        1,
+        101,
+        248,
+        2,
+        14,
+        248,
+        1,
+        248,
+        2,
+        252,
+        3,
+        98,
+        111,
+        116,
+        248,
+        1,
+        248,
+        1,
+        101,
+        248,
+        4,
+        14,
+        12,
+        250,
+        255,
+        130,
+        18,
+        63,
+        3,
+        248,
+        1,
+        248,
+        2,
+        252,
+        3,
+        98,
+        111,
+        116,
+        248,
+        1,
+        248,
+        1,
+        101,
+        248,
+        2,
+        14,
+        248,
+        1,
+        248,
+        2,
+        252,
+        3,
+        98,
+        111,
+        116,
+        248,
+        1,
+        248,
+        1,
+        101,
+        248,
+        4,
+        14,
+        12,
+        250,
+        255,
+        130,
+        69,
+        111,
+        3,
+        248,
+        1,
+        248,
+        2,
+        252,
+        3,
+        98,
+        111,
+        116,
+        248,
+        1,
+        248,
+        1,
+        101,
+        248,
+        4,
+        14,
+        12,
+        250,
+        85,
+        252,
+        3,
+        98,
+        111,
+        116,
+        248,
+        1,
+        248,
+        2,
+        252,
+        3,
+        98,
+        111,
+        116,
+        248,
+        1,
+        248,
+        3,
+        101,
+        252,
+        10,
+        112,
+        101,
+        114,
+        115,
+        111,
+        110,
+        97,
+        95,
+        105,
+        100,
+        252,
+        12,
+        116,
+        101,
+        115,
+        116,
+        45,
+        112,
+        101,
+        114,
+        115,
+        111,
+        110,
+        97,
+        248,
+        2,
+        14,
+        248,
+        1,
+        248,
+        2,
+        252,
+        3,
+        98,
+        111,
+        116,
+        248,
+        1,
+        248,
+        1,
+        101,
+        248,
+        4,
+        14,
+        12,
+        252,
+        0,
+        248,
+        1,
+        248,
+        2,
+        252,
+        3,
+        98,
+        111,
+        116,
+        248,
+        1,
+        248,
+        1,
+        101
+      ]
+    },
+    {
+      "config": {
+        "protocols": [
+          "lid"
+        ],
+        "users": [
+          {
+            "id": "123@s.whatsapp.net"
+          },
+          {
+            "phone": "+5511999999999"
+          },
+          {
+            "id": "ignored@s.whatsapp.net",
+            "phone": "+123",
+            "username": "ignored"
+          },
+          {
+            "id": "123@s.whatsapp.net",
+            "lid": "999@lid",
+            "username": "alice",
+            "usernameKey": "1234",
+            "type": "ignored"
+          },
+          {
+            "type": "business"
+          },
+          {
+            "username": "",
+            "phone": "",
+            "id": "456@s.whatsapp.net",
+            "lid": ""
+          },
+          {
+            "personaId": "test-persona",
+            "id": "1@bot"
+          },
+          {},
+          {
+            "id": "",
+            "phone": "",
+            "username": "bob",
+            "usernameKey": "",
+            "lid": "999@lid"
+          }
+        ],
+        "mode": "query",
+        "context": "interactive"
+      },
+      "sid": "synthetic-usync.17",
+      "node": {
+        "tag": "iq",
+        "attrs": {
+          "to": "@s.whatsapp.net",
+          "type": "get",
+          "xmlns": "usync"
+        },
+        "content": [
+          {
+            "tag": "usync",
+            "attrs": {
+              "context": "interactive",
+              "mode": "query",
+              "sid": "synthetic-usync.17",
+              "last": "true",
+              "index": "0"
+            },
+            "content": [
+              {
+                "tag": "query",
+                "attrs": {},
+                "content": [
+                  {
+                    "tag": "lid",
+                    "attrs": {},
+                    "content": null
+                  }
+                ]
+              },
+              {
+                "tag": "list",
+                "attrs": {},
+                "content": [
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "123@s.whatsapp.net"
+                    },
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "123@s.whatsapp.net"
+                    },
+                    "content": [
+                      {
+                        "tag": "lid",
+                        "attrs": {
+                          "jid": "999@lid"
+                        },
+                        "content": null
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "456@s.whatsapp.net"
+                    },
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "1@bot"
+                    },
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": ""
+                    },
+                    "content": [
+                      {
+                        "tag": "lid",
+                        "attrs": {
+                          "jid": "999@lid"
+                        },
+                        "content": null
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "wire": [
+        0,
+        248,
+        8,
+        25,
+        17,
+        250,
+        0,
+        3,
+        4,
+        41,
+        22,
+        121,
+        248,
+        1,
+        248,
+        12,
+        121,
+        125,
+        229,
+        106,
+        109,
+        252,
+        3,
+        115,
+        105,
+        100,
+        252,
+        18,
+        115,
+        121,
+        110,
+        116,
+        104,
+        101,
+        116,
+        105,
+        99,
+        45,
+        117,
+        115,
+        121,
+        110,
+        99,
+        46,
+        49,
+        55,
+        97,
+        155,
+        143,
+        45,
+        248,
+        2,
+        248,
+        2,
+        109,
+        248,
+        1,
+        248,
+        1,
+        118,
+        248,
+        2,
+        113,
+        248,
+        9,
+        248,
+        4,
+        14,
+        12,
+        250,
+        255,
+        130,
+        18,
+        63,
+        3,
+        0,
+        248,
+        2,
+        14,
+        0,
+        248,
+        2,
+        14,
+        0,
+        248,
+        4,
+        14,
+        12,
+        250,
+        255,
+        130,
+        18,
+        63,
+        3,
+        248,
+        1,
+        248,
+        3,
+        118,
+        12,
+        250,
+        255,
+        130,
+        153,
+        159,
+        118,
+        248,
+        2,
+        14,
+        0,
+        248,
+        4,
+        14,
+        12,
+        250,
+        255,
+        130,
+        69,
+        111,
+        3,
+        0,
+        248,
+        4,
+        14,
+        12,
+        250,
+        85,
+        252,
+        3,
+        98,
+        111,
+        116,
+        0,
+        248,
+        2,
+        14,
+        0,
+        248,
+        4,
+        14,
+        12,
+        252,
+        0,
+        248,
+        1,
+        248,
+        3,
+        118,
+        12,
+        250,
+        255,
+        130,
+        153,
+        159,
+        118
+      ]
+    },
+    {
+      "config": {
+        "protocols": [
+          "username"
+        ],
+        "users": [
+          {
+            "id": "123@s.whatsapp.net"
+          },
+          {
+            "phone": "+5511999999999"
+          },
+          {
+            "id": "ignored@s.whatsapp.net",
+            "phone": "+123",
+            "username": "ignored"
+          },
+          {
+            "id": "123@s.whatsapp.net",
+            "lid": "999@lid",
+            "username": "alice",
+            "usernameKey": "1234",
+            "type": "ignored"
+          },
+          {
+            "type": "business"
+          },
+          {
+            "username": "",
+            "phone": "",
+            "id": "456@s.whatsapp.net",
+            "lid": ""
+          },
+          {
+            "personaId": "test-persona",
+            "id": "1@bot"
+          },
+          {},
+          {
+            "id": "",
+            "phone": "",
+            "username": "bob",
+            "usernameKey": "",
+            "lid": "999@lid"
+          }
+        ],
+        "mode": "query",
+        "context": "interactive"
+      },
+      "sid": "synthetic-usync.17",
+      "node": {
+        "tag": "iq",
+        "attrs": {
+          "to": "@s.whatsapp.net",
+          "type": "get",
+          "xmlns": "usync"
+        },
+        "content": [
+          {
+            "tag": "usync",
+            "attrs": {
+              "context": "interactive",
+              "mode": "query",
+              "sid": "synthetic-usync.17",
+              "last": "true",
+              "index": "0"
+            },
+            "content": [
+              {
+                "tag": "query",
+                "attrs": {},
+                "content": [
+                  {
+                    "tag": "username",
+                    "attrs": {},
+                    "content": null
+                  }
+                ]
+              },
+              {
+                "tag": "list",
+                "attrs": {},
+                "content": [
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "123@s.whatsapp.net"
+                    },
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "123@s.whatsapp.net"
+                    },
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "456@s.whatsapp.net"
+                    },
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "1@bot"
+                    },
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": ""
+                    },
+                    "content": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "wire": [
+        0,
+        248,
+        8,
+        25,
+        17,
+        250,
+        0,
+        3,
+        4,
+        41,
+        22,
+        121,
+        248,
+        1,
+        248,
+        12,
+        121,
+        125,
+        229,
+        106,
+        109,
+        252,
+        3,
+        115,
+        105,
+        100,
+        252,
+        18,
+        115,
+        121,
+        110,
+        116,
+        104,
+        101,
+        116,
+        105,
+        99,
+        45,
+        117,
+        115,
+        121,
+        110,
+        99,
+        46,
+        49,
+        55,
+        97,
+        155,
+        143,
+        45,
+        248,
+        2,
+        248,
+        2,
+        109,
+        248,
+        1,
+        248,
+        1,
+        252,
+        8,
+        117,
+        115,
+        101,
+        114,
+        110,
+        97,
+        109,
+        101,
+        248,
+        2,
+        113,
+        248,
+        9,
+        248,
+        4,
+        14,
+        12,
+        250,
+        255,
+        130,
+        18,
+        63,
+        3,
+        0,
+        248,
+        2,
+        14,
+        0,
+        248,
+        2,
+        14,
+        0,
+        248,
+        4,
+        14,
+        12,
+        250,
+        255,
+        130,
+        18,
+        63,
+        3,
+        0,
+        248,
+        2,
+        14,
+        0,
+        248,
+        4,
+        14,
+        12,
+        250,
+        255,
+        130,
+        69,
+        111,
+        3,
+        0,
+        248,
+        4,
+        14,
+        12,
+        250,
+        85,
+        252,
+        3,
+        98,
+        111,
+        116,
+        0,
+        248,
+        2,
+        14,
+        0,
+        248,
+        4,
+        14,
+        12,
+        252,
+        0,
+        0
+      ]
+    },
+    {
+      "config": {
+        "protocols": [
+          "contact",
+          "devices",
+          "status",
+          "disappearing_mode",
+          "bot",
+          "lid",
+          "username"
+        ],
+        "users": [
+          {
+            "id": "123@s.whatsapp.net"
+          },
+          {
+            "phone": "+5511999999999"
+          },
+          {
+            "id": "ignored@s.whatsapp.net",
+            "phone": "+123",
+            "username": "ignored"
+          },
+          {
+            "id": "123@s.whatsapp.net",
+            "lid": "999@lid",
+            "username": "alice",
+            "usernameKey": "1234",
+            "type": "ignored"
+          },
+          {
+            "type": "business"
+          },
+          {
+            "username": "",
+            "phone": "",
+            "id": "456@s.whatsapp.net",
+            "lid": ""
+          },
+          {
+            "personaId": "test-persona",
+            "id": "1@bot"
+          },
+          {},
+          {
+            "id": "",
+            "phone": "",
+            "username": "bob",
+            "usernameKey": "",
+            "lid": "999@lid"
+          }
+        ],
+        "mode": "query",
+        "context": "interactive"
+      },
+      "sid": "synthetic-usync.17",
+      "node": {
+        "tag": "iq",
+        "attrs": {
+          "to": "@s.whatsapp.net",
+          "type": "get",
+          "xmlns": "usync"
+        },
+        "content": [
+          {
+            "tag": "usync",
+            "attrs": {
+              "context": "interactive",
+              "mode": "query",
+              "sid": "synthetic-usync.17",
+              "last": "true",
+              "index": "0"
+            },
+            "content": [
+              {
+                "tag": "query",
+                "attrs": {},
+                "content": [
+                  {
+                    "tag": "contact",
+                    "attrs": {},
+                    "content": null
+                  },
+                  {
+                    "tag": "devices",
+                    "attrs": {
+                      "version": "2"
+                    },
+                    "content": null
+                  },
+                  {
+                    "tag": "status",
+                    "attrs": {},
+                    "content": null
+                  },
+                  {
+                    "tag": "disappearing_mode",
+                    "attrs": {},
+                    "content": null
+                  },
+                  {
+                    "tag": "bot",
+                    "attrs": {},
+                    "content": [
+                      {
+                        "tag": "profile",
+                        "attrs": {
+                          "v": "1"
+                        },
+                        "content": null
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "lid",
+                    "attrs": {},
+                    "content": null
+                  },
+                  {
+                    "tag": "username",
+                    "attrs": {},
+                    "content": null
+                  }
+                ]
+              },
+              {
+                "tag": "list",
+                "attrs": {},
+                "content": [
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "123@s.whatsapp.net"
+                    },
+                    "content": [
+                      {
+                        "tag": "contact",
+                        "attrs": {},
+                        "content": null
+                      },
+                      {
+                        "tag": "bot",
+                        "attrs": {},
+                        "content": [
+                          {
+                            "tag": "profile",
+                            "attrs": {},
+                            "content": null
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": [
+                      {
+                        "tag": "contact",
+                        "attrs": {},
+                        "content": "+5511999999999"
+                      },
+                      {
+                        "tag": "bot",
+                        "attrs": {},
+                        "content": [
+                          {
+                            "tag": "profile",
+                            "attrs": {},
+                            "content": null
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": [
+                      {
+                        "tag": "contact",
+                        "attrs": {},
+                        "content": "+123"
+                      },
+                      {
+                        "tag": "bot",
+                        "attrs": {},
+                        "content": [
+                          {
+                            "tag": "profile",
+                            "attrs": {},
+                            "content": null
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "123@s.whatsapp.net"
+                    },
+                    "content": [
+                      {
+                        "tag": "contact",
+                        "attrs": {
+                          "username": "alice",
+                          "pin": "1234",
+                          "lid": "999@lid"
+                        },
+                        "content": null
+                      },
+                      {
+                        "tag": "bot",
+                        "attrs": {},
+                        "content": [
+                          {
+                            "tag": "profile",
+                            "attrs": {},
+                            "content": null
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "lid",
+                        "attrs": {
+                          "jid": "999@lid"
+                        },
+                        "content": null
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": [
+                      {
+                        "tag": "contact",
+                        "attrs": {
+                          "type": "business"
+                        },
+                        "content": null
+                      },
+                      {
+                        "tag": "bot",
+                        "attrs": {},
+                        "content": [
+                          {
+                            "tag": "profile",
+                            "attrs": {},
+                            "content": null
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "456@s.whatsapp.net"
+                    },
+                    "content": [
+                      {
+                        "tag": "contact",
+                        "attrs": {},
+                        "content": null
+                      },
+                      {
+                        "tag": "bot",
+                        "attrs": {},
+                        "content": [
+                          {
+                            "tag": "profile",
+                            "attrs": {},
+                            "content": null
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "1@bot"
+                    },
+                    "content": [
+                      {
+                        "tag": "contact",
+                        "attrs": {},
+                        "content": null
+                      },
+                      {
+                        "tag": "bot",
+                        "attrs": {},
+                        "content": [
+                          {
+                            "tag": "profile",
+                            "attrs": {
+                              "persona_id": "test-persona"
+                            },
+                            "content": null
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": [
+                      {
+                        "tag": "contact",
+                        "attrs": {},
+                        "content": null
+                      },
+                      {
+                        "tag": "bot",
+                        "attrs": {},
+                        "content": [
+                          {
+                            "tag": "profile",
+                            "attrs": {},
+                            "content": null
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": ""
+                    },
+                    "content": [
+                      {
+                        "tag": "contact",
+                        "attrs": {
+                          "username": "bob",
+                          "lid": "999@lid"
+                        },
+                        "content": null
+                      },
+                      {
+                        "tag": "bot",
+                        "attrs": {},
+                        "content": [
+                          {
+                            "tag": "profile",
+                            "attrs": {},
+                            "content": null
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "lid",
+                        "attrs": {
+                          "jid": "999@lid"
+                        },
+                        "content": null
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "wire": [
+        0,
+        248,
+        8,
+        25,
+        17,
+        250,
+        0,
+        3,
+        4,
+        41,
+        22,
+        121,
+        248,
+        1,
+        248,
+        12,
+        121,
+        125,
+        229,
+        106,
+        109,
+        252,
+        3,
+        115,
+        105,
+        100,
+        252,
+        18,
+        115,
+        121,
+        110,
+        116,
+        104,
+        101,
+        116,
+        105,
+        99,
+        45,
+        117,
+        115,
+        121,
+        110,
+        99,
+        46,
+        49,
+        55,
+        97,
+        155,
+        143,
+        45,
+        248,
+        2,
+        248,
+        2,
+        109,
+        248,
+        7,
+        248,
+        1,
+        37,
+        248,
+        3,
+        15,
+        84,
+        69,
+        248,
+        1,
+        11,
+        248,
+        1,
+        10,
+        248,
+        2,
+        252,
+        3,
+        98,
+        111,
+        116,
+        248,
+        1,
+        248,
+        3,
+        101,
+        81,
+        85,
+        248,
+        1,
+        118,
+        248,
+        1,
+        252,
+        8,
+        117,
+        115,
+        101,
+        114,
+        110,
+        97,
+        109,
+        101,
+        248,
+        2,
+        113,
+        248,
+        9,
+        248,
+        4,
+        14,
+        12,
+        250,
+        255,
+        130,
+        18,
+        63,
+        3,
+        248,
+        2,
+        248,
+        1,
+        37,
+        248,
+        2,
+        252,
+        3,
+        98,
+        111,
+        116,
+        248,
+        1,
+        248,
+        1,
+        101,
+        248,
+        2,
+        14,
+        248,
+        2,
+        248,
+        2,
+        37,
+        252,
+        14,
+        43,
+        53,
+        53,
+        49,
+        49,
+        57,
+        57,
+        57,
+        57,
+        57,
+        57,
+        57,
+        57,
+        57,
+        248,
+        2,
+        252,
+        3,
+        98,
+        111,
+        116,
+        248,
+        1,
+        248,
+        1,
+        101,
+        248,
+        2,
+        14,
+        248,
+        2,
+        248,
+        2,
+        37,
+        252,
+        4,
+        43,
+        49,
+        50,
+        51,
+        248,
+        2,
+        252,
+        3,
+        98,
+        111,
+        116,
+        248,
+        1,
+        248,
+        1,
+        101,
+        248,
+        4,
+        14,
+        12,
+        250,
+        255,
+        130,
+        18,
+        63,
+        3,
+        248,
+        3,
+        248,
+        7,
+        37,
+        252,
+        8,
+        117,
+        115,
+        101,
+        114,
+        110,
+        97,
+        109,
+        101,
+        252,
+        5,
+        97,
+        108,
+        105,
+        99,
+        101,
+        252,
+        3,
+        112,
+        105,
+        110,
+        255,
+        2,
+        18,
+        52,
+        118,
+        250,
+        255,
+        130,
+        153,
+        159,
+        118,
+        248,
+        2,
+        252,
+        3,
+        98,
+        111,
+        116,
+        248,
+        1,
+        248,
+        1,
+        101,
+        248,
+        3,
+        118,
+        12,
+        250,
+        255,
+        130,
+        153,
+        159,
+        118,
+        248,
+        2,
+        14,
+        248,
+        2,
+        248,
+        3,
+        37,
+        4,
+        68,
+        248,
+        2,
+        252,
+        3,
+        98,
+        111,
+        116,
+        248,
+        1,
+        248,
+        1,
+        101,
+        248,
+        4,
+        14,
+        12,
+        250,
+        255,
+        130,
+        69,
+        111,
+        3,
+        248,
+        2,
+        248,
+        1,
+        37,
+        248,
+        2,
+        252,
+        3,
+        98,
+        111,
+        116,
+        248,
+        1,
+        248,
+        1,
+        101,
+        248,
+        4,
+        14,
+        12,
+        250,
+        85,
+        252,
+        3,
+        98,
+        111,
+        116,
+        248,
+        2,
+        248,
+        1,
+        37,
+        248,
+        2,
+        252,
+        3,
+        98,
+        111,
+        116,
+        248,
+        1,
+        248,
+        3,
+        101,
+        252,
+        10,
+        112,
+        101,
+        114,
+        115,
+        111,
+        110,
+        97,
+        95,
+        105,
+        100,
+        252,
+        12,
+        116,
+        101,
+        115,
+        116,
+        45,
+        112,
+        101,
+        114,
+        115,
+        111,
+        110,
+        97,
+        248,
+        2,
+        14,
+        248,
+        2,
+        248,
+        1,
+        37,
+        248,
+        2,
+        252,
+        3,
+        98,
+        111,
+        116,
+        248,
+        1,
+        248,
+        1,
+        101,
+        248,
+        4,
+        14,
+        12,
+        252,
+        0,
+        248,
+        3,
+        248,
+        5,
+        37,
+        252,
+        8,
+        117,
+        115,
+        101,
+        114,
+        110,
+        97,
+        109,
+        101,
+        252,
+        3,
+        98,
+        111,
+        98,
+        118,
+        250,
+        255,
+        130,
+        153,
+        159,
+        118,
+        248,
+        2,
+        252,
+        3,
+        98,
+        111,
+        116,
+        248,
+        1,
+        248,
+        1,
+        101,
+        248,
+        3,
+        118,
+        12,
+        250,
+        255,
+        130,
+        153,
+        159,
+        118
+      ]
+    },
+    {
+      "config": {
+        "protocols": [
+          "contact",
+          "contact",
+          "lid"
+        ],
+        "users": [
+          {
+            "id": "123@s.whatsapp.net"
+          },
+          {
+            "phone": "+5511999999999"
+          },
+          {
+            "id": "ignored@s.whatsapp.net",
+            "phone": "+123",
+            "username": "ignored"
+          },
+          {
+            "id": "123@s.whatsapp.net",
+            "lid": "999@lid",
+            "username": "alice",
+            "usernameKey": "1234",
+            "type": "ignored"
+          },
+          {
+            "type": "business"
+          },
+          {
+            "username": "",
+            "phone": "",
+            "id": "456@s.whatsapp.net",
+            "lid": ""
+          },
+          {
+            "personaId": "test-persona",
+            "id": "1@bot"
+          },
+          {},
+          {
+            "id": "",
+            "phone": "",
+            "username": "bob",
+            "usernameKey": "",
+            "lid": "999@lid"
+          }
+        ],
+        "mode": "query",
+        "context": "interactive"
+      },
+      "sid": "synthetic-usync.17",
+      "node": {
+        "tag": "iq",
+        "attrs": {
+          "to": "@s.whatsapp.net",
+          "type": "get",
+          "xmlns": "usync"
+        },
+        "content": [
+          {
+            "tag": "usync",
+            "attrs": {
+              "context": "interactive",
+              "mode": "query",
+              "sid": "synthetic-usync.17",
+              "last": "true",
+              "index": "0"
+            },
+            "content": [
+              {
+                "tag": "query",
+                "attrs": {},
+                "content": [
+                  {
+                    "tag": "contact",
+                    "attrs": {},
+                    "content": null
+                  },
+                  {
+                    "tag": "contact",
+                    "attrs": {},
+                    "content": null
+                  },
+                  {
+                    "tag": "lid",
+                    "attrs": {},
+                    "content": null
+                  }
+                ]
+              },
+              {
+                "tag": "list",
+                "attrs": {},
+                "content": [
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "123@s.whatsapp.net"
+                    },
+                    "content": [
+                      {
+                        "tag": "contact",
+                        "attrs": {},
+                        "content": null
+                      },
+                      {
+                        "tag": "contact",
+                        "attrs": {},
+                        "content": null
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": [
+                      {
+                        "tag": "contact",
+                        "attrs": {},
+                        "content": "+5511999999999"
+                      },
+                      {
+                        "tag": "contact",
+                        "attrs": {},
+                        "content": "+5511999999999"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": [
+                      {
+                        "tag": "contact",
+                        "attrs": {},
+                        "content": "+123"
+                      },
+                      {
+                        "tag": "contact",
+                        "attrs": {},
+                        "content": "+123"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "123@s.whatsapp.net"
+                    },
+                    "content": [
+                      {
+                        "tag": "contact",
+                        "attrs": {
+                          "username": "alice",
+                          "pin": "1234",
+                          "lid": "999@lid"
+                        },
+                        "content": null
+                      },
+                      {
+                        "tag": "contact",
+                        "attrs": {
+                          "username": "alice",
+                          "pin": "1234",
+                          "lid": "999@lid"
+                        },
+                        "content": null
+                      },
+                      {
+                        "tag": "lid",
+                        "attrs": {
+                          "jid": "999@lid"
+                        },
+                        "content": null
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": [
+                      {
+                        "tag": "contact",
+                        "attrs": {
+                          "type": "business"
+                        },
+                        "content": null
+                      },
+                      {
+                        "tag": "contact",
+                        "attrs": {
+                          "type": "business"
+                        },
+                        "content": null
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "456@s.whatsapp.net"
+                    },
+                    "content": [
+                      {
+                        "tag": "contact",
+                        "attrs": {},
+                        "content": null
+                      },
+                      {
+                        "tag": "contact",
+                        "attrs": {},
+                        "content": null
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "1@bot"
+                    },
+                    "content": [
+                      {
+                        "tag": "contact",
+                        "attrs": {},
+                        "content": null
+                      },
+                      {
+                        "tag": "contact",
+                        "attrs": {},
+                        "content": null
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": [
+                      {
+                        "tag": "contact",
+                        "attrs": {},
+                        "content": null
+                      },
+                      {
+                        "tag": "contact",
+                        "attrs": {},
+                        "content": null
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": ""
+                    },
+                    "content": [
+                      {
+                        "tag": "contact",
+                        "attrs": {
+                          "username": "bob",
+                          "lid": "999@lid"
+                        },
+                        "content": null
+                      },
+                      {
+                        "tag": "contact",
+                        "attrs": {
+                          "username": "bob",
+                          "lid": "999@lid"
+                        },
+                        "content": null
+                      },
+                      {
+                        "tag": "lid",
+                        "attrs": {
+                          "jid": "999@lid"
+                        },
+                        "content": null
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "wire": [
+        0,
+        248,
+        8,
+        25,
+        17,
+        250,
+        0,
+        3,
+        4,
+        41,
+        22,
+        121,
+        248,
+        1,
+        248,
+        12,
+        121,
+        125,
+        229,
+        106,
+        109,
+        252,
+        3,
+        115,
+        105,
+        100,
+        252,
+        18,
+        115,
+        121,
+        110,
+        116,
+        104,
+        101,
+        116,
+        105,
+        99,
+        45,
+        117,
+        115,
+        121,
+        110,
+        99,
+        46,
+        49,
+        55,
+        97,
+        155,
+        143,
+        45,
+        248,
+        2,
+        248,
+        2,
+        109,
+        248,
+        3,
+        248,
+        1,
+        37,
+        248,
+        1,
+        37,
+        248,
+        1,
+        118,
+        248,
+        2,
+        113,
+        248,
+        9,
+        248,
+        4,
+        14,
+        12,
+        250,
+        255,
+        130,
+        18,
+        63,
+        3,
+        248,
+        2,
+        248,
+        1,
+        37,
+        248,
+        1,
+        37,
+        248,
+        2,
+        14,
+        248,
+        2,
+        248,
+        2,
+        37,
+        252,
+        14,
+        43,
+        53,
+        53,
+        49,
+        49,
+        57,
+        57,
+        57,
+        57,
+        57,
+        57,
+        57,
+        57,
+        57,
+        248,
+        2,
+        37,
+        252,
+        14,
+        43,
+        53,
+        53,
+        49,
+        49,
+        57,
+        57,
+        57,
+        57,
+        57,
+        57,
+        57,
+        57,
+        57,
+        248,
+        2,
+        14,
+        248,
+        2,
+        248,
+        2,
+        37,
+        252,
+        4,
+        43,
+        49,
+        50,
+        51,
+        248,
+        2,
+        37,
+        252,
+        4,
+        43,
+        49,
+        50,
+        51,
+        248,
+        4,
+        14,
+        12,
+        250,
+        255,
+        130,
+        18,
+        63,
+        3,
+        248,
+        3,
+        248,
+        7,
+        37,
+        252,
+        8,
+        117,
+        115,
+        101,
+        114,
+        110,
+        97,
+        109,
+        101,
+        252,
+        5,
+        97,
+        108,
+        105,
+        99,
+        101,
+        252,
+        3,
+        112,
+        105,
+        110,
+        255,
+        2,
+        18,
+        52,
+        118,
+        250,
+        255,
+        130,
+        153,
+        159,
+        118,
+        248,
+        7,
+        37,
+        252,
+        8,
+        117,
+        115,
+        101,
+        114,
+        110,
+        97,
+        109,
+        101,
+        252,
+        5,
+        97,
+        108,
+        105,
+        99,
+        101,
+        252,
+        3,
+        112,
+        105,
+        110,
+        255,
+        2,
+        18,
+        52,
+        118,
+        250,
+        255,
+        130,
+        153,
+        159,
+        118,
+        248,
+        3,
+        118,
+        12,
+        250,
+        255,
+        130,
+        153,
+        159,
+        118,
+        248,
+        2,
+        14,
+        248,
+        2,
+        248,
+        3,
+        37,
+        4,
+        68,
+        248,
+        3,
+        37,
+        4,
+        68,
+        248,
+        4,
+        14,
+        12,
+        250,
+        255,
+        130,
+        69,
+        111,
+        3,
+        248,
+        2,
+        248,
+        1,
+        37,
+        248,
+        1,
+        37,
+        248,
+        4,
+        14,
+        12,
+        250,
+        85,
+        252,
+        3,
+        98,
+        111,
+        116,
+        248,
+        2,
+        248,
+        1,
+        37,
+        248,
+        1,
+        37,
+        248,
+        2,
+        14,
+        248,
+        2,
+        248,
+        1,
+        37,
+        248,
+        1,
+        37,
+        248,
+        4,
+        14,
+        12,
+        252,
+        0,
+        248,
+        3,
+        248,
+        5,
+        37,
+        252,
+        8,
+        117,
+        115,
+        101,
+        114,
+        110,
+        97,
+        109,
+        101,
+        252,
+        3,
+        98,
+        111,
+        98,
+        118,
+        250,
+        255,
+        130,
+        153,
+        159,
+        118,
+        248,
+        5,
+        37,
+        252,
+        8,
+        117,
+        115,
+        101,
+        114,
+        110,
+        97,
+        109,
+        101,
+        252,
+        3,
+        98,
+        111,
+        98,
+        118,
+        250,
+        255,
+        130,
+        153,
+        159,
+        118,
+        248,
+        3,
+        118,
+        12,
+        250,
+        255,
+        130,
+        153,
+        159,
+        118
+      ]
+    },
+    {
+      "config": {
+        "protocols": [
+          "devices",
+          "lid"
+        ],
+        "users": [
+          {
+            "id": "123@s.whatsapp.net"
+          },
+          {
+            "phone": "+5511999999999"
+          },
+          {
+            "id": "ignored@s.whatsapp.net",
+            "phone": "+123",
+            "username": "ignored"
+          },
+          {
+            "id": "123@s.whatsapp.net",
+            "lid": "999@lid",
+            "username": "alice",
+            "usernameKey": "1234",
+            "type": "ignored"
+          },
+          {
+            "type": "business"
+          },
+          {
+            "username": "",
+            "phone": "",
+            "id": "456@s.whatsapp.net",
+            "lid": ""
+          },
+          {
+            "personaId": "test-persona",
+            "id": "1@bot"
+          },
+          {},
+          {
+            "id": "",
+            "phone": "",
+            "username": "bob",
+            "usernameKey": "",
+            "lid": "999@lid"
+          }
+        ],
+        "mode": "query",
+        "context": "interactive"
+      },
+      "sid": "synthetic-usync.17",
+      "node": {
+        "tag": "iq",
+        "attrs": {
+          "to": "@s.whatsapp.net",
+          "type": "get",
+          "xmlns": "usync"
+        },
+        "content": [
+          {
+            "tag": "usync",
+            "attrs": {
+              "context": "interactive",
+              "mode": "query",
+              "sid": "synthetic-usync.17",
+              "last": "true",
+              "index": "0"
+            },
+            "content": [
+              {
+                "tag": "query",
+                "attrs": {},
+                "content": [
+                  {
+                    "tag": "devices",
+                    "attrs": {
+                      "version": "2"
+                    },
+                    "content": null
+                  },
+                  {
+                    "tag": "lid",
+                    "attrs": {},
+                    "content": null
+                  }
+                ]
+              },
+              {
+                "tag": "list",
+                "attrs": {},
+                "content": [
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "123@s.whatsapp.net"
+                    },
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "123@s.whatsapp.net"
+                    },
+                    "content": [
+                      {
+                        "tag": "lid",
+                        "attrs": {
+                          "jid": "999@lid"
+                        },
+                        "content": null
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "456@s.whatsapp.net"
+                    },
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "1@bot"
+                    },
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": []
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": ""
+                    },
+                    "content": [
+                      {
+                        "tag": "lid",
+                        "attrs": {
+                          "jid": "999@lid"
+                        },
+                        "content": null
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "wire": [
+        0,
+        248,
+        8,
+        25,
+        17,
+        250,
+        0,
+        3,
+        4,
+        41,
+        22,
+        121,
+        248,
+        1,
+        248,
+        12,
+        121,
+        125,
+        229,
+        106,
+        109,
+        252,
+        3,
+        115,
+        105,
+        100,
+        252,
+        18,
+        115,
+        121,
+        110,
+        116,
+        104,
+        101,
+        116,
+        105,
+        99,
+        45,
+        117,
+        115,
+        121,
+        110,
+        99,
+        46,
+        49,
+        55,
+        97,
+        155,
+        143,
+        45,
+        248,
+        2,
+        248,
+        2,
+        109,
+        248,
+        2,
+        248,
+        3,
+        15,
+        84,
+        69,
+        248,
+        1,
+        118,
+        248,
+        2,
+        113,
+        248,
+        9,
+        248,
+        4,
+        14,
+        12,
+        250,
+        255,
+        130,
+        18,
+        63,
+        3,
+        0,
+        248,
+        2,
+        14,
+        0,
+        248,
+        2,
+        14,
+        0,
+        248,
+        4,
+        14,
+        12,
+        250,
+        255,
+        130,
+        18,
+        63,
+        3,
+        248,
+        1,
+        248,
+        3,
+        118,
+        12,
+        250,
+        255,
+        130,
+        153,
+        159,
+        118,
+        248,
+        2,
+        14,
+        0,
+        248,
+        4,
+        14,
+        12,
+        250,
+        255,
+        130,
+        69,
+        111,
+        3,
+        0,
+        248,
+        4,
+        14,
+        12,
+        250,
+        85,
+        252,
+        3,
+        98,
+        111,
+        116,
+        0,
+        248,
+        2,
+        14,
+        0,
+        248,
+        4,
+        14,
+        12,
+        252,
+        0,
+        248,
+        1,
+        248,
+        3,
+        118,
+        12,
+        250,
+        255,
+        130,
+        153,
+        159,
+        118
+      ]
+    },
+    {
+      "config": {
+        "protocols": [
+          "contact",
+          "username"
+        ],
+        "users": [
+          {
+            "id": "123@s.whatsapp.net"
+          },
+          {
+            "phone": "+5511999999999"
+          },
+          {
+            "id": "ignored@s.whatsapp.net",
+            "phone": "+123",
+            "username": "ignored"
+          },
+          {
+            "id": "123@s.whatsapp.net",
+            "lid": "999@lid",
+            "username": "alice",
+            "usernameKey": "1234",
+            "type": "ignored"
+          },
+          {
+            "type": "business"
+          },
+          {
+            "username": "",
+            "phone": "",
+            "id": "456@s.whatsapp.net",
+            "lid": ""
+          },
+          {
+            "personaId": "test-persona",
+            "id": "1@bot"
+          },
+          {},
+          {
+            "id": "",
+            "phone": "",
+            "username": "bob",
+            "usernameKey": "",
+            "lid": "999@lid"
+          }
+        ],
+        "mode": "query",
+        "context": "interactive"
+      },
+      "sid": "synthetic-usync.17",
+      "node": {
+        "tag": "iq",
+        "attrs": {
+          "to": "@s.whatsapp.net",
+          "type": "get",
+          "xmlns": "usync"
+        },
+        "content": [
+          {
+            "tag": "usync",
+            "attrs": {
+              "context": "interactive",
+              "mode": "query",
+              "sid": "synthetic-usync.17",
+              "last": "true",
+              "index": "0"
+            },
+            "content": [
+              {
+                "tag": "query",
+                "attrs": {},
+                "content": [
+                  {
+                    "tag": "contact",
+                    "attrs": {},
+                    "content": null
+                  },
+                  {
+                    "tag": "username",
+                    "attrs": {},
+                    "content": null
+                  }
+                ]
+              },
+              {
+                "tag": "list",
+                "attrs": {},
+                "content": [
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "123@s.whatsapp.net"
+                    },
+                    "content": [
+                      {
+                        "tag": "contact",
+                        "attrs": {},
+                        "content": null
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": [
+                      {
+                        "tag": "contact",
+                        "attrs": {},
+                        "content": "+5511999999999"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": [
+                      {
+                        "tag": "contact",
+                        "attrs": {},
+                        "content": "+123"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "123@s.whatsapp.net"
+                    },
+                    "content": [
+                      {
+                        "tag": "contact",
+                        "attrs": {
+                          "username": "alice",
+                          "pin": "1234",
+                          "lid": "999@lid"
+                        },
+                        "content": null
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": [
+                      {
+                        "tag": "contact",
+                        "attrs": {
+                          "type": "business"
+                        },
+                        "content": null
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "456@s.whatsapp.net"
+                    },
+                    "content": [
+                      {
+                        "tag": "contact",
+                        "attrs": {},
+                        "content": null
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "1@bot"
+                    },
+                    "content": [
+                      {
+                        "tag": "contact",
+                        "attrs": {},
+                        "content": null
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {},
+                    "content": [
+                      {
+                        "tag": "contact",
+                        "attrs": {},
+                        "content": null
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": ""
+                    },
+                    "content": [
+                      {
+                        "tag": "contact",
+                        "attrs": {
+                          "username": "bob",
+                          "lid": "999@lid"
+                        },
+                        "content": null
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "wire": [
+        0,
+        248,
+        8,
+        25,
+        17,
+        250,
+        0,
+        3,
+        4,
+        41,
+        22,
+        121,
+        248,
+        1,
+        248,
+        12,
+        121,
+        125,
+        229,
+        106,
+        109,
+        252,
+        3,
+        115,
+        105,
+        100,
+        252,
+        18,
+        115,
+        121,
+        110,
+        116,
+        104,
+        101,
+        116,
+        105,
+        99,
+        45,
+        117,
+        115,
+        121,
+        110,
+        99,
+        46,
+        49,
+        55,
+        97,
+        155,
+        143,
+        45,
+        248,
+        2,
+        248,
+        2,
+        109,
+        248,
+        2,
+        248,
+        1,
+        37,
+        248,
+        1,
+        252,
+        8,
+        117,
+        115,
+        101,
+        114,
+        110,
+        97,
+        109,
+        101,
+        248,
+        2,
+        113,
+        248,
+        9,
+        248,
+        4,
+        14,
+        12,
+        250,
+        255,
+        130,
+        18,
+        63,
+        3,
+        248,
+        1,
+        248,
+        1,
+        37,
+        248,
+        2,
+        14,
+        248,
+        1,
+        248,
+        2,
+        37,
+        252,
+        14,
+        43,
+        53,
+        53,
+        49,
+        49,
+        57,
+        57,
+        57,
+        57,
+        57,
+        57,
+        57,
+        57,
+        57,
+        248,
+        2,
+        14,
+        248,
+        1,
+        248,
+        2,
+        37,
+        252,
+        4,
+        43,
+        49,
+        50,
+        51,
+        248,
+        4,
+        14,
+        12,
+        250,
+        255,
+        130,
+        18,
+        63,
+        3,
+        248,
+        1,
+        248,
+        7,
+        37,
+        252,
+        8,
+        117,
+        115,
+        101,
+        114,
+        110,
+        97,
+        109,
+        101,
+        252,
+        5,
+        97,
+        108,
+        105,
+        99,
+        101,
+        252,
+        3,
+        112,
+        105,
+        110,
+        255,
+        2,
+        18,
+        52,
+        118,
+        250,
+        255,
+        130,
+        153,
+        159,
+        118,
+        248,
+        2,
+        14,
+        248,
+        1,
+        248,
+        3,
+        37,
+        4,
+        68,
+        248,
+        4,
+        14,
+        12,
+        250,
+        255,
+        130,
+        69,
+        111,
+        3,
+        248,
+        1,
+        248,
+        1,
+        37,
+        248,
+        4,
+        14,
+        12,
+        250,
+        85,
+        252,
+        3,
+        98,
+        111,
+        116,
+        248,
+        1,
+        248,
+        1,
+        37,
+        248,
+        2,
+        14,
+        248,
+        1,
+        248,
+        1,
+        37,
+        248,
+        4,
+        14,
+        12,
+        252,
+        0,
+        248,
+        1,
+        248,
+        5,
+        37,
+        252,
+        8,
+        117,
+        115,
+        101,
+        114,
+        110,
+        97,
+        109,
+        101,
+        252,
+        3,
+        98,
+        111,
+        98,
+        118,
+        250,
+        255,
+        130,
+        153,
+        159,
+        118
+      ]
+    },
+    {
+      "config": {
+        "protocols": [],
+        "users": [
+          {
+            "id": "123@s.whatsapp.net"
+          },
+          {
+            "phone": "+5511999999999"
+          },
+          {
+            "id": "ignored@s.whatsapp.net",
+            "phone": "+123",
+            "username": "ignored"
+          },
+          {
+            "id": "123@s.whatsapp.net",
+            "lid": "999@lid",
+            "username": "alice",
+            "usernameKey": "1234",
+            "type": "ignored"
+          },
+          {
+            "type": "business"
+          },
+          {
+            "username": "",
+            "phone": "",
+            "id": "456@s.whatsapp.net",
+            "lid": ""
+          },
+          {
+            "personaId": "test-persona",
+            "id": "1@bot"
+          },
+          {},
+          {
+            "id": "",
+            "phone": "",
+            "username": "bob",
+            "usernameKey": "",
+            "lid": "999@lid"
+          }
+        ],
+        "mode": "query",
+        "context": "interactive"
+      },
+      "sid": "synthetic-usync.17",
+      "error": true
+    }
+  ],
+  "parsers": [
+    {
+      "protocol": "devices",
+      "node": {
+        "tag": "devices",
+        "attrs": {},
+        "content": [
+          {
+            "tag": "device-list",
+            "attrs": {},
+            "content": [
+              {
+                "tag": "ignored",
+                "attrs": {
+                  "id": "broken"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "is_hosted": "true"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "0",
+                  "key-index": "0",
+                  "is_hosted": "false"
+                },
+                "content": null
+              }
+            ]
+          },
+          {
+            "tag": "key-index-list",
+            "attrs": {},
+            "content": {
+              "bytes": [
+                0,
+                255,
+                1
+              ]
+            }
+          }
+        ]
+      },
+      "expected": {
+        "deviceList": [
+          {
+            "id": null,
+            "keyIndex": null,
+            "isHosted": true
+          },
+          {
+            "id": 0,
+            "keyIndex": 0,
+            "isHosted": false
+          }
+        ],
+        "keyIndex": {
+          "timestamp": null,
+          "signedKeyIndex": [
+            0,
+            255,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "protocol": "disappearing_mode",
+      "node": {
+        "tag": "disappearing_mode",
+        "attrs": {},
+        "content": null
+      },
+      "expected": {
+        "duration": null,
+        "setAt": 0
+      }
+    },
+    {
+      "protocol": "status",
+      "node": {
+        "tag": "status",
+        "attrs": {},
+        "content": {
+          "bytes": [
+            79,
+            108,
+            195,
+            161,
+            32,
+            240,
+            159,
+            145,
+            139
+          ]
+        }
+      },
+      "expected": {
+        "status": "Olá 👋",
+        "setAt": 0
+      }
+    },
+    {
+      "protocol": "devices",
+      "node": {
+        "tag": "devices",
+        "attrs": {},
+        "content": [
+          {
+            "tag": "device-list",
+            "attrs": {},
+            "content": [
+              {
+                "tag": "ignored",
+                "attrs": {
+                  "id": "broken"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "",
+                  "key-index": "",
+                  "is_hosted": "true"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "0",
+                  "key-index": "0",
+                  "is_hosted": "false"
+                },
+                "content": null
+              }
+            ]
+          },
+          {
+            "tag": "key-index-list",
+            "attrs": {
+              "ts": "",
+              "expected_ts": ""
+            },
+            "content": {
+              "bytes": [
+                0,
+                255,
+                1
+              ]
+            }
+          }
+        ]
+      },
+      "expected": {
+        "deviceList": [
+          {
+            "id": 0,
+            "keyIndex": 0,
+            "isHosted": true
+          },
+          {
+            "id": 0,
+            "keyIndex": 0,
+            "isHosted": false
+          }
+        ],
+        "keyIndex": {
+          "timestamp": 0,
+          "signedKeyIndex": [
+            0,
+            255,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "protocol": "disappearing_mode",
+      "node": {
+        "tag": "disappearing_mode",
+        "attrs": {
+          "duration": "",
+          "t": ""
+        },
+        "content": null
+      },
+      "expected": {
+        "duration": 0,
+        "setAt": 0
+      }
+    },
+    {
+      "protocol": "status",
+      "node": {
+        "tag": "status",
+        "attrs": {
+          "t": ""
+        },
+        "content": {
+          "bytes": [
+            79,
+            108,
+            195,
+            161,
+            32,
+            240,
+            159,
+            145,
+            139
+          ]
+        }
+      },
+      "expected": {
+        "status": "Olá 👋",
+        "setAt": 0
+      }
+    },
+    {
+      "protocol": "devices",
+      "node": {
+        "tag": "devices",
+        "attrs": {},
+        "content": [
+          {
+            "tag": "device-list",
+            "attrs": {},
+            "content": [
+              {
+                "tag": "ignored",
+                "attrs": {
+                  "id": "broken"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "0",
+                  "key-index": "0",
+                  "is_hosted": "true"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "0",
+                  "key-index": "0",
+                  "is_hosted": "false"
+                },
+                "content": null
+              }
+            ]
+          },
+          {
+            "tag": "key-index-list",
+            "attrs": {
+              "ts": "0",
+              "expected_ts": "0"
+            },
+            "content": {
+              "bytes": [
+                0,
+                255,
+                1
+              ]
+            }
+          }
+        ]
+      },
+      "expected": {
+        "deviceList": [
+          {
+            "id": 0,
+            "keyIndex": 0,
+            "isHosted": true
+          },
+          {
+            "id": 0,
+            "keyIndex": 0,
+            "isHosted": false
+          }
+        ],
+        "keyIndex": {
+          "timestamp": 0,
+          "signedKeyIndex": [
+            0,
+            255,
+            1
+          ],
+          "expectedTimestamp": 0
+        }
+      }
+    },
+    {
+      "protocol": "disappearing_mode",
+      "node": {
+        "tag": "disappearing_mode",
+        "attrs": {
+          "duration": "0",
+          "t": "0"
+        },
+        "content": null
+      },
+      "expected": {
+        "duration": 0,
+        "setAt": 0
+      }
+    },
+    {
+      "protocol": "status",
+      "node": {
+        "tag": "status",
+        "attrs": {
+          "t": "0"
+        },
+        "content": {
+          "bytes": [
+            79,
+            108,
+            195,
+            161,
+            32,
+            240,
+            159,
+            145,
+            139
+          ]
+        }
+      },
+      "expected": {
+        "status": "Olá 👋",
+        "setAt": 0
+      }
+    },
+    {
+      "protocol": "devices",
+      "node": {
+        "tag": "devices",
+        "attrs": {},
+        "content": [
+          {
+            "tag": "device-list",
+            "attrs": {},
+            "content": [
+              {
+                "tag": "ignored",
+                "attrs": {
+                  "id": "broken"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "1",
+                  "key-index": "1",
+                  "is_hosted": "true"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "0",
+                  "key-index": "0",
+                  "is_hosted": "false"
+                },
+                "content": null
+              }
+            ]
+          },
+          {
+            "tag": "key-index-list",
+            "attrs": {
+              "ts": "1",
+              "expected_ts": "1"
+            },
+            "content": {
+              "bytes": [
+                0,
+                255,
+                1
+              ]
+            }
+          }
+        ]
+      },
+      "expected": {
+        "deviceList": [
+          {
+            "id": 1,
+            "keyIndex": 1,
+            "isHosted": true
+          },
+          {
+            "id": 0,
+            "keyIndex": 0,
+            "isHosted": false
+          }
+        ],
+        "keyIndex": {
+          "timestamp": 1,
+          "signedKeyIndex": [
+            0,
+            255,
+            1
+          ],
+          "expectedTimestamp": 1
+        }
+      }
+    },
+    {
+      "protocol": "disappearing_mode",
+      "node": {
+        "tag": "disappearing_mode",
+        "attrs": {
+          "duration": "1",
+          "t": "1"
+        },
+        "content": null
+      },
+      "expected": {
+        "duration": 1,
+        "setAt": 1000
+      }
+    },
+    {
+      "protocol": "status",
+      "node": {
+        "tag": "status",
+        "attrs": {
+          "t": "1"
+        },
+        "content": {
+          "bytes": [
+            79,
+            108,
+            195,
+            161,
+            32,
+            240,
+            159,
+            145,
+            139
+          ]
+        }
+      },
+      "expected": {
+        "status": "Olá 👋",
+        "setAt": 1000
+      }
+    },
+    {
+      "protocol": "devices",
+      "node": {
+        "tag": "devices",
+        "attrs": {},
+        "content": [
+          {
+            "tag": "device-list",
+            "attrs": {},
+            "content": [
+              {
+                "tag": "ignored",
+                "attrs": {
+                  "id": "broken"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "-0",
+                  "key-index": "-0",
+                  "is_hosted": "true"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "0",
+                  "key-index": "0",
+                  "is_hosted": "false"
+                },
+                "content": null
+              }
+            ]
+          },
+          {
+            "tag": "key-index-list",
+            "attrs": {
+              "ts": "-0",
+              "expected_ts": "-0"
+            },
+            "content": {
+              "bytes": [
+                0,
+                255,
+                1
+              ]
+            }
+          }
+        ]
+      },
+      "expected": {
+        "deviceList": [
+          {
+            "id": 0,
+            "keyIndex": 0,
+            "isHosted": true
+          },
+          {
+            "id": 0,
+            "keyIndex": 0,
+            "isHosted": false
+          }
+        ],
+        "keyIndex": {
+          "timestamp": 0,
+          "signedKeyIndex": [
+            0,
+            255,
+            1
+          ],
+          "expectedTimestamp": 0
+        }
+      }
+    },
+    {
+      "protocol": "disappearing_mode",
+      "node": {
+        "tag": "disappearing_mode",
+        "attrs": {
+          "duration": "-0",
+          "t": "-0"
+        },
+        "content": null
+      },
+      "expected": {
+        "duration": 0,
+        "setAt": 0
+      }
+    },
+    {
+      "protocol": "status",
+      "node": {
+        "tag": "status",
+        "attrs": {
+          "t": "-0"
+        },
+        "content": {
+          "bytes": [
+            79,
+            108,
+            195,
+            161,
+            32,
+            240,
+            159,
+            145,
+            139
+          ]
+        }
+      },
+      "expected": {
+        "status": "Olá 👋",
+        "setAt": 0
+      }
+    },
+    {
+      "protocol": "devices",
+      "node": {
+        "tag": "devices",
+        "attrs": {},
+        "content": [
+          {
+            "tag": "device-list",
+            "attrs": {},
+            "content": [
+              {
+                "tag": "ignored",
+                "attrs": {
+                  "id": "broken"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "-1",
+                  "key-index": "-1",
+                  "is_hosted": "true"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "0",
+                  "key-index": "0",
+                  "is_hosted": "false"
+                },
+                "content": null
+              }
+            ]
+          },
+          {
+            "tag": "key-index-list",
+            "attrs": {
+              "ts": "-1",
+              "expected_ts": "-1"
+            },
+            "content": {
+              "bytes": [
+                0,
+                255,
+                1
+              ]
+            }
+          }
+        ]
+      },
+      "expected": {
+        "deviceList": [
+          {
+            "id": -1,
+            "keyIndex": -1,
+            "isHosted": true
+          },
+          {
+            "id": 0,
+            "keyIndex": 0,
+            "isHosted": false
+          }
+        ],
+        "keyIndex": {
+          "timestamp": -1,
+          "signedKeyIndex": [
+            0,
+            255,
+            1
+          ],
+          "expectedTimestamp": -1
+        }
+      }
+    },
+    {
+      "protocol": "disappearing_mode",
+      "node": {
+        "tag": "disappearing_mode",
+        "attrs": {
+          "duration": "-1",
+          "t": "-1"
+        },
+        "content": null
+      },
+      "expected": {
+        "duration": -1,
+        "setAt": -1000
+      }
+    },
+    {
+      "protocol": "status",
+      "node": {
+        "tag": "status",
+        "attrs": {
+          "t": "-1"
+        },
+        "content": {
+          "bytes": [
+            79,
+            108,
+            195,
+            161,
+            32,
+            240,
+            159,
+            145,
+            139
+          ]
+        }
+      },
+      "expected": {
+        "status": "Olá 👋",
+        "setAt": -1000
+      }
+    },
+    {
+      "protocol": "devices",
+      "node": {
+        "tag": "devices",
+        "attrs": {},
+        "content": [
+          {
+            "tag": "device-list",
+            "attrs": {},
+            "content": [
+              {
+                "tag": "ignored",
+                "attrs": {
+                  "id": "broken"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "1.5",
+                  "key-index": "1.5",
+                  "is_hosted": "true"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "0",
+                  "key-index": "0",
+                  "is_hosted": "false"
+                },
+                "content": null
+              }
+            ]
+          },
+          {
+            "tag": "key-index-list",
+            "attrs": {
+              "ts": "1.5",
+              "expected_ts": "1.5"
+            },
+            "content": {
+              "bytes": [
+                0,
+                255,
+                1
+              ]
+            }
+          }
+        ]
+      },
+      "expected": {
+        "deviceList": [
+          {
+            "id": 1.5,
+            "keyIndex": 1.5,
+            "isHosted": true
+          },
+          {
+            "id": 0,
+            "keyIndex": 0,
+            "isHosted": false
+          }
+        ],
+        "keyIndex": {
+          "timestamp": 1.5,
+          "signedKeyIndex": [
+            0,
+            255,
+            1
+          ],
+          "expectedTimestamp": 1.5
+        }
+      }
+    },
+    {
+      "protocol": "disappearing_mode",
+      "node": {
+        "tag": "disappearing_mode",
+        "attrs": {
+          "duration": "1.5",
+          "t": "1.5"
+        },
+        "content": null
+      },
+      "expected": {
+        "duration": 1.5,
+        "setAt": 1500
+      }
+    },
+    {
+      "protocol": "status",
+      "node": {
+        "tag": "status",
+        "attrs": {
+          "t": "1.5"
+        },
+        "content": {
+          "bytes": [
+            79,
+            108,
+            195,
+            161,
+            32,
+            240,
+            159,
+            145,
+            139
+          ]
+        }
+      },
+      "expected": {
+        "status": "Olá 👋",
+        "setAt": 1500
+      }
+    },
+    {
+      "protocol": "devices",
+      "node": {
+        "tag": "devices",
+        "attrs": {},
+        "content": [
+          {
+            "tag": "device-list",
+            "attrs": {},
+            "content": [
+              {
+                "tag": "ignored",
+                "attrs": {
+                  "id": "broken"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "1e3",
+                  "key-index": "1e3",
+                  "is_hosted": "true"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "0",
+                  "key-index": "0",
+                  "is_hosted": "false"
+                },
+                "content": null
+              }
+            ]
+          },
+          {
+            "tag": "key-index-list",
+            "attrs": {
+              "ts": "1e3",
+              "expected_ts": "1e3"
+            },
+            "content": {
+              "bytes": [
+                0,
+                255,
+                1
+              ]
+            }
+          }
+        ]
+      },
+      "expected": {
+        "deviceList": [
+          {
+            "id": 1000,
+            "keyIndex": 1000,
+            "isHosted": true
+          },
+          {
+            "id": 0,
+            "keyIndex": 0,
+            "isHosted": false
+          }
+        ],
+        "keyIndex": {
+          "timestamp": 1000,
+          "signedKeyIndex": [
+            0,
+            255,
+            1
+          ],
+          "expectedTimestamp": 1000
+        }
+      }
+    },
+    {
+      "protocol": "disappearing_mode",
+      "node": {
+        "tag": "disappearing_mode",
+        "attrs": {
+          "duration": "1e3",
+          "t": "1e3"
+        },
+        "content": null
+      },
+      "expected": {
+        "duration": 1000,
+        "setAt": 1000000
+      }
+    },
+    {
+      "protocol": "status",
+      "node": {
+        "tag": "status",
+        "attrs": {
+          "t": "1e3"
+        },
+        "content": {
+          "bytes": [
+            79,
+            108,
+            195,
+            161,
+            32,
+            240,
+            159,
+            145,
+            139
+          ]
+        }
+      },
+      "expected": {
+        "status": "Olá 👋",
+        "setAt": 1000000
+      }
+    },
+    {
+      "protocol": "devices",
+      "node": {
+        "tag": "devices",
+        "attrs": {},
+        "content": [
+          {
+            "tag": "device-list",
+            "attrs": {},
+            "content": [
+              {
+                "tag": "ignored",
+                "attrs": {
+                  "id": "broken"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "0x10",
+                  "key-index": "0x10",
+                  "is_hosted": "true"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "0",
+                  "key-index": "0",
+                  "is_hosted": "false"
+                },
+                "content": null
+              }
+            ]
+          },
+          {
+            "tag": "key-index-list",
+            "attrs": {
+              "ts": "0x10",
+              "expected_ts": "0x10"
+            },
+            "content": {
+              "bytes": [
+                0,
+                255,
+                1
+              ]
+            }
+          }
+        ]
+      },
+      "expected": {
+        "deviceList": [
+          {
+            "id": 16,
+            "keyIndex": 16,
+            "isHosted": true
+          },
+          {
+            "id": 0,
+            "keyIndex": 0,
+            "isHosted": false
+          }
+        ],
+        "keyIndex": {
+          "timestamp": 16,
+          "signedKeyIndex": [
+            0,
+            255,
+            1
+          ],
+          "expectedTimestamp": 16
+        }
+      }
+    },
+    {
+      "protocol": "disappearing_mode",
+      "node": {
+        "tag": "disappearing_mode",
+        "attrs": {
+          "duration": "0x10",
+          "t": "0x10"
+        },
+        "content": null
+      },
+      "expected": {
+        "duration": 16,
+        "setAt": 16000
+      }
+    },
+    {
+      "protocol": "status",
+      "node": {
+        "tag": "status",
+        "attrs": {
+          "t": "0x10"
+        },
+        "content": {
+          "bytes": [
+            79,
+            108,
+            195,
+            161,
+            32,
+            240,
+            159,
+            145,
+            139
+          ]
+        }
+      },
+      "expected": {
+        "status": "Olá 👋",
+        "setAt": 16000
+      }
+    },
+    {
+      "protocol": "devices",
+      "node": {
+        "tag": "devices",
+        "attrs": {},
+        "content": [
+          {
+            "tag": "device-list",
+            "attrs": {},
+            "content": [
+              {
+                "tag": "ignored",
+                "attrs": {
+                  "id": "broken"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "0b11",
+                  "key-index": "0b11",
+                  "is_hosted": "true"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "0",
+                  "key-index": "0",
+                  "is_hosted": "false"
+                },
+                "content": null
+              }
+            ]
+          },
+          {
+            "tag": "key-index-list",
+            "attrs": {
+              "ts": "0b11",
+              "expected_ts": "0b11"
+            },
+            "content": {
+              "bytes": [
+                0,
+                255,
+                1
+              ]
+            }
+          }
+        ]
+      },
+      "expected": {
+        "deviceList": [
+          {
+            "id": 3,
+            "keyIndex": 3,
+            "isHosted": true
+          },
+          {
+            "id": 0,
+            "keyIndex": 0,
+            "isHosted": false
+          }
+        ],
+        "keyIndex": {
+          "timestamp": 3,
+          "signedKeyIndex": [
+            0,
+            255,
+            1
+          ],
+          "expectedTimestamp": 3
+        }
+      }
+    },
+    {
+      "protocol": "disappearing_mode",
+      "node": {
+        "tag": "disappearing_mode",
+        "attrs": {
+          "duration": "0b11",
+          "t": "0b11"
+        },
+        "content": null
+      },
+      "expected": {
+        "duration": 3,
+        "setAt": 3000
+      }
+    },
+    {
+      "protocol": "status",
+      "node": {
+        "tag": "status",
+        "attrs": {
+          "t": "0b11"
+        },
+        "content": {
+          "bytes": [
+            79,
+            108,
+            195,
+            161,
+            32,
+            240,
+            159,
+            145,
+            139
+          ]
+        }
+      },
+      "expected": {
+        "status": "Olá 👋",
+        "setAt": 3000
+      }
+    },
+    {
+      "protocol": "devices",
+      "node": {
+        "tag": "devices",
+        "attrs": {},
+        "content": [
+          {
+            "tag": "device-list",
+            "attrs": {},
+            "content": [
+              {
+                "tag": "ignored",
+                "attrs": {
+                  "id": "broken"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "0o17",
+                  "key-index": "0o17",
+                  "is_hosted": "true"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "0",
+                  "key-index": "0",
+                  "is_hosted": "false"
+                },
+                "content": null
+              }
+            ]
+          },
+          {
+            "tag": "key-index-list",
+            "attrs": {
+              "ts": "0o17",
+              "expected_ts": "0o17"
+            },
+            "content": {
+              "bytes": [
+                0,
+                255,
+                1
+              ]
+            }
+          }
+        ]
+      },
+      "expected": {
+        "deviceList": [
+          {
+            "id": 15,
+            "keyIndex": 15,
+            "isHosted": true
+          },
+          {
+            "id": 0,
+            "keyIndex": 0,
+            "isHosted": false
+          }
+        ],
+        "keyIndex": {
+          "timestamp": 15,
+          "signedKeyIndex": [
+            0,
+            255,
+            1
+          ],
+          "expectedTimestamp": 15
+        }
+      }
+    },
+    {
+      "protocol": "disappearing_mode",
+      "node": {
+        "tag": "disappearing_mode",
+        "attrs": {
+          "duration": "0o17",
+          "t": "0o17"
+        },
+        "content": null
+      },
+      "expected": {
+        "duration": 15,
+        "setAt": 15000
+      }
+    },
+    {
+      "protocol": "status",
+      "node": {
+        "tag": "status",
+        "attrs": {
+          "t": "0o17"
+        },
+        "content": {
+          "bytes": [
+            79,
+            108,
+            195,
+            161,
+            32,
+            240,
+            159,
+            145,
+            139
+          ]
+        }
+      },
+      "expected": {
+        "status": "Olá 👋",
+        "setAt": 15000
+      }
+    },
+    {
+      "protocol": "devices",
+      "node": {
+        "tag": "devices",
+        "attrs": {},
+        "content": [
+          {
+            "tag": "device-list",
+            "attrs": {},
+            "content": [
+              {
+                "tag": "ignored",
+                "attrs": {
+                  "id": "broken"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "  12  ",
+                  "key-index": "  12  ",
+                  "is_hosted": "true"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "0",
+                  "key-index": "0",
+                  "is_hosted": "false"
+                },
+                "content": null
+              }
+            ]
+          },
+          {
+            "tag": "key-index-list",
+            "attrs": {
+              "ts": "  12  ",
+              "expected_ts": "  12  "
+            },
+            "content": {
+              "bytes": [
+                0,
+                255,
+                1
+              ]
+            }
+          }
+        ]
+      },
+      "expected": {
+        "deviceList": [
+          {
+            "id": 12,
+            "keyIndex": 12,
+            "isHosted": true
+          },
+          {
+            "id": 0,
+            "keyIndex": 0,
+            "isHosted": false
+          }
+        ],
+        "keyIndex": {
+          "timestamp": 12,
+          "signedKeyIndex": [
+            0,
+            255,
+            1
+          ],
+          "expectedTimestamp": 12
+        }
+      }
+    },
+    {
+      "protocol": "disappearing_mode",
+      "node": {
+        "tag": "disappearing_mode",
+        "attrs": {
+          "duration": "  12  ",
+          "t": "  12  "
+        },
+        "content": null
+      },
+      "expected": {
+        "duration": 12,
+        "setAt": 12000
+      }
+    },
+    {
+      "protocol": "status",
+      "node": {
+        "tag": "status",
+        "attrs": {
+          "t": "  12  "
+        },
+        "content": {
+          "bytes": [
+            79,
+            108,
+            195,
+            161,
+            32,
+            240,
+            159,
+            145,
+            139
+          ]
+        }
+      },
+      "expected": {
+        "status": "Olá 👋",
+        "setAt": 12000
+      }
+    },
+    {
+      "protocol": "devices",
+      "node": {
+        "tag": "devices",
+        "attrs": {},
+        "content": [
+          {
+            "tag": "device-list",
+            "attrs": {},
+            "content": [
+              {
+                "tag": "ignored",
+                "attrs": {
+                  "id": "broken"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "﻿5 ",
+                  "key-index": "﻿5 ",
+                  "is_hosted": "true"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "0",
+                  "key-index": "0",
+                  "is_hosted": "false"
+                },
+                "content": null
+              }
+            ]
+          },
+          {
+            "tag": "key-index-list",
+            "attrs": {
+              "ts": "﻿5 ",
+              "expected_ts": "﻿5 "
+            },
+            "content": {
+              "bytes": [
+                0,
+                255,
+                1
+              ]
+            }
+          }
+        ]
+      },
+      "expected": {
+        "deviceList": [
+          {
+            "id": 5,
+            "keyIndex": 5,
+            "isHosted": true
+          },
+          {
+            "id": 0,
+            "keyIndex": 0,
+            "isHosted": false
+          }
+        ],
+        "keyIndex": {
+          "timestamp": 5,
+          "signedKeyIndex": [
+            0,
+            255,
+            1
+          ],
+          "expectedTimestamp": 5
+        }
+      }
+    },
+    {
+      "protocol": "disappearing_mode",
+      "node": {
+        "tag": "disappearing_mode",
+        "attrs": {
+          "duration": "﻿5 ",
+          "t": "﻿5 "
+        },
+        "content": null
+      },
+      "expected": {
+        "duration": 5,
+        "setAt": 5000
+      }
+    },
+    {
+      "protocol": "status",
+      "node": {
+        "tag": "status",
+        "attrs": {
+          "t": "﻿5 "
+        },
+        "content": {
+          "bytes": [
+            79,
+            108,
+            195,
+            161,
+            32,
+            240,
+            159,
+            145,
+            139
+          ]
+        }
+      },
+      "expected": {
+        "status": "Olá 👋",
+        "setAt": 5000
+      }
+    },
+    {
+      "protocol": "devices",
+      "node": {
+        "tag": "devices",
+        "attrs": {},
+        "content": [
+          {
+            "tag": "device-list",
+            "attrs": {},
+            "content": [
+              {
+                "tag": "ignored",
+                "attrs": {
+                  "id": "broken"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "",
+                  "key-index": "",
+                  "is_hosted": "true"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "0",
+                  "key-index": "0",
+                  "is_hosted": "false"
+                },
+                "content": null
+              }
+            ]
+          },
+          {
+            "tag": "key-index-list",
+            "attrs": {
+              "ts": "",
+              "expected_ts": ""
+            },
+            "content": {
+              "bytes": [
+                0,
+                255,
+                1
+              ]
+            }
+          }
+        ]
+      },
+      "expected": {
+        "deviceList": [
+          {
+            "id": null,
+            "keyIndex": null,
+            "isHosted": true
+          },
+          {
+            "id": 0,
+            "keyIndex": 0,
+            "isHosted": false
+          }
+        ],
+        "keyIndex": {
+          "timestamp": null,
+          "signedKeyIndex": [
+            0,
+            255,
+            1
+          ],
+          "expectedTimestamp": null
+        }
+      }
+    },
+    {
+      "protocol": "disappearing_mode",
+      "node": {
+        "tag": "disappearing_mode",
+        "attrs": {
+          "duration": "",
+          "t": ""
+        },
+        "content": null
+      },
+      "expected": {
+        "duration": null,
+        "setAt": null
+      }
+    },
+    {
+      "protocol": "status",
+      "node": {
+        "tag": "status",
+        "attrs": {
+          "t": ""
+        },
+        "content": {
+          "bytes": [
+            79,
+            108,
+            195,
+            161,
+            32,
+            240,
+            159,
+            145,
+            139
+          ]
+        }
+      },
+      "expected": {
+        "status": "Olá 👋",
+        "setAt": null
+      }
+    },
+    {
+      "protocol": "devices",
+      "node": {
+        "tag": "devices",
+        "attrs": {},
+        "content": [
+          {
+            "tag": "device-list",
+            "attrs": {},
+            "content": [
+              {
+                "tag": "ignored",
+                "attrs": {
+                  "id": "broken"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "NaN",
+                  "key-index": "NaN",
+                  "is_hosted": "true"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "0",
+                  "key-index": "0",
+                  "is_hosted": "false"
+                },
+                "content": null
+              }
+            ]
+          },
+          {
+            "tag": "key-index-list",
+            "attrs": {
+              "ts": "NaN",
+              "expected_ts": "NaN"
+            },
+            "content": {
+              "bytes": [
+                0,
+                255,
+                1
+              ]
+            }
+          }
+        ]
+      },
+      "expected": {
+        "deviceList": [
+          {
+            "id": null,
+            "keyIndex": null,
+            "isHosted": true
+          },
+          {
+            "id": 0,
+            "keyIndex": 0,
+            "isHosted": false
+          }
+        ],
+        "keyIndex": {
+          "timestamp": null,
+          "signedKeyIndex": [
+            0,
+            255,
+            1
+          ],
+          "expectedTimestamp": null
+        }
+      }
+    },
+    {
+      "protocol": "disappearing_mode",
+      "node": {
+        "tag": "disappearing_mode",
+        "attrs": {
+          "duration": "NaN",
+          "t": "NaN"
+        },
+        "content": null
+      },
+      "expected": {
+        "duration": null,
+        "setAt": null
+      }
+    },
+    {
+      "protocol": "status",
+      "node": {
+        "tag": "status",
+        "attrs": {
+          "t": "NaN"
+        },
+        "content": {
+          "bytes": [
+            79,
+            108,
+            195,
+            161,
+            32,
+            240,
+            159,
+            145,
+            139
+          ]
+        }
+      },
+      "expected": {
+        "status": "Olá 👋",
+        "setAt": null
+      }
+    },
+    {
+      "protocol": "devices",
+      "node": {
+        "tag": "devices",
+        "attrs": {},
+        "content": [
+          {
+            "tag": "device-list",
+            "attrs": {},
+            "content": [
+              {
+                "tag": "ignored",
+                "attrs": {
+                  "id": "broken"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "Infinity",
+                  "key-index": "Infinity",
+                  "is_hosted": "true"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "0",
+                  "key-index": "0",
+                  "is_hosted": "false"
+                },
+                "content": null
+              }
+            ]
+          },
+          {
+            "tag": "key-index-list",
+            "attrs": {
+              "ts": "Infinity",
+              "expected_ts": "Infinity"
+            },
+            "content": {
+              "bytes": [
+                0,
+                255,
+                1
+              ]
+            }
+          }
+        ]
+      },
+      "expected": {
+        "deviceList": [
+          {
+            "id": null,
+            "keyIndex": null,
+            "isHosted": true
+          },
+          {
+            "id": 0,
+            "keyIndex": 0,
+            "isHosted": false
+          }
+        ],
+        "keyIndex": {
+          "timestamp": null,
+          "signedKeyIndex": [
+            0,
+            255,
+            1
+          ],
+          "expectedTimestamp": null
+        }
+      }
+    },
+    {
+      "protocol": "disappearing_mode",
+      "node": {
+        "tag": "disappearing_mode",
+        "attrs": {
+          "duration": "Infinity",
+          "t": "Infinity"
+        },
+        "content": null
+      },
+      "expected": {
+        "duration": null,
+        "setAt": null
+      }
+    },
+    {
+      "protocol": "status",
+      "node": {
+        "tag": "status",
+        "attrs": {
+          "t": "Infinity"
+        },
+        "content": {
+          "bytes": [
+            79,
+            108,
+            195,
+            161,
+            32,
+            240,
+            159,
+            145,
+            139
+          ]
+        }
+      },
+      "expected": {
+        "status": "Olá 👋",
+        "setAt": null
+      }
+    },
+    {
+      "protocol": "devices",
+      "node": {
+        "tag": "devices",
+        "attrs": {},
+        "content": [
+          {
+            "tag": "device-list",
+            "attrs": {},
+            "content": [
+              {
+                "tag": "ignored",
+                "attrs": {
+                  "id": "broken"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "-Infinity",
+                  "key-index": "-Infinity",
+                  "is_hosted": "true"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "0",
+                  "key-index": "0",
+                  "is_hosted": "false"
+                },
+                "content": null
+              }
+            ]
+          },
+          {
+            "tag": "key-index-list",
+            "attrs": {
+              "ts": "-Infinity",
+              "expected_ts": "-Infinity"
+            },
+            "content": {
+              "bytes": [
+                0,
+                255,
+                1
+              ]
+            }
+          }
+        ]
+      },
+      "expected": {
+        "deviceList": [
+          {
+            "id": null,
+            "keyIndex": null,
+            "isHosted": true
+          },
+          {
+            "id": 0,
+            "keyIndex": 0,
+            "isHosted": false
+          }
+        ],
+        "keyIndex": {
+          "timestamp": null,
+          "signedKeyIndex": [
+            0,
+            255,
+            1
+          ],
+          "expectedTimestamp": null
+        }
+      }
+    },
+    {
+      "protocol": "disappearing_mode",
+      "node": {
+        "tag": "disappearing_mode",
+        "attrs": {
+          "duration": "-Infinity",
+          "t": "-Infinity"
+        },
+        "content": null
+      },
+      "expected": {
+        "duration": null,
+        "setAt": null
+      }
+    },
+    {
+      "protocol": "status",
+      "node": {
+        "tag": "status",
+        "attrs": {
+          "t": "-Infinity"
+        },
+        "content": {
+          "bytes": [
+            79,
+            108,
+            195,
+            161,
+            32,
+            240,
+            159,
+            145,
+            139
+          ]
+        }
+      },
+      "expected": {
+        "status": "Olá 👋",
+        "setAt": null
+      }
+    },
+    {
+      "protocol": "devices",
+      "node": {
+        "tag": "devices",
+        "attrs": {},
+        "content": [
+          {
+            "tag": "device-list",
+            "attrs": {},
+            "content": [
+              {
+                "tag": "ignored",
+                "attrs": {
+                  "id": "broken"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "9007199254740992",
+                  "key-index": "9007199254740992",
+                  "is_hosted": "true"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "0",
+                  "key-index": "0",
+                  "is_hosted": "false"
+                },
+                "content": null
+              }
+            ]
+          },
+          {
+            "tag": "key-index-list",
+            "attrs": {
+              "ts": "9007199254740992",
+              "expected_ts": "9007199254740992"
+            },
+            "content": {
+              "bytes": [
+                0,
+                255,
+                1
+              ]
+            }
+          }
+        ]
+      },
+      "expected": {
+        "deviceList": [
+          {
+            "id": 9007199254740992,
+            "keyIndex": 9007199254740992,
+            "isHosted": true
+          },
+          {
+            "id": 0,
+            "keyIndex": 0,
+            "isHosted": false
+          }
+        ],
+        "keyIndex": {
+          "timestamp": 9007199254740992,
+          "signedKeyIndex": [
+            0,
+            255,
+            1
+          ],
+          "expectedTimestamp": 9007199254740992
+        }
+      }
+    },
+    {
+      "protocol": "disappearing_mode",
+      "node": {
+        "tag": "disappearing_mode",
+        "attrs": {
+          "duration": "9007199254740992",
+          "t": "9007199254740992"
+        },
+        "content": null
+      },
+      "expected": {
+        "duration": 9007199254740992,
+        "setAt": null
+      }
+    },
+    {
+      "protocol": "status",
+      "node": {
+        "tag": "status",
+        "attrs": {
+          "t": "9007199254740992"
+        },
+        "content": {
+          "bytes": [
+            79,
+            108,
+            195,
+            161,
+            32,
+            240,
+            159,
+            145,
+            139
+          ]
+        }
+      },
+      "expected": {
+        "status": "Olá 👋",
+        "setAt": null
+      }
+    },
+    {
+      "protocol": "devices",
+      "node": {
+        "tag": "devices",
+        "attrs": {},
+        "content": [
+          {
+            "tag": "device-list",
+            "attrs": {},
+            "content": [
+              {
+                "tag": "ignored",
+                "attrs": {
+                  "id": "broken"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "8640000000000",
+                  "key-index": "8640000000000",
+                  "is_hosted": "true"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "0",
+                  "key-index": "0",
+                  "is_hosted": "false"
+                },
+                "content": null
+              }
+            ]
+          },
+          {
+            "tag": "key-index-list",
+            "attrs": {
+              "ts": "8640000000000",
+              "expected_ts": "8640000000000"
+            },
+            "content": {
+              "bytes": [
+                0,
+                255,
+                1
+              ]
+            }
+          }
+        ]
+      },
+      "expected": {
+        "deviceList": [
+          {
+            "id": 8640000000000,
+            "keyIndex": 8640000000000,
+            "isHosted": true
+          },
+          {
+            "id": 0,
+            "keyIndex": 0,
+            "isHosted": false
+          }
+        ],
+        "keyIndex": {
+          "timestamp": 8640000000000,
+          "signedKeyIndex": [
+            0,
+            255,
+            1
+          ],
+          "expectedTimestamp": 8640000000000
+        }
+      }
+    },
+    {
+      "protocol": "disappearing_mode",
+      "node": {
+        "tag": "disappearing_mode",
+        "attrs": {
+          "duration": "8640000000000",
+          "t": "8640000000000"
+        },
+        "content": null
+      },
+      "expected": {
+        "duration": 8640000000000,
+        "setAt": 8640000000000000
+      }
+    },
+    {
+      "protocol": "status",
+      "node": {
+        "tag": "status",
+        "attrs": {
+          "t": "8640000000000"
+        },
+        "content": {
+          "bytes": [
+            79,
+            108,
+            195,
+            161,
+            32,
+            240,
+            159,
+            145,
+            139
+          ]
+        }
+      },
+      "expected": {
+        "status": "Olá 👋",
+        "setAt": 8640000000000000
+      }
+    },
+    {
+      "protocol": "devices",
+      "node": {
+        "tag": "devices",
+        "attrs": {},
+        "content": [
+          {
+            "tag": "device-list",
+            "attrs": {},
+            "content": [
+              {
+                "tag": "ignored",
+                "attrs": {
+                  "id": "broken"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "8640000000001",
+                  "key-index": "8640000000001",
+                  "is_hosted": "true"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "0",
+                  "key-index": "0",
+                  "is_hosted": "false"
+                },
+                "content": null
+              }
+            ]
+          },
+          {
+            "tag": "key-index-list",
+            "attrs": {
+              "ts": "8640000000001",
+              "expected_ts": "8640000000001"
+            },
+            "content": {
+              "bytes": [
+                0,
+                255,
+                1
+              ]
+            }
+          }
+        ]
+      },
+      "expected": {
+        "deviceList": [
+          {
+            "id": 8640000000001,
+            "keyIndex": 8640000000001,
+            "isHosted": true
+          },
+          {
+            "id": 0,
+            "keyIndex": 0,
+            "isHosted": false
+          }
+        ],
+        "keyIndex": {
+          "timestamp": 8640000000001,
+          "signedKeyIndex": [
+            0,
+            255,
+            1
+          ],
+          "expectedTimestamp": 8640000000001
+        }
+      }
+    },
+    {
+      "protocol": "disappearing_mode",
+      "node": {
+        "tag": "disappearing_mode",
+        "attrs": {
+          "duration": "8640000000001",
+          "t": "8640000000001"
+        },
+        "content": null
+      },
+      "expected": {
+        "duration": 8640000000001,
+        "setAt": null
+      }
+    },
+    {
+      "protocol": "status",
+      "node": {
+        "tag": "status",
+        "attrs": {
+          "t": "8640000000001"
+        },
+        "content": {
+          "bytes": [
+            79,
+            108,
+            195,
+            161,
+            32,
+            240,
+            159,
+            145,
+            139
+          ]
+        }
+      },
+      "expected": {
+        "status": "Olá 👋",
+        "setAt": null
+      }
+    },
+    {
+      "protocol": "devices",
+      "node": {
+        "tag": "devices",
+        "attrs": {},
+        "content": [
+          {
+            "tag": "device-list",
+            "attrs": {},
+            "content": [
+              {
+                "tag": "ignored",
+                "attrs": {
+                  "id": "broken"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "not-number",
+                  "key-index": "not-number",
+                  "is_hosted": "true"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "0",
+                  "key-index": "0",
+                  "is_hosted": "false"
+                },
+                "content": null
+              }
+            ]
+          },
+          {
+            "tag": "key-index-list",
+            "attrs": {
+              "ts": "not-number",
+              "expected_ts": "not-number"
+            },
+            "content": {
+              "bytes": [
+                0,
+                255,
+                1
+              ]
+            }
+          }
+        ]
+      },
+      "expected": {
+        "deviceList": [
+          {
+            "id": null,
+            "keyIndex": null,
+            "isHosted": true
+          },
+          {
+            "id": 0,
+            "keyIndex": 0,
+            "isHosted": false
+          }
+        ],
+        "keyIndex": {
+          "timestamp": null,
+          "signedKeyIndex": [
+            0,
+            255,
+            1
+          ],
+          "expectedTimestamp": null
+        }
+      }
+    },
+    {
+      "protocol": "disappearing_mode",
+      "node": {
+        "tag": "disappearing_mode",
+        "attrs": {
+          "duration": "not-number",
+          "t": "not-number"
+        },
+        "content": null
+      },
+      "expected": {
+        "duration": null,
+        "setAt": null
+      }
+    },
+    {
+      "protocol": "status",
+      "node": {
+        "tag": "status",
+        "attrs": {
+          "t": "not-number"
+        },
+        "content": {
+          "bytes": [
+            79,
+            108,
+            195,
+            161,
+            32,
+            240,
+            159,
+            145,
+            139
+          ]
+        }
+      },
+      "expected": {
+        "status": "Olá 👋",
+        "setAt": null
+      }
+    },
+    {
+      "protocol": "devices",
+      "node": {
+        "tag": "devices",
+        "attrs": {},
+        "content": [
+          {
+            "tag": "device-list",
+            "attrs": {},
+            "content": [
+              {
+                "tag": "ignored",
+                "attrs": {
+                  "id": "broken"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "0xd87a1cbe50f29436d87a1cbe50f29436d87a1cbe50f29436d87a1cbe50f29436d87a1cbe50f29436d87a1cbe5",
+                  "key-index": "0xd87a1cbe50f29436d87a1cbe50f29436d87a1cbe50f29436d87a1cbe50f29436d87a1cbe50f29436d87a1cbe5",
+                  "is_hosted": "true"
+                },
+                "content": null
+              },
+              {
+                "tag": "device",
+                "attrs": {
+                  "id": "0",
+                  "key-index": "0",
+                  "is_hosted": "false"
+                },
+                "content": null
+              }
+            ]
+          },
+          {
+            "tag": "key-index-list",
+            "attrs": {
+              "ts": "0xd87a1cbe50f29436d87a1cbe50f29436d87a1cbe50f29436d87a1cbe50f29436d87a1cbe50f29436d87a1cbe5",
+              "expected_ts": "0xd87a1cbe50f29436d87a1cbe50f29436d87a1cbe50f29436d87a1cbe50f29436d87a1cbe50f29436d87a1cbe5"
+            },
+            "content": {
+              "bytes": [
+                0,
+                255,
+                1
+              ]
+            }
+          }
+        ]
+      },
+      "expected": {
+        "deviceList": [
+          {
+            "id": 1.2412242559829776e+107,
+            "keyIndex": 1.2412242559829776e+107,
+            "isHosted": true
+          },
+          {
+            "id": 0,
+            "keyIndex": 0,
+            "isHosted": false
+          }
+        ],
+        "keyIndex": {
+          "timestamp": 1.2412242559829776e+107,
+          "signedKeyIndex": [
+            0,
+            255,
+            1
+          ],
+          "expectedTimestamp": 1.2412242559829776e+107
+        }
+      }
+    },
+    {
+      "protocol": "disappearing_mode",
+      "node": {
+        "tag": "disappearing_mode",
+        "attrs": {
+          "duration": "0xd87a1cbe50f29436d87a1cbe50f29436d87a1cbe50f29436d87a1cbe50f29436d87a1cbe50f29436d87a1cbe5",
+          "t": "0xd87a1cbe50f29436d87a1cbe50f29436d87a1cbe50f29436d87a1cbe50f29436d87a1cbe50f29436d87a1cbe5"
+        },
+        "content": null
+      },
+      "expected": {
+        "duration": 1.2412242559829776e+107,
+        "setAt": null
+      }
+    },
+    {
+      "protocol": "status",
+      "node": {
+        "tag": "status",
+        "attrs": {
+          "t": "0xd87a1cbe50f29436d87a1cbe50f29436d87a1cbe50f29436d87a1cbe50f29436d87a1cbe50f29436d87a1cbe5"
+        },
+        "content": {
+          "bytes": [
+            79,
+            108,
+            195,
+            161,
+            32,
+            240,
+            159,
+            145,
+            139
+          ]
+        }
+      },
+      "expected": {
+        "status": "Olá 👋",
+        "setAt": null
+      }
+    },
+    {
+      "protocol": "status",
+      "node": {
+        "tag": "status",
+        "attrs": {},
+        "content": null
+      },
+      "expected": {
+        "status": null,
+        "setAt": 0
+      }
+    },
+    {
+      "protocol": "status",
+      "node": {
+        "tag": "status",
+        "attrs": {
+          "code": "401"
+        },
+        "content": null
+      },
+      "expected": {
+        "status": "",
+        "setAt": 0
+      }
+    },
+    {
+      "protocol": "status",
+      "node": {
+        "tag": "status",
+        "attrs": {
+          "code": "404"
+        },
+        "content": null
+      },
+      "expected": {
+        "status": null,
+        "setAt": 0
+      }
+    },
+    {
+      "protocol": "status",
+      "node": {
+        "tag": "status",
+        "attrs": {},
+        "content": ""
+      },
+      "expected": {
+        "status": null,
+        "setAt": 0
+      }
+    },
+    {
+      "protocol": "status",
+      "node": {
+        "tag": "status",
+        "attrs": {
+          "code": "401"
+        },
+        "content": ""
+      },
+      "expected": {
+        "status": "",
+        "setAt": 0
+      }
+    },
+    {
+      "protocol": "status",
+      "node": {
+        "tag": "status",
+        "attrs": {
+          "code": "404"
+        },
+        "content": ""
+      },
+      "expected": {
+        "status": null,
+        "setAt": 0
+      }
+    },
+    {
+      "protocol": "status",
+      "node": {
+        "tag": "status",
+        "attrs": {},
+        "content": {
+          "bytes": []
+        }
+      },
+      "expected": {
+        "status": null,
+        "setAt": 0
+      }
+    },
+    {
+      "protocol": "status",
+      "node": {
+        "tag": "status",
+        "attrs": {
+          "code": "401"
+        },
+        "content": {
+          "bytes": []
+        }
+      },
+      "expected": {
+        "status": "",
+        "setAt": 0
+      }
+    },
+    {
+      "protocol": "status",
+      "node": {
+        "tag": "status",
+        "attrs": {
+          "code": "404"
+        },
+        "content": {
+          "bytes": []
+        }
+      },
+      "expected": {
+        "status": null,
+        "setAt": 0
+      }
+    },
+    {
+      "protocol": "status",
+      "node": {
+        "tag": "status",
+        "attrs": {},
+        "content": "hello"
+      },
+      "expected": {
+        "status": "hello",
+        "setAt": 0
+      }
+    },
+    {
+      "protocol": "status",
+      "node": {
+        "tag": "status",
+        "attrs": {
+          "code": "401"
+        },
+        "content": "hello"
+      },
+      "expected": {
+        "status": "hello",
+        "setAt": 0
+      }
+    },
+    {
+      "protocol": "status",
+      "node": {
+        "tag": "status",
+        "attrs": {
+          "code": "404"
+        },
+        "content": "hello"
+      },
+      "expected": {
+        "status": "hello",
+        "setAt": 0
+      }
+    },
+    {
+      "protocol": "status",
+      "node": {
+        "tag": "status",
+        "attrs": {},
+        "content": {
+          "bytes": [
+            255,
+            195,
+            40
+          ]
+        }
+      },
+      "expected": {
+        "status": "��(",
+        "setAt": 0
+      }
+    },
+    {
+      "protocol": "status",
+      "node": {
+        "tag": "status",
+        "attrs": {
+          "code": "401"
+        },
+        "content": {
+          "bytes": [
+            255,
+            195,
+            40
+          ]
+        }
+      },
+      "expected": {
+        "status": "��(",
+        "setAt": 0
+      }
+    },
+    {
+      "protocol": "status",
+      "node": {
+        "tag": "status",
+        "attrs": {
+          "code": "404"
+        },
+        "content": {
+          "bytes": [
+            255,
+            195,
+            40
+          ]
+        }
+      },
+      "expected": {
+        "status": "��(",
+        "setAt": 0
+      }
+    },
+    {
+      "protocol": "status",
+      "node": {
+        "tag": "status",
+        "attrs": {},
+        "content": {
+          "bytes": [
+            217,
+            133,
+            216,
+            177,
+            216,
+            173,
+            216,
+            168,
+            216,
+            167
+          ]
+        }
+      },
+      "expected": {
+        "status": "مرحبا",
+        "setAt": 0
+      }
+    },
+    {
+      "protocol": "status",
+      "node": {
+        "tag": "status",
+        "attrs": {
+          "code": "401"
+        },
+        "content": {
+          "bytes": [
+            217,
+            133,
+            216,
+            177,
+            216,
+            173,
+            216,
+            168,
+            216,
+            167
+          ]
+        }
+      },
+      "expected": {
+        "status": "مرحبا",
+        "setAt": 0
+      }
+    },
+    {
+      "protocol": "status",
+      "node": {
+        "tag": "status",
+        "attrs": {
+          "code": "404"
+        },
+        "content": {
+          "bytes": [
+            217,
+            133,
+            216,
+            177,
+            216,
+            173,
+            216,
+            168,
+            216,
+            167
+          ]
+        }
+      },
+      "expected": {
+        "status": "مرحبا",
+        "setAt": 0
+      }
+    },
+    {
+      "protocol": "contact",
+      "node": {
+        "tag": "contact",
+        "attrs": {},
+        "content": null
+      },
+      "expected": false
+    },
+    {
+      "protocol": "contact",
+      "node": {
+        "tag": "contact",
+        "attrs": {
+          "type": "in"
+        },
+        "content": null
+      },
+      "expected": true
+    },
+    {
+      "protocol": "contact",
+      "node": {
+        "tag": "contact",
+        "attrs": {
+          "type": "out"
+        },
+        "content": null
+      },
+      "expected": false
+    },
+    {
+      "protocol": "contact",
+      "node": {
+        "tag": "contact",
+        "attrs": {
+          "type": ""
+        },
+        "content": null
+      },
+      "expected": false
+    },
+    {
+      "protocol": "contact",
+      "node": {
+        "tag": "contact",
+        "attrs": {
+          "type": "IN"
+        },
+        "content": null
+      },
+      "expected": false
+    },
+    {
+      "protocol": "lid",
+      "node": {
+        "tag": "lid",
+        "attrs": {},
+        "content": null
+      },
+      "expected": null
+    },
+    {
+      "protocol": "lid",
+      "node": {
+        "tag": "lid",
+        "attrs": {
+          "val": ""
+        },
+        "content": null
+      },
+      "expected": ""
+    },
+    {
+      "protocol": "lid",
+      "node": {
+        "tag": "lid",
+        "attrs": {
+          "val": "999@lid"
+        },
+        "content": null
+      },
+      "expected": "999@lid"
+    },
+    {
+      "protocol": "username",
+      "node": {
+        "tag": "username",
+        "attrs": {},
+        "content": null
+      },
+      "expected": null
+    },
+    {
+      "protocol": "username",
+      "node": {
+        "tag": "username",
+        "attrs": {},
+        "content": ""
+      },
+      "expected": ""
+    },
+    {
+      "protocol": "username",
+      "node": {
+        "tag": "username",
+        "attrs": {},
+        "content": "alice"
+      },
+      "expected": "alice"
+    },
+    {
+      "protocol": "username",
+      "node": {
+        "tag": "username",
+        "attrs": {},
+        "content": {
+          "bytes": [
+            97,
+            108,
+            105,
+            99,
+            101
+          ]
+        }
+      },
+      "expected": null
+    },
+    {
+      "protocol": "contact",
+      "node": {
+        "tag": "other",
+        "attrs": {},
+        "content": null
+      },
+      "expected": false
+    },
+    {
+      "protocol": "contact",
+      "node": {
+        "tag": "contact",
+        "attrs": {},
+        "content": [
+          {
+            "tag": "error",
+            "attrs": {
+              "code": "403",
+              "text": "fixture error"
+            },
+            "content": null
+          }
+        ]
+      },
+      "error": true
+    },
+    {
+      "protocol": "devices",
+      "node": {
+        "tag": "other",
+        "attrs": {},
+        "content": null
+      },
+      "expected": {
+        "deviceList": []
+      }
+    },
+    {
+      "protocol": "devices",
+      "node": {
+        "tag": "devices",
+        "attrs": {},
+        "content": [
+          {
+            "tag": "error",
+            "attrs": {
+              "code": "403",
+              "text": "fixture error"
+            },
+            "content": null
+          }
+        ]
+      },
+      "error": true
+    },
+    {
+      "protocol": "status",
+      "node": {
+        "tag": "other",
+        "attrs": {},
+        "content": null
+      },
+      "expected": null
+    },
+    {
+      "protocol": "status",
+      "node": {
+        "tag": "status",
+        "attrs": {},
+        "content": [
+          {
+            "tag": "error",
+            "attrs": {
+              "code": "403",
+              "text": "fixture error"
+            },
+            "content": null
+          }
+        ]
+      },
+      "error": true
+    },
+    {
+      "protocol": "disappearing_mode",
+      "node": {
+        "tag": "other",
+        "attrs": {},
+        "content": null
+      },
+      "expected": null
+    },
+    {
+      "protocol": "disappearing_mode",
+      "node": {
+        "tag": "disappearing_mode",
+        "attrs": {},
+        "content": [
+          {
+            "tag": "error",
+            "attrs": {
+              "code": "403",
+              "text": "fixture error"
+            },
+            "content": null
+          }
+        ]
+      },
+      "error": true
+    },
+    {
+      "protocol": "bot",
+      "node": {
+        "tag": "other",
+        "attrs": {},
+        "content": null
+      },
+      "error": true
+    },
+    {
+      "protocol": "lid",
+      "node": {
+        "tag": "other",
+        "attrs": {},
+        "content": null
+      },
+      "expected": null
+    },
+    {
+      "protocol": "username",
+      "node": {
+        "tag": "other",
+        "attrs": {},
+        "content": null
+      },
+      "expected": null
+    },
+    {
+      "protocol": "username",
+      "node": {
+        "tag": "username",
+        "attrs": {},
+        "content": [
+          {
+            "tag": "error",
+            "attrs": {
+              "code": "403",
+              "text": "fixture error"
+            },
+            "content": null
+          }
+        ]
+      },
+      "error": true
+    },
+    {
+      "protocol": "bot",
+      "node": {
+        "tag": "user",
+        "attrs": {
+          "jid": "123@bot"
+        },
+        "content": [
+          {
+            "tag": "bot",
+            "attrs": {},
+            "content": [
+              {
+                "tag": "profile",
+                "attrs": {
+                  "persona_id": "persona"
+                },
+                "content": [
+                  {
+                    "tag": "default",
+                    "attrs": {},
+                    "content": null
+                  },
+                  {
+                    "tag": "name",
+                    "attrs": {},
+                    "content": "Assistant"
+                  },
+                  {
+                    "tag": "attributes",
+                    "attrs": {},
+                    "content": {
+                      "bytes": [
+                        102,
+                        114,
+                        105,
+                        101,
+                        110,
+                        100,
+                        108,
+                        121
+                      ]
+                    }
+                  },
+                  {
+                    "tag": "description",
+                    "attrs": {},
+                    "content": "description"
+                  },
+                  {
+                    "tag": "category",
+                    "attrs": {},
+                    "content": "help"
+                  },
+                  {
+                    "tag": "commands",
+                    "attrs": {},
+                    "content": [
+                      {
+                        "tag": "description",
+                        "attrs": {},
+                        "content": "commands"
+                      },
+                      {
+                        "tag": "command",
+                        "attrs": {},
+                        "content": [
+                          {
+                            "tag": "name",
+                            "attrs": {},
+                            "content": "hello"
+                          },
+                          {
+                            "tag": "description",
+                            "attrs": {},
+                            "content": "greet"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "command",
+                        "attrs": {},
+                        "content": null
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "prompts",
+                    "attrs": {},
+                    "content": [
+                      {
+                        "tag": "prompt",
+                        "attrs": {},
+                        "content": [
+                          {
+                            "tag": "emoji",
+                            "attrs": {},
+                            "content": "👋"
+                          },
+                          {
+                            "tag": "text",
+                            "attrs": {},
+                            "content": "Hello"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "prompt",
+                        "attrs": {},
+                        "content": null
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "isDefault": true,
+        "jid": "123@bot",
+        "name": "Assistant",
+        "attributes": "friendly",
+        "description": "description",
+        "category": "help",
+        "personaId": "persona",
+        "commandsDescription": "commands",
+        "commands": [
+          {
+            "name": "hello",
+            "description": "greet"
+          },
+          {}
+        ],
+        "prompts": [
+          "👋 Hello",
+          "undefined undefined"
+        ]
+      }
+    },
+    {
+      "protocol": "bot",
+      "node": {
+        "tag": "bot",
+        "attrs": {
+          "jid": "123@bot"
+        },
+        "content": [
+          {
+            "tag": "bot",
+            "attrs": {},
+            "content": [
+              {
+                "tag": "profile",
+                "attrs": {
+                  "persona_id": "persona"
+                },
+                "content": [
+                  {
+                    "tag": "default",
+                    "attrs": {},
+                    "content": null
+                  },
+                  {
+                    "tag": "name",
+                    "attrs": {},
+                    "content": "Assistant"
+                  },
+                  {
+                    "tag": "attributes",
+                    "attrs": {},
+                    "content": {
+                      "bytes": [
+                        102,
+                        114,
+                        105,
+                        101,
+                        110,
+                        100,
+                        108,
+                        121
+                      ]
+                    }
+                  },
+                  {
+                    "tag": "description",
+                    "attrs": {},
+                    "content": "description"
+                  },
+                  {
+                    "tag": "category",
+                    "attrs": {},
+                    "content": "help"
+                  },
+                  {
+                    "tag": "commands",
+                    "attrs": {},
+                    "content": [
+                      {
+                        "tag": "description",
+                        "attrs": {},
+                        "content": "commands"
+                      },
+                      {
+                        "tag": "command",
+                        "attrs": {},
+                        "content": [
+                          {
+                            "tag": "name",
+                            "attrs": {},
+                            "content": "hello"
+                          },
+                          {
+                            "tag": "description",
+                            "attrs": {},
+                            "content": "greet"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "command",
+                        "attrs": {},
+                        "content": null
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "prompts",
+                    "attrs": {},
+                    "content": [
+                      {
+                        "tag": "prompt",
+                        "attrs": {},
+                        "content": [
+                          {
+                            "tag": "emoji",
+                            "attrs": {},
+                            "content": "👋"
+                          },
+                          {
+                            "tag": "text",
+                            "attrs": {},
+                            "content": "Hello"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "prompt",
+                        "attrs": {},
+                        "content": null
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "isDefault": true,
+        "jid": "123@bot",
+        "name": "Assistant",
+        "attributes": "friendly",
+        "description": "description",
+        "category": "help",
+        "personaId": "persona",
+        "commandsDescription": "commands",
+        "commands": [
+          {
+            "name": "hello",
+            "description": "greet"
+          },
+          {}
+        ],
+        "prompts": [
+          "👋 Hello",
+          "undefined undefined"
+        ]
+      }
+    },
+    {
+      "protocol": "bot",
+      "node": {
+        "tag": "bot",
+        "attrs": {},
+        "content": [
+          {
+            "tag": "profile",
+            "attrs": {
+              "persona_id": "persona"
+            },
+            "content": [
+              {
+                "tag": "default",
+                "attrs": {},
+                "content": null
+              },
+              {
+                "tag": "name",
+                "attrs": {},
+                "content": "Assistant"
+              },
+              {
+                "tag": "attributes",
+                "attrs": {},
+                "content": {
+                  "bytes": [
+                    102,
+                    114,
+                    105,
+                    101,
+                    110,
+                    100,
+                    108,
+                    121
+                  ]
+                }
+              },
+              {
+                "tag": "description",
+                "attrs": {},
+                "content": "description"
+              },
+              {
+                "tag": "category",
+                "attrs": {},
+                "content": "help"
+              },
+              {
+                "tag": "commands",
+                "attrs": {},
+                "content": [
+                  {
+                    "tag": "description",
+                    "attrs": {},
+                    "content": "commands"
+                  },
+                  {
+                    "tag": "command",
+                    "attrs": {},
+                    "content": [
+                      {
+                        "tag": "name",
+                        "attrs": {},
+                        "content": "hello"
+                      },
+                      {
+                        "tag": "description",
+                        "attrs": {},
+                        "content": "greet"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "command",
+                    "attrs": {},
+                    "content": null
+                  }
+                ]
+              },
+              {
+                "tag": "prompts",
+                "attrs": {},
+                "content": [
+                  {
+                    "tag": "prompt",
+                    "attrs": {},
+                    "content": [
+                      {
+                        "tag": "emoji",
+                        "attrs": {},
+                        "content": "👋"
+                      },
+                      {
+                        "tag": "text",
+                        "attrs": {},
+                        "content": "Hello"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "prompt",
+                    "attrs": {},
+                    "content": null
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "error": true
+    }
+  ],
+  "results": [
+    {
+      "config": {
+        "protocols": [
+          "contact",
+          "devices",
+          "status",
+          "disappearing_mode",
+          "bot",
+          "lid",
+          "username"
+        ],
+        "users": []
+      },
+      "node": {
+        "tag": "iq",
+        "attrs": {
+          "type": "result"
+        },
+        "content": [
+          {
+            "tag": "usync",
+            "attrs": {},
+            "content": [
+              {
+                "tag": "list",
+                "attrs": {},
+                "content": [
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "123@s.whatsapp.net"
+                    },
+                    "content": [
+                      {
+                        "tag": "contact",
+                        "attrs": {
+                          "type": "in"
+                        },
+                        "content": null
+                      },
+                      {
+                        "tag": "lid",
+                        "attrs": {
+                          "val": "999@lid"
+                        },
+                        "content": null
+                      },
+                      {
+                        "tag": "username",
+                        "attrs": {},
+                        "content": "alice"
+                      },
+                      {
+                        "tag": "status",
+                        "attrs": {
+                          "t": "1"
+                        },
+                        "content": {
+                          "bytes": [
+                            72,
+                            101,
+                            108,
+                            108,
+                            111
+                          ]
+                        }
+                      },
+                      {
+                        "tag": "unknown",
+                        "attrs": {},
+                        "content": "ignored"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": ""
+                    },
+                    "content": null
+                  },
+                  {
+                    "tag": "other",
+                    "attrs": {
+                      "jid": "456@s.whatsapp.net"
+                    },
+                    "content": [
+                      {
+                        "tag": "contact",
+                        "attrs": {
+                          "type": "out"
+                        },
+                        "content": null
+                      },
+                      {
+                        "tag": "contact",
+                        "attrs": {
+                          "type": "in"
+                        },
+                        "content": null
+                      },
+                      {
+                        "tag": "username",
+                        "attrs": {},
+                        "content": "first"
+                      },
+                      {
+                        "tag": "username",
+                        "attrs": {},
+                        "content": {
+                          "bytes": [
+                            111,
+                            109,
+                            105,
+                            116,
+                            116,
+                            101,
+                            100
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "side_list",
+                "attrs": {},
+                "content": [
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "ignored@s.whatsapp.net"
+                    },
+                    "content": null
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "list": [
+          {
+            "contact": true,
+            "lid": "999@lid",
+            "username": "alice",
+            "status": {
+              "status": "Hello",
+              "setAt": 1000
+            },
+            "id": "123@s.whatsapp.net"
+          },
+          {
+            "contact": true,
+            "username": "first",
+            "id": "456@s.whatsapp.net"
+          }
+        ],
+        "sideList": []
+      }
+    },
+    {
+      "config": {
+        "protocols": [
+          "contact",
+          "devices",
+          "status",
+          "disappearing_mode",
+          "bot",
+          "lid",
+          "username"
+        ],
+        "users": []
+      },
+      "node": {
+        "tag": "iq",
+        "attrs": {
+          "type": "error"
+        },
+        "content": null
+      },
+      "expected": null
+    },
+    {
+      "config": {
+        "protocols": [
+          "contact",
+          "devices",
+          "status",
+          "disappearing_mode",
+          "bot",
+          "lid",
+          "username"
+        ],
+        "users": []
+      },
+      "node": {
+        "tag": "iq",
+        "attrs": {
+          "type": "result"
+        },
+        "content": null
+      },
+      "expected": {
+        "list": [],
+        "sideList": []
+      }
+    },
+    {
+      "config": {
+        "protocols": [
+          "contact",
+          "devices",
+          "status",
+          "disappearing_mode",
+          "bot",
+          "lid",
+          "username"
+        ],
+        "users": []
+      },
+      "node": {
+        "tag": "iq",
+        "attrs": {
+          "type": "result"
+        },
+        "content": [
+          {
+            "tag": "usync",
+            "attrs": {},
+            "content": [
+              {
+                "tag": "list",
+                "attrs": {},
+                "content": [
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "1@bot"
+                    },
+                    "content": [
+                      {
+                        "tag": "bot",
+                        "attrs": {},
+                        "content": [
+                          {
+                            "tag": "profile",
+                            "attrs": {
+                              "persona_id": "persona"
+                            },
+                            "content": [
+                              {
+                                "tag": "default",
+                                "attrs": {},
+                                "content": null
+                              },
+                              {
+                                "tag": "name",
+                                "attrs": {},
+                                "content": "Assistant"
+                              },
+                              {
+                                "tag": "attributes",
+                                "attrs": {},
+                                "content": {
+                                  "bytes": [
+                                    102,
+                                    114,
+                                    105,
+                                    101,
+                                    110,
+                                    100,
+                                    108,
+                                    121
+                                  ]
+                                }
+                              },
+                              {
+                                "tag": "description",
+                                "attrs": {},
+                                "content": "description"
+                              },
+                              {
+                                "tag": "category",
+                                "attrs": {},
+                                "content": "help"
+                              },
+                              {
+                                "tag": "commands",
+                                "attrs": {},
+                                "content": [
+                                  {
+                                    "tag": "description",
+                                    "attrs": {},
+                                    "content": "commands"
+                                  },
+                                  {
+                                    "tag": "command",
+                                    "attrs": {},
+                                    "content": [
+                                      {
+                                        "tag": "name",
+                                        "attrs": {},
+                                        "content": "hello"
+                                      },
+                                      {
+                                        "tag": "description",
+                                        "attrs": {},
+                                        "content": "greet"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "tag": "command",
+                                    "attrs": {},
+                                    "content": null
+                                  }
+                                ]
+                              },
+                              {
+                                "tag": "prompts",
+                                "attrs": {},
+                                "content": [
+                                  {
+                                    "tag": "prompt",
+                                    "attrs": {},
+                                    "content": [
+                                      {
+                                        "tag": "emoji",
+                                        "attrs": {},
+                                        "content": "👋"
+                                      },
+                                      {
+                                        "tag": "text",
+                                        "attrs": {},
+                                        "content": "Hello"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "tag": "prompt",
+                                    "attrs": {},
+                                    "content": null
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "error": true
+    },
+    {
+      "config": {
+        "protocols": [
+          "bot"
+        ],
+        "users": []
+      },
+      "node": {
+        "tag": "iq",
+        "attrs": {
+          "type": "result"
+        },
+        "content": [
+          {
+            "tag": "usync",
+            "attrs": {},
+            "content": [
+              {
+                "tag": "list",
+                "attrs": {},
+                "content": [
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "1@bot"
+                    },
+                    "content": [
+                      {
+                        "tag": "bot",
+                        "attrs": {
+                          "jid": "2@bot"
+                        },
+                        "content": [
+                          {
+                            "tag": "bot",
+                            "attrs": {},
+                            "content": [
+                              {
+                                "tag": "profile",
+                                "attrs": {
+                                  "persona_id": "persona"
+                                },
+                                "content": [
+                                  {
+                                    "tag": "default",
+                                    "attrs": {},
+                                    "content": null
+                                  },
+                                  {
+                                    "tag": "name",
+                                    "attrs": {},
+                                    "content": "Assistant"
+                                  },
+                                  {
+                                    "tag": "attributes",
+                                    "attrs": {},
+                                    "content": {
+                                      "bytes": [
+                                        102,
+                                        114,
+                                        105,
+                                        101,
+                                        110,
+                                        100,
+                                        108,
+                                        121
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "tag": "description",
+                                    "attrs": {},
+                                    "content": "description"
+                                  },
+                                  {
+                                    "tag": "category",
+                                    "attrs": {},
+                                    "content": "help"
+                                  },
+                                  {
+                                    "tag": "commands",
+                                    "attrs": {},
+                                    "content": [
+                                      {
+                                        "tag": "description",
+                                        "attrs": {},
+                                        "content": "commands"
+                                      },
+                                      {
+                                        "tag": "command",
+                                        "attrs": {},
+                                        "content": [
+                                          {
+                                            "tag": "name",
+                                            "attrs": {},
+                                            "content": "hello"
+                                          },
+                                          {
+                                            "tag": "description",
+                                            "attrs": {},
+                                            "content": "greet"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "tag": "command",
+                                        "attrs": {},
+                                        "content": null
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "tag": "prompts",
+                                    "attrs": {},
+                                    "content": [
+                                      {
+                                        "tag": "prompt",
+                                        "attrs": {},
+                                        "content": [
+                                          {
+                                            "tag": "emoji",
+                                            "attrs": {},
+                                            "content": "👋"
+                                          },
+                                          {
+                                            "tag": "text",
+                                            "attrs": {},
+                                            "content": "Hello"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "tag": "prompt",
+                                        "attrs": {},
+                                        "content": null
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "list": [
+          {
+            "bot": {
+              "isDefault": true,
+              "jid": "2@bot",
+              "name": "Assistant",
+              "attributes": "friendly",
+              "description": "description",
+              "category": "help",
+              "personaId": "persona",
+              "commandsDescription": "commands",
+              "commands": [
+                {
+                  "name": "hello",
+                  "description": "greet"
+                },
+                {}
+              ],
+              "prompts": [
+                "👋 Hello",
+                "undefined undefined"
+              ]
+            },
+            "id": "1@bot"
+          }
+        ],
+        "sideList": []
+      }
+    }
+  ],
+  "differences": [
+    {
+      "reason": "Ignore inherited Object.prototype names unless explicitly registered",
+      "config": {
+        "protocols": [
+          "contact"
+        ],
+        "users": []
+      },
+      "node": {
+        "tag": "iq",
+        "attrs": {
+          "type": "result"
+        },
+        "content": [
+          {
+            "tag": "usync",
+            "attrs": {},
+            "content": [
+              {
+                "tag": "list",
+                "attrs": {},
+                "content": [
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "synthetic@s.whatsapp.net"
+                    },
+                    "content": [
+                      {
+                        "tag": "toString",
+                        "attrs": {},
+                        "content": null
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "native": {
+        "list": [
+          {
+            "id": "synthetic@s.whatsapp.net"
+          }
+        ],
+        "sideList": []
+      },
+      "original": {
+        "list": [
+          {
+            "toString": "[object Undefined]",
+            "id": "synthetic@s.whatsapp.net"
+          }
+        ],
+        "sideList": []
+      }
+    },
+    {
+      "reason": "Ignore inherited Object.prototype names unless explicitly registered",
+      "config": {
+        "protocols": [
+          "contact"
+        ],
+        "users": []
+      },
+      "node": {
+        "tag": "iq",
+        "attrs": {
+          "type": "result"
+        },
+        "content": [
+          {
+            "tag": "usync",
+            "attrs": {},
+            "content": [
+              {
+                "tag": "list",
+                "attrs": {},
+                "content": [
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "synthetic@s.whatsapp.net"
+                    },
+                    "content": [
+                      {
+                        "tag": "constructor",
+                        "attrs": {},
+                        "content": null
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "native": {
+        "list": [
+          {
+            "id": "synthetic@s.whatsapp.net"
+          }
+        ],
+        "sideList": []
+      },
+      "original": {
+        "list": [
+          {
+            "constructor": {
+              "tag": "constructor",
+              "attrs": {}
+            },
+            "id": "synthetic@s.whatsapp.net"
+          }
+        ],
+        "sideList": []
+      }
+    },
+    {
+      "reason": "Ignore inherited Object.prototype names unless explicitly registered",
+      "config": {
+        "protocols": [
+          "contact"
+        ],
+        "users": []
+      },
+      "node": {
+        "tag": "iq",
+        "attrs": {
+          "type": "result"
+        },
+        "content": [
+          {
+            "tag": "usync",
+            "attrs": {},
+            "content": [
+              {
+                "tag": "list",
+                "attrs": {},
+                "content": [
+                  {
+                    "tag": "user",
+                    "attrs": {
+                      "jid": "synthetic@s.whatsapp.net"
+                    },
+                    "content": [
+                      {
+                        "tag": "__proto__",
+                        "attrs": {},
+                        "content": null
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "native": {
+        "list": [
+          {
+            "id": "synthetic@s.whatsapp.net"
+          }
+        ],
+        "sideList": []
+      },
+      "original_error": true
+    }
+  ]
+}
