@@ -21,6 +21,7 @@ pub enum Error {
     InvalidPath,
     FileTooLarge,
     LockPoisoned,
+    Conflict,
 }
 impl std::fmt::Display for Error {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
@@ -218,6 +219,24 @@ impl MultiFileStore {
         let bytes = creds.to_json()?;
         let _lock = self.acquire()?;
         self.write("creds.json", &bytes)
+    }
+    /// Compare and replace under the same directory lock. The caller must
+    /// already have persisted the original account before linking a device.
+    pub fn compare_and_save_credentials(
+        &self,
+        expected: &Credentials,
+        updated: &Credentials,
+    ) -> Result<(), Error> {
+        let expected = expected.to_json()?;
+        let updated = updated.to_json()?;
+        let _lock = self.acquire()?;
+        let current = self.read("creds.json")?.ok_or(Error::Conflict)?;
+        let current = Credentials::from_json(&current)?.to_json()?;
+        use subtle::ConstantTimeEq;
+        if !bool::from(crate::crypto::sha256(&current).ct_eq(&crate::crypto::sha256(&expected))) {
+            return Err(Error::Conflict);
+        }
+        self.write("creds.json", &updated)
     }
     /// Missing IDs are null, matching the upstream multi-file adapter. Values
     /// preserve BufferJSON/protobuf objects; typed protocol conversion is done

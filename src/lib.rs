@@ -33,3 +33,5 @@ pub mod session_migration;
 pub mod legacy_session;
 
 pub mod socket;
+
+pub mod pairing;

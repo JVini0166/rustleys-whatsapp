@@ -111,3 +111,8 @@ Native mapping/cache/coalescing, reciprocal cleanup and transactional session mi
 ## Async transport checkpoint
 
 A [bounded WebSocket/Noise transport](socket-transport.md) now performs the encrypted handshake, node I/O, correlated queries, keepalive and shutdown on a single-owner task. Tests use loopback sockets and original-generated synthetic Noise vectors; production TLS/WhatsApp service interoperability and the login/pairing facade remain unverified. Event/byte budgets, query-ID rules and typed async/cancellation semantics are explicit behavior differences. Binary limits now also bound the total attribute count, with indexed large-table duplicate handling. The relevant socket inventory entries remain partial.
+
+
+## Registration and pairing checkpoint
+
+[Registration and authenticated pairing primitives](pairing.md) now construct login/registration payloads, QR URLs and clock-driven reference rotation, verify pair-success HMAC/account signatures, sign the reply and persist credentials before releasing its acknowledgement. Original-generated payload/QR cases and independent device-signature checks cover the exercised variants. The original bad-signature acceptance is reproduced and deliberately rejected in Rust. End-to-end live pairing, link-code pairing and post-login initialization remain pending; the related inventory entries stay partial.

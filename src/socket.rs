@@ -123,6 +123,7 @@ pub enum Error {
     InvalidConfig,
     InvalidUrl,
     InvalidCredentials,
+    Pairing(crate::pairing::Error),
     Randomness,
     Closed,
     ConsumerGone,
@@ -327,6 +328,24 @@ impl Connection {
         .map_err(ws_error)?;
         handshake(&mut websocket, &mut noise, &static_key, &plaintext, &config).await?;
         spawn(websocket, noise, config)
+    }
+    /// Select registration/login from persisted account state and build the
+    /// pinned-compatible payload. Pairing/login event orchestration is separate.
+    pub async fn connect_account(
+        url: &str,
+        creds: &Credentials,
+        client: &crate::pairing::ClientConfig,
+        transport: Config,
+    ) -> Result<(Self, Events)> {
+        let payload = crate::pairing::client_payload(creds, client).map_err(Error::Pairing)?;
+        Self::connect(
+            url,
+            creds,
+            &payload,
+            creds.routing_info.as_ref().map(|bytes| bytes.expose()),
+            transport,
+        )
+        .await
     }
     pub fn status(&self) -> Status {
         self.status.borrow().clone()

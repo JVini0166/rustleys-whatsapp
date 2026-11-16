@@ -30,6 +30,8 @@
     "fixtures:lid": "node scripts/generate-lid-fixtures.cjs",
     "verify:lid": "node scripts/verify-lid-cross-runtime.cjs",
     "fixtures:legacy-sessions": "node scripts/generate-legacy-session-fixtures.cjs",
-    "verify:legacy-sessions": "node scripts/verify-legacy-session-cross-runtime.cjs"
+    "verify:legacy-sessions": "node scripts/verify-legacy-session-cross-runtime.cjs",
+    "fixtures:pairing": "node scripts/generate-pairing-fixtures.cjs",
+    "verify:pairing": "node scripts/verify-pairing-cross-runtime.cjs"
   }
 }

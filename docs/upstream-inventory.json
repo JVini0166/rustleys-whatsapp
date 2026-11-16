@@ -600,7 +600,7 @@
     {
       "path": "src/Utils/companion-reg-client-utils.ts",
       "bytes": 1325,
-      "status": "not_ported",
+      "status": "partial",
       "exports": [
         "CompanionWebClientType",
         "getCompanionWebClientType",
@@ -951,7 +951,7 @@
     {
       "path": "src/Utils/validate-connection.ts",
       "bytes": 8011,
-      "status": "not_ported",
+      "status": "partial",
       "exports": [
         "generateLoginNode",
         "generateRegistrationNode",
