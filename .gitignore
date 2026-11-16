@@ -5,3 +5,4 @@
 *.key
 auth_info*/
 *.log
+node_modules/

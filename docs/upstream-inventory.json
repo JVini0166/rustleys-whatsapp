@@ -958,31 +958,46 @@
     {
       "path": "src/WABinary/constants.ts",
       "bytes": 18784,
-      "status": "not_ported",
+      "status": "partial",
       "exports": [
         "TAGS",
         "DOUBLE_BYTE_TOKENS",
         "SINGLE_BYTE_TOKENS",
         "TOKEN_MAP"
-      ]
+      ],
+      "rust_modules": [
+        "src/binary.rs",
+        "src/tokens.rs"
+      ],
+      "validation": "1280 upstream wire/decode vectors; compression/truncation/resource-limit tests. Custom coding options, JS runtime-type coercion and exhaustive malformed-frame conformance remain pending."
     },
     {
       "path": "src/WABinary/decode.ts",
       "bytes": 7225,
-      "status": "not_ported",
+      "status": "partial",
       "exports": [
         "decompressingIfRequired",
         "decodeDecompressedBinaryNode",
         "decodeBinaryNode"
-      ]
+      ],
+      "rust_modules": [
+        "src/binary.rs",
+        "src/tokens.rs"
+      ],
+      "validation": "1280 upstream wire/decode vectors; compression/truncation/resource-limit tests. Custom coding options, JS runtime-type coercion and exhaustive malformed-frame conformance remain pending."
     },
     {
       "path": "src/WABinary/encode.ts",
       "bytes": 6210,
-      "status": "not_ported",
+      "status": "partial",
       "exports": [
         "encodeBinaryNode"
-      ]
+      ],
+      "rust_modules": [
+        "src/binary.rs",
+        "src/tokens.rs"
+      ],
+      "validation": "1280 upstream wire/decode vectors; compression/truncation/resource-limit tests. Custom coding options, JS runtime-type coercion and exhaustive malformed-frame conformance remain pending."
     },
     {
       "path": "src/WABinary/generic-utils.ts",
@@ -1010,7 +1025,7 @@
     {
       "path": "src/WABinary/jid-utils.ts",
       "bytes": 3898,
-      "status": "not_ported",
+      "status": "partial",
       "exports": [
         "S_WHATSAPP_NET",
         "OFFICIAL_BIZ_JID",
@@ -1038,18 +1053,27 @@
         "isJidBot",
         "jidNormalizedUser",
         "transferDevice"
-      ]
+      ],
+      "rust_modules": [
+        "src/jid.rs"
+      ],
+      "validation": "2000 pinned-upstream vectors; protocol unsigned integer cases. JS malformed numeric coercions and numeric user overloads remain pending."
     },
     {
       "path": "src/WABinary/types.ts",
       "bytes": 602,
-      "status": "not_ported",
+      "status": "partial",
       "exports": [
         "BinaryNode",
         "BinaryNodeAttributes",
         "BinaryNodeData",
         "BinaryNodeCodingOptions"
-      ]
+      ],
+      "rust_modules": [
+        "src/binary.rs",
+        "src/tokens.rs"
+      ],
+      "validation": "1280 upstream wire/decode vectors; compression/truncation/resource-limit tests. Custom coding options, JS runtime-type coercion and exhaustive malformed-frame conformance remain pending."
     },
     {
       "path": "src/WAM/BinaryInfo.ts",

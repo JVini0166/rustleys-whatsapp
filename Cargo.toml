@@ -15,3 +15,9 @@ path = "src/lib.rs"
 lto = "thin"
 codegen-units = 1
 strip = true
+
+[dev-dependencies]
+serde_json = { version = "1.0", features = ["preserve_order"] }
+
+[dependencies]
+flate2 = { version = "1.1", default-features = false, features = ["rust_backend"] }

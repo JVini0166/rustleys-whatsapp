@@ -8,6 +8,8 @@ Port all Baileys functionality to Rust with protocol/API compatibility tracked a
 
 **Status: initial development. This repository does not connect to WhatsApp yet. No functional parity or production readiness is claimed.**
 
+Protocol utilities implemented so far: JID helpers and a binary-node encoder/decoder with generated token dictionaries. See [compatibility progress](docs/compatibility.md) for tested behavior and pending differences.
+
 The initial inventory is in `docs/upstream-inventory.json`. Every file starts as `not_ported`; completing a module requires behavioral tests, including error cases and interoperability where applicable. Export extraction is an initial source inventory, not a complete public API specification (re-exports and dynamically returned socket methods require separate analysis).
 
 ## Implementation sequence
@@ -24,7 +26,7 @@ Production FarenX services are outside this repository and are not modified by t
 
 ## Build policy
 
-Builds, tests and benchmarks run exclusively on `prismacodex-us-01`. Do not silently fall back to a developer laptop or GitHub-hosted runner. No CI workflow is enabled until access to the correct runner is configured and verified.
+Explicit user decision on 2026-11-16: builds, tests and benchmarks for this project run locally, without cluster nodes. This is a project-specific override of the FarenX infrastructure policy. Use `CARGO_BUILD_JOBS=1 cargo test` to limit build parallelism. No CI workflow is enabled yet.
 
 The crate is initially non-publishable. Rust source setup alone is not evidence of a working WhatsApp client.
 

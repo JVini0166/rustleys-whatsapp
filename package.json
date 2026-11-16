@@ -1,0 +1,13 @@
+{
+  "name": "rustleys-whatsapp-oracle-tests",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Development-only pinned Baileys oracle fixture generation; no Node runtime in the Rust library",
+  "devDependencies": {
+    "typescript": "5.9.3"
+  },
+  "scripts": {
+    "fixtures:jid": "node scripts/generate-jid-fixtures.cjs",
+    "fixtures:binary": "node scripts/generate-binary-fixtures.cjs"
+  }
+}

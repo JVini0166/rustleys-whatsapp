@@ -1,0 +1,22 @@
+const fs=require('node:fs'),path=require('node:path'),{execFileSync}=require('node:child_process');
+const ts=require(process.env.TYPESCRIPT_PATH||'typescript'),upstream=process.argv[2];
+const expected=JSON.parse(fs.readFileSync(path.join(__dirname,'../docs/upstream-inventory.json'))).commit;
+if(!upstream||execFileSync('git',['-C',upstream,'rev-parse','HEAD'],{encoding:'utf8'}).trim()!==expected)throw Error('Expected pinned upstream checkout');
+const cache={};function load(name){if(cache[name])return cache[name];const src=execFileSync('git',['-C',upstream,'show',`${expected}:src/WABinary/${name}.ts`],{encoding:'utf8'});const code=ts.transpileModule(src,{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText;const m={exports:{}};new Function('require','module','exports',code)(n=>n.startsWith('./')?load(n.slice(2)):require(n),m,m.exports);return cache[name]=m.exports;}
+const c=load('constants'),e=load('encode'),d=load('decode');
+const rust=s=>JSON.stringify(s).replace(/\\u([0-9a-fA-F]{4})/g,'\\u{$1}');
+let out='// Generated from pinned Baileys constants.ts. MIT; see LICENSE/NOTICE.\n';
+out+='pub const SINGLE: &[&str] = &['+c.SINGLE_BYTE_TOKENS.map(rust).join(',')+'];\n';
+out+='pub const DOUBLE: &[&[&str]] = &['+c.DOUBLE_BYTE_TOKENS.map(a=>'&['+a.map(rust).join(',')+']').join(',')+'];\n';
+out+='pub fn token(s: &str) -> Option<(Option<u8>,u8)> { match s {\n';
+for(const [s,t]of Object.entries(c.TOKEN_MAP))out+=`${rust(s)} => Some((${t.dict===undefined?'None':`Some(${t.dict})`},${t.index})),\n`;
+out+='_ => None } }\n';fs.writeFileSync(path.join(__dirname,'../src/tokens.rs'),out);
+const norm=n=>({tag:n.tag,attrs:n.attrs,content:Buffer.isBuffer(n.content)||n.content instanceof Uint8Array?{bytes:[...n.content]}:Array.isArray(n.content)?n.content.map(norm):n.content??null});
+const nodes=[];
+for(const token of [...c.SINGLE_BYTE_TOKENS,...c.DOUBLE_BYTE_TOKENS.flat()].filter(Boolean))nodes.push({tag:'iq',attrs:{id:token}});
+for(const content of [undefined,'','hello','Olá 世界','12345','ABCDEF','abcde',Buffer.from([0,255,128,65]),[],[{tag:'body',attrs:{},content:'Hi'}]])nodes.push({tag:'message',attrs:{from:'123:255@lid',to:'alice@c.us',type:'text'},content});
+for(const jid of ['123:0@s.whatsapp.net','123:256@hosted','123:3@hosted.lid','@g.us','a_2:3@c.us','status@broadcast'])nodes.push({tag:'iq',attrs:{to:jid}});
+for(const length of [127,128,255,256,1024])nodes.push({tag:'raw-unknown',attrs:{},content:'x'.repeat(length)});
+const cases=nodes.map(n=>{const bytes=e.encodeBinaryNode(n);return {input:norm(n),wire:[...bytes],decoded:norm(d.decodeDecompressedBinaryNode(bytes.subarray(1),c))};});
+const z=require('node:zlib');const compressed=[2,...z.deflateSync(Buffer.from(cases.at(-1).wire.slice(1)))];
+fs.writeFileSync(path.join(__dirname,'../tests/fixtures/binary-upstream.json'),JSON.stringify({upstream_commit:expected,cases,compressed})+'\n');console.log(`${cases.length} wire and decode vectors; ${Object.keys(c.TOKEN_MAP).length} dictionary entries`);
