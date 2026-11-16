@@ -29,6 +29,37 @@ fn devices(tx: &mut dyn Transaction, user: &str) -> Result<Option<Vec<u32>>> {
         .map(Some)
 }
 impl<S: Store> crate::signal::Repository<S> {
+    /// Discovery also receives LID-addressed lists; keep the same user-keyed
+    /// persistence category consumed by migration, but validate either identity.
+    pub fn set_discovery_device_list(&self, jid: &str, devices: &[u32]) -> Result<()> {
+        let d = crate::jid::jid_decode(jid).map_err(|_| Error::InvalidAddress)?;
+        if !matches!(d.server, "s.whatsapp.net" | "hosted" | "lid" | "hosted.lid")
+            || d.user.is_empty()
+        {
+            return Err(Error::InvalidAddress);
+        }
+        if devices.len() > 1024 {
+            return Err(Error::TooLarge);
+        }
+        let mut seen = HashSet::new();
+        let values: Vec<_> = devices
+            .iter()
+            .filter(|id| seen.insert(**id))
+            .map(u32::to_string)
+            .collect();
+        let bytes = serde_json::to_vec(&values).map_err(|_| Error::InvalidMapping)?;
+        self.store.transaction(|tx| {
+            tx.put(
+                if matches!(d.domain_type, 1 | 129) {
+                    "device-list-lid"
+                } else {
+                    "device-list"
+                },
+                d.user,
+                &bytes,
+            )
+        })
+    }
     pub fn set_device_list(&self, pn: &str, devices: &[u32]) -> Result<()> {
         let phone = decode(pn, true).ok_or(Error::InvalidAddress)?;
         if devices.len() > 1024 {
@@ -49,6 +80,34 @@ impl<S: Store> crate::signal::Repository<S> {
     /// never overwritten; conflicting source data is preserved outside the
     /// active session namespace so removing an alias cannot revive old counters.
     pub fn migrate_session(&self, from: &str, to: &str) -> Result<MigrationReport> {
+        self.store
+            .transaction(|tx| self.migrate_in_transaction(tx, from, to, true))
+    }
+    /// Discovery migrates the complete authenticated batch before any alias is
+    /// visible. Bare PNs include their persisted list; explicit devices address
+    /// just that device, including non-99 hosted devices.
+    pub fn migrate_sessions(&self, pairs: &[(String, String)]) -> Result<Vec<MigrationReport>> {
+        if pairs.len() > 16384 {
+            return Err(Error::TooLarge);
+        }
+        self.store.transaction(|tx| {
+            pairs
+                .iter()
+                .map(|(from, to)| {
+                    let include_stored =
+                        crate::jid::jid_decode(from).is_ok_and(|d| d.device.is_none());
+                    self.migrate_in_transaction(tx, from, to, include_stored)
+                })
+                .collect()
+        })
+    }
+    fn migrate_in_transaction(
+        &self,
+        tx: &mut dyn Transaction,
+        from: &str,
+        to: &str,
+        include_stored: bool,
+    ) -> Result<MigrationReport> {
         let Some(target) = decode(to, false) else {
             return Ok(MigrationReport::default());
         };
@@ -58,8 +117,12 @@ impl<S: Store> crate::signal::Repository<S> {
                 ..Default::default()
             });
         };
-        self.store.transaction(|tx| {
-            let mut device_ids = devices(tx, source.user)?.unwrap_or_default();
+        {
+            let mut device_ids = if include_stored {
+                devices(tx, source.user)?.unwrap_or_default()
+            } else {
+                Vec::new()
+            };
             let own = source.device.unwrap_or(0);
             if !device_ids.contains(&own) {
                 device_ids.push(own);
@@ -174,7 +237,7 @@ impl<S: Store> crate::signal::Repository<S> {
                 false,
             )?;
             Ok(report)
-        })
+        }
     }
     /// Explicit export of preserved conflicting source state for host-side
     /// reconciliation. This contains private session keys; never log it.

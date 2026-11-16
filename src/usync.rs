@@ -782,3 +782,7 @@ impl<Q: Endpoint> Client<Q> {
             .collect())
     }
 }
+
+pub(crate) fn check_node(node: &Node) -> Result<()> {
+    bound(node, Limits::default()).map(|_| ())
+}

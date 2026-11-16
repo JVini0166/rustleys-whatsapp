@@ -476,27 +476,43 @@ impl<S: Store> Repository<S> {
         })
     }
     pub fn inject_session(&self, jid: &str, bundle: &PreKeyBundle) -> Result<()> {
-        protocol_address(jid)?;
+        self.inject_sessions(&[(jid.to_owned(), bundle.clone())])
+    }
+    /// All session/identity changes commit together, including late signature
+    /// failures. The bounded batch is intended for blocking worker execution.
+    pub fn inject_sessions(&self, bundles: &[(String, PreKeyBundle)]) -> Result<()> {
+        if bundles.len() > 1024 {
+            return Err(Error::TooLarge);
+        }
+        for (jid, _) in bundles {
+            protocol_address(jid)?;
+        }
         self.store.transaction(|tx| {
-            let address = crate::lid_mapping::resolve_address(tx, jid)?;
-            let mut rng = OsRandom;
-            let mut engine = Engine::new(&RustCrypto, &mut rng);
-            let base_key = engine.generate_key_pair()?;
-            let state = engine.initialize_initiator(&engine::InitiatorParameters {
-                local_identity: self.identity.clone(),
-                local_registration: self.registration,
-                remote_identity: bundle.identity,
-                remote_registration: bundle.registration_id,
-                remote_signed_pre_key: bundle.signed_pre_key.public,
-                remote_signed_pre_key_id: bundle.signed_pre_key.id,
-                remote_signed_pre_key_signature: bundle.signed_pre_key.signature,
-                remote_one_time_pre_key: bundle.one_time_pre_key,
-                base_key,
-            })?;
-            let mut record = self.load(tx, &address)?;
-            record.install(state);
-            Self::save(tx, &address, &record)?;
-            tx.put("identity-key", &address, &bundle.identity)?;
+            let mut addresses = std::collections::HashSet::new();
+            for (jid, bundle) in bundles {
+                let address = crate::lid_mapping::resolve_address(tx, jid)?;
+                if !addresses.insert(address.clone()) {
+                    return Err(Error::InvalidAddress);
+                }
+                let mut rng = OsRandom;
+                let mut engine = Engine::new(&RustCrypto, &mut rng);
+                let base_key = engine.generate_key_pair()?;
+                let state = engine.initialize_initiator(&engine::InitiatorParameters {
+                    local_identity: self.identity.clone(),
+                    local_registration: self.registration,
+                    remote_identity: bundle.identity,
+                    remote_registration: bundle.registration_id,
+                    remote_signed_pre_key: bundle.signed_pre_key.public,
+                    remote_signed_pre_key_id: bundle.signed_pre_key.id,
+                    remote_signed_pre_key_signature: bundle.signed_pre_key.signature,
+                    remote_one_time_pre_key: bundle.one_time_pre_key,
+                    base_key,
+                })?;
+                let mut record = self.load(tx, &address)?;
+                record.install(state);
+                Self::save(tx, &address, &record)?;
+                tx.put("identity-key", &address, &bundle.identity)?;
+            }
             Ok(())
         })
     }
