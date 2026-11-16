@@ -7,3 +7,11 @@ pub const UPSTREAM_COMMIT: &str = "bb0a87e0326ca8f882fe716c7ee42da362f73fc0";
 pub mod binary;
 pub mod jid;
 mod tokens;
+
+pub mod crypto;
+/// Generated from the exact pinned Baileys WAProto schema. No JavaScript runtime.
+pub mod proto {
+    include!(concat!(env!("OUT_DIR"), "/proto.rs"));
+}
+pub const PROTO_DESCRIPTOR: &[u8] =
+    include_bytes!(concat!(env!("OUT_DIR"), "/proto-descriptor.bin"));

@@ -3,3 +3,11 @@ Upstream: https://github.com/WhiskeySockets/Baileys
 Pinned baseline: bb0a87e0326ca8f882fe716c7ee42da362f73fc0
 Original MIT license and copyright are retained in LICENSE.
 No affiliation with WhatsApp/Meta or endorsement by WhiskeySockets is implied.
+
+proto/WAProto.proto is copied verbatim from the pinned Baileys baseline.
+The build generates a separate protoc-compatible schema by normalizing 23 enums
+(non-zero-first enums rejected by protoc but accepted by protobuf.js). Existing
+field numbers and enum numeric values are preserved and verified in tests.
+RustCrypto, x25519-dalek, prost and other Rust dependencies retain their own
+licenses, recorded by their distributions. Node, libsignal and the WASM bridge
+are development-only reference oracles and are not the Rust runtime.

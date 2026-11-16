@@ -611,7 +611,7 @@
     {
       "path": "src/Utils/crypto.ts",
       "bytes": 5179,
-      "status": "not_ported",
+      "status": "partial",
       "exports": [
         "generateSignalPubKey",
         "Curve",
@@ -627,7 +627,11 @@
         "hmacSign",
         "sha256",
         "derivePairingCodeKey"
-      ]
+      ],
+      "rust_modules": [
+        "src/crypto.rs"
+      ],
+      "validation": "AES-256 CBC/CTR/GCM(96-bit IV), SHA256, MD5, HMAC256/512, HKDF, PBKDF2 and X25519 tested against the original. XEdDSA signatures, signed prekeys and arbitrary-length GCM IVs remain pending."
     },
     {
       "path": "src/Utils/decode-wa-message.ts",
@@ -1438,6 +1442,18 @@
       "exports": [
         "WASocket"
       ]
+    }
+  ],
+  "protocol_artifacts": [
+    {
+      "path": "WAProto/WAProto.proto",
+      "status": "partial",
+      "source_sha256": "4bab5324186daf8de5ab592548ee80dfc753651667fa9411e0666837f90e4c8d",
+      "rust_modules": [
+        "build.rs",
+        "src/lib.rs::proto"
+      ],
+      "validation": "498 message types, 174 enums, 2424 field mappings/wire vectors; original JS reverse-decodes Rust frames; legacy protobuf.js JSON/default behavior still requires compatibility adapters."
     }
   ]
 }

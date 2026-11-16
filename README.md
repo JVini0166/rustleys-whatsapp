@@ -8,7 +8,7 @@ Port all Baileys functionality to Rust with protocol/API compatibility tracked a
 
 **Status: initial development. This repository does not connect to WhatsApp yet. No functional parity or production readiness is claimed.**
 
-Protocol utilities implemented so far: JID helpers and a binary-node encoder/decoder with generated token dictionaries. See [compatibility progress](docs/compatibility.md) for tested behavior and pending differences.
+Protocol utilities implemented so far: JID helpers; binary-node encoder/decoder with generated token dictionaries; symmetric/hash/key-derivation/X25519 primitives; generated Rust types for the pinned WAProto schema. See [compatibility progress](docs/compatibility.md) for tested behavior and pending differences.
 
 The initial inventory is in `docs/upstream-inventory.json`. Every file starts as `not_ported`; completing a module requires behavioral tests, including error cases and interoperability where applicable. Export extraction is an initial source inventory, not a complete public API specification (re-exports and dynamically returned socket methods require separate analysis).
 

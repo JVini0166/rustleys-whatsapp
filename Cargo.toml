@@ -17,7 +17,25 @@ codegen-units = 1
 strip = true
 
 [dev-dependencies]
+prost-reflect = { version = "0.16", features = ["serde"] }
 serde_json = { version = "1.0", features = ["preserve_order"] }
 
 [dependencies]
+aes = "0.8"
+aes-gcm = "0.10"
+cbc = { version = "0.1", features = ["alloc", "block-padding"] }
+ctr = "0.9"
+sha2 = "0.10"
+md-5 = "0.10"
+hmac = "0.12"
+hkdf = "0.12"
+pbkdf2 = "0.12"
+getrandom = "0.2"
+x25519-dalek = { version = "2.0", features = ["static_secrets"] }
+zeroize = { version = "1.8", features = ["derive"] }
+prost = "0.14"
 flate2 = { version = "1.1", default-features = false, features = ["rust_backend"] }
+
+[build-dependencies]
+prost-build = "0.14"
+protoc-bin-vendored = "3.2"

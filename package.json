@@ -4,10 +4,16 @@
   "version": "0.0.1",
   "description": "Development-only pinned Baileys oracle fixture generation; no Node runtime in the Rust library",
   "devDependencies": {
-    "typescript": "5.9.3"
+    "libsignal": "6.0.0",
+    "protobufjs": "7.5.6",
+    "typescript": "5.9.3",
+    "whatsapp-rust-bridge": "0.5.4"
   },
   "scripts": {
     "fixtures:jid": "node scripts/generate-jid-fixtures.cjs",
-    "fixtures:binary": "node scripts/generate-binary-fixtures.cjs"
+    "fixtures:binary": "node scripts/generate-binary-fixtures.cjs",
+    "fixtures:crypto": "node scripts/generate-crypto-fixtures.cjs",
+    "fixtures:proto": "node scripts/generate-proto-fixtures.cjs",
+    "verify:proto": "node scripts/verify-proto-cross-runtime.cjs"
   }
 }
